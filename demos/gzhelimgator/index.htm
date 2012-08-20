@@ -84,7 +84,6 @@
                 ]
             
             var imgs = dummyImageGenerator(10, dummySizeGenerator(4, 20, 50, 10));
-            console.log(imgs);
             var gallery = new Gzhelimgator(document.getElementById('img-gallery'), imgs, layout, 2000, function(e, block){
                 imageViewContainer.innerHTML = '';
                 imageViewContainer.appendChild(block.image);
