@@ -14,14 +14,17 @@
                 margin: 10px;
                 cursor: pointer;
                 display: inline;
+                background: #ccc;
+            }
+            #img-view {
+                padding: 10px;
             }
         </style>
     </head>
     
     <body>
-        
         <canvas id="img-gallery" width="400" height="250"></canvas>
-        <canvas id="img-gallery-stripes" width="600" height="250"></canvas>
+        <canvas id="img-gallery-slide" width="598" height="250"></canvas>
         <div id="img-view"></div>
         
         <script>
@@ -29,8 +32,8 @@
              * генерирует картинки по заданным размерам, 
              * количество картинок (cnt) может быть больше, чем размер массива, тогда будут картинки с одинаковыми размерами
              * 
-             * @param int cnt количество генерируемых картинок ()
-             * @param [[int width, int height]] vfccbd hfpvthjd
+             * @param cnt количество генерируемых картинок ()
+             * @param [[int width, int height]] размеры изображений
              * 
              * @return [string imgSrc]
              */
@@ -52,9 +55,19 @@
                 return (Math.floor(Math.random() * (max - min + 1)) + min);
             }
             
-            var dummySizeGenerator = function(min, max, scale, length) {
+            /**
+             * генерирует массив случайных размеров
+             * 
+             * @param min int min * scale -- минимальный размер изображения
+             * @param max int max * scale -- максимальный размер изображения
+             * @param scale int масштаб изображения
+             * @param cnt int кол-во генерируемых размеров
+             * 
+             * @return [int width, int height]
+             */
+            var dummySizeGenerator = function(min, max, scale, cnt) {
                 var sizes = [];
-                for (var i = 0; i < length; i++) {
+                for (var i = 0; i < cnt; i++) {
                     sizes.push([
                         getRandomIntegerBetween(min, max) * scale, 
                         getRandomIntegerBetween(min, max) * scale
@@ -63,11 +76,11 @@
                 return sizes;
             }
             
-            
-            
-            
-            
+            // здесь будем выводить исходные изображения
             var imageViewContainer = document.getElementById('img-view');
+            
+            // демо 1
+            // раскладка галереи по блокам 
             var layout = [
                     {
                         size: {width: 200, height: 250}, 
@@ -82,46 +95,56 @@
                         position: {x: 200, y: 125}
                     }
                 ]
-            
+             
+            // генерируем случайные картинки случайных размеров
             var imgs = dummyImageGenerator(10, dummySizeGenerator(4, 20, 50, 10));
-            var gallery = new Gzhelimgator(document.getElementById('img-gallery'), imgs, layout, 2000, function(e, block){
-                imageViewContainer.innerHTML = '';
-                imageViewContainer.appendChild(block.image);
-            });
             
-            var layoutStripes = [
-                    {
-                        size: {width: 100, height: 250}, 
-                        position: {x: 0, y: 0}
-                    },
-                    {
-                        size: {width: 100, height: 250}, 
-                        position: {x: 100, y: 0}
-                    },
-                    {
-                        size: {width: 100, height: 250}, 
-                        position: {x: 200, y: 0}
-                    },
-                    {
-                        size: {width: 100, height: 250}, 
-                        position: {x: 300, y: 0}
-                    },
-                    {
-                        size: {width: 100, height: 250}, 
-                        position: {x: 400, y: 0}
-                    },
-                    {
-                        size: {width: 100, height: 250}, 
-                        position: {x: 500, y: 0}
-                    },
-                ]    
-                
-            // stripes
-            var imgsStripes = dummyImageGenerator(10, dummySizeGenerator(4, 20, 50, 10));
-            var galleryStripes = new Gzhelimgator(document.getElementById('img-gallery-stripes'), imgsStripes, layoutStripes, 1000, function(e, block){
+            // срабатывает по клику на контейнер (если попали в блок), принимает собственно событие
+            // и блок на котором кликнули -- объект вида {image: object Image(), size: {...}, position: {}}
+            var clickHandler = function(e, block){
                 imageViewContainer.innerHTML = '';
                 imageViewContainer.appendChild(block.image);
-            }, 'slide');
+            }
+            
+            // задержка между обновлением каринок
+            var interval = 2000;
+            
+            // запускаем галерею
+            var gallery = new Gzhelimgator(document.getElementById('img-gallery'), imgs, layout, 2000, clickHandler);
+            
+            
+            // демо 2 (slide)
+            var layoutSlide = [
+                {
+                    size: {width: 98, height: 250}, 
+                    position: {x: 0, y: 0}
+                },
+                {
+                    size: {width: 98, height: 250}, 
+                    position: {x: 100, y: 0}
+                },
+                {
+                    size: {width: 98, height: 250}, 
+                    position: {x: 200, y: 0}
+                },
+                {
+                    size: {width: 98, height: 250}, 
+                    position: {x: 300, y: 0}
+                },
+                {
+                    size: {width: 98, height: 250}, 
+                    position: {x: 400, y: 0}
+                },
+                {
+                    size: {width: 98, height: 250}, 
+                    position: {x: 500, y: 0}
+                },
+            ];
+                
+            var imgsSlide = dummyImageGenerator(10, dummySizeGenerator(4, 20, 50, 10));
+            
+            // добавляем параметр renderer = slide (доступны fade (default) и slide)
+            var gallerySlide = new Gzhelimgator(document.getElementById('img-gallery-slide'), imgsSlide, layoutSlide, 1000, clickHandler, 'slide');
             
         </script>
     </body>

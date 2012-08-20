@@ -6,18 +6,18 @@
  * @param imageSources [string] массив src картинок
  * @param layout [{position: {x: int, y: int}, size: {width: int, height: int}}] раскладка блоков
  * @param interval int [opt] задержка межжду изменениями картинок
- * @param callback func [opt] колбек на клик по контейнеру.(Event e, block {position: {...}, size: {...}, image: Image})
+ * @param clickHandler func [opt] колбек на клик по контейнеру.(Event e, block {position: {...}, size: {...}, image: Image})
  * @param rendererName string [opt] имя рендерера
  * 
  * @return obj Gzhelimgator instance
  */
-var Gzhelimgator = function(container, imageSources, layout, interval, callback, rendererName){
+var Gzhelimgator = function(container, imageSources, layout, interval, clickHandler, rendererName){
 
     this._container = container; 
     this._imageSources = imageSources;
     this._layout = layout; // массив блоков
     this._interval = interval > 0 ? interval : 2000; // интервал изменения картинок
-    this._callback = callback || function(){};
+    this._clickHandler = clickHandler || function(){};
     this._rendererName = rendererName || 'fade';
     
     this._isRun = false; // запускался ли this._run()
@@ -126,7 +126,6 @@ Gzhelimgator.prototype = {
      * загружаем нужное для начала работы кол-во картинок (равное количеству блоков в галерее),
      * запускаем смену картинок и всё такое
      */
-    
     _preloadImagesThenRun: function() {
         var that = this,
             image;
@@ -151,7 +150,6 @@ Gzhelimgator.prototype = {
     /**
      * запуск. к этому моменту как минимум this._layout.length картинок должно быть загружено
      * устанавливаем картинку в галерею, вешаем обработчики событий. включаем смену изображений по интервалу
-     * 
      */
     _run: function() {
         for (var i = 0; i < this._layout.length; i++) {
@@ -172,7 +170,7 @@ Gzhelimgator.prototype = {
         this._container.addEventListener('mousedown', function(e) {
             var blockClicked = this.gzhelimgator._getBlockByPoint(this.gzhelimgator._getMousePosition(e, this));
             if (blockClicked) {
-                this.gzhelimgator._callback(e, blockClicked);
+                this.gzhelimgator._clickHandler(e, blockClicked);
             } 
         });
         
