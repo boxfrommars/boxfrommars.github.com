@@ -1,4 +1,4 @@
-$image-search-path: '/home/xu/Workspace/thereza2/build/search/production/resources';
+$image-search-path: '/home/xu/Workspace/thereza/build/search/production/resources';
 $theme-name:  't2theme' !default;
 $include-ext-abstractcomponent: true;
 $include-ext-abstractmanager: true;
@@ -550,12 +550,12 @@ $include-extthemeneptune-resizer-splitter: true;
 $include-extthemeneptune-tab-tab: true;
 $include-extthemeneptune-toolbar-paging: true;
 $include-extthemeneptune-toolbar-toolbar: true;
+$include-thereza-store-cards: true;
 $include-search-application: true;
 $include-search-app-application: true;
 $include-search-controller-main: false;
 $include-search-store-categories: true;
 $include-search-store-paytypes: true;
-$include-search-store-persons: true;
 $include-search-view-main: true;
 $include-search-view-viewport: true;
 /* including package ext-theme-base */
