@@ -1,0 +1,4 @@
+.no-leaf-icons .x-tree-icon-leaf {
+    visibility: hidden;
+    width: 2px; /* Adjust width to suit */
+}
