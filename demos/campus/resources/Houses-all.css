@@ -77,6 +77,17 @@
   /* Adjust width to suit */
 }
 
+/* line 15, ../../../../packages/campusTheme/sass/etc/all.scss */
+.data-form .x-item-disabled .x-form-item-label,
+.data-form .x-item-disabled .x-form-field,
+.data-form .x-item-disabled .x-form-display-field,
+.data-form .x-item-disabled .x-form-cb-label,
+.data-form .x-item-disabled .x-form-trigger {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+  border: 0;
+}
+
 /* including package ext-theme-neptune */
 /**
  * @var {boolean}
