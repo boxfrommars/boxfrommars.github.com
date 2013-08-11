@@ -63,21 +63,15 @@
 /* including package ext-theme-neutral */
 /* including package ext-theme-neptune */
 /* including package campusTheme */
-/* line 1, ../../../../packages/campusTheme/sass/etc/all.scss */
+/* line 2, ../../../../packages/campusTheme/sass/etc/all.scss */
+.x-tree-noicon .x-tree-icon,
 .x-tree-noicon .x-tree-icon-leaf {
   visibility: hidden;
   width: 2px;
   /* Adjust width to suit */
 }
 
-/* line 5, ../../../../packages/campusTheme/sass/etc/all.scss */
-.x-tree-noicon .x-tree-icon {
-  visibility: hidden;
-  width: 2px;
-  /* Adjust width to suit */
-}
-
-/* line 15, ../../../../packages/campusTheme/sass/etc/all.scss */
+/* line 11, ../../../../packages/campusTheme/sass/etc/all.scss */
 .data-form .x-item-disabled .x-form-item-label,
 .data-form .x-item-disabled .x-form-field,
 .data-form .x-item-disabled .x-form-display-field,
@@ -85,7 +79,17 @@
 .data-form .x-item-disabled .x-form-trigger {
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
-  border: 0;
+  border-color: #fff;
+}
+
+/* line 19, ../../../../packages/campusTheme/sass/etc/all.scss */
+.data-form .x-item-disabled .x-form-trigger-wrap {
+  border-color: #fff;
+}
+
+/* line 23, ../../../../packages/campusTheme/sass/etc/all.scss */
+.data-form .x-item-disabled .x-form-trigger {
+  background-image: none;
 }
 
 /* including package ext-theme-neptune */

@@ -1,6 +1,28 @@
-/* line 1, ../custom.scss */
-.no-leaf-icons .x-tree-icon-leaf {
+/* line 2, ../custom.scss */
+.x-tree-noicon .x-tree-icon,
+.x-tree-noicon .x-tree-icon-leaf {
   visibility: hidden;
   width: 2px;
   /* Adjust width to suit */
+}
+
+/* line 11, ../custom.scss */
+.data-form .x-item-disabled .x-form-item-label,
+.data-form .x-item-disabled .x-form-field,
+.data-form .x-item-disabled .x-form-display-field,
+.data-form .x-item-disabled .x-form-cb-label,
+.data-form .x-item-disabled .x-form-trigger {
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+  border-color: #fff;
+}
+
+/* line 19, ../custom.scss */
+.data-form .x-item-disabled .x-form-trigger-wrap {
+  border-color: #fff;
+}
+
+/* line 23, ../custom.scss */
+.data-form .x-item-disabled .x-form-trigger {
+  background-image: none;
 }

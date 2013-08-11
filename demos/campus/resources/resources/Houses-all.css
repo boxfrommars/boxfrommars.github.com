@@ -1,9 +1,12 @@
+/* line 2, ../Houses-all.scss */
 .x-tree-noicon .x-tree-icon,
 .x-tree-noicon .x-tree-icon-leaf {
   visibility: hidden;
-  width: 2px; /* Adjust width to suit */
+  width: 2px;
+  /* Adjust width to suit */
 }
 
+/* line 11, ../Houses-all.scss */
 .data-form .x-item-disabled .x-form-item-label,
 .data-form .x-item-disabled .x-form-field,
 .data-form .x-item-disabled .x-form-display-field,
@@ -12,19 +15,14 @@
   filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
   opacity: 1;
   border-color: #fff;
-
-  //border-color: $panel-body-background-color;
 }
 
+/* line 19, ../Houses-all.scss */
 .data-form .x-item-disabled .x-form-trigger-wrap {
   border-color: #fff;
 }
 
+/* line 23, ../Houses-all.scss */
 .data-form .x-item-disabled .x-form-trigger {
   background-image: none;
-}
-
-.data-form .x-form-item-label {
-  //font-style: italic;
-  //font-weight: bold;
 }
