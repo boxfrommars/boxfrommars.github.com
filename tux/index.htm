@@ -11,6 +11,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">-->
+    <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/github.min.css">
 
     <!-- Custom styles for this template -->
     <style>
@@ -55,10 +57,15 @@
             padding-left: 15px;
             padding-right: 15px;
         }
-
-        code {
-            font-size: 80%;
+        .bs-sidenav ul {
+            margin-left: 30px;
         }
+        pre.code {
+            padding: 0;
+            border-radius: 0;
+            border: 0;
+        }
+
     </style>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -96,11 +103,143 @@
 
     <!-- Begin page content -->
     <div class="container">
-        <div class="page-header">
-            <h1>Sticky footer with fixed navbar</h1>
+        <div class="row">
+            <div class="col-md-9">
+                <div class="page-header">
+                    <h1>Общие сведения</h1>
+                </div>
+                <p>Запросы к серверу выполняются методами <code>GET</code> и <code>POST</code>, в ответ сервер возвращает json со следующими возможными кодами ответа:</p>
+
+                <table class="table table-striped table-bordered">
+                    <tbody>
+                    <tr>
+                        <td><code>200 OK</code></td>
+                        <td>Запрос успешен</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td><code>400 Bad Request</code></td>
+                        <td>Запрос составлен неверно</td>
+                        <td>Сервер не может распарсить запрос (или json пришедший в запросе)</td>
+                    </tr>
+                    <tr>
+                        <td><code>422 Unprocessable Entity</code></td>
+                        <td>Запрос составлен неверно</td>
+                        <td>Синтаксически верный, но не валидный запрос</td>
+                    </tr>
+                    <tr>
+                        <td><code>401 Unauthorized</code></td>
+                        <td>Неавторизованный доступ</td>
+                        <td>Пользователь не авторизован, требуется авторизация</td>
+                    </tr>
+                    <tr>
+                        <td><code>403 Forbidden</code></td>
+                        <td>Доступ запрещен</td>
+                        <td>Пользователь не имеет доступа к данному ресурсу/действию</td>
+                    </tr>
+                    <tr>
+                        <td><code>404 Not Found</code></td>
+                        <td>Не найдено</td>
+                        <td>Запрашиваемый ресурс не найден</td>
+                    </tr>
+                    <tr>
+                        <td><code>500 Server Error</code></td>
+                        <td>Внутренняя ошибка сервера</td>
+                        <td>Любая ошибка произошедшая на стороне сервера</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            <h2>Ошибки</h2>
+            <p>Запрос завершился с ошибкой, если в ответе пришёл код, отличный от <code>200 OK</code>. В таком случае в ответе должно содержаться описание ошибки, например:</p>
+<code>HTTP/1.1 404 Not Found</code>
+<pre class="code"><code>{
+    "message" : "Такой поездки не существует",
+}</code></pre>
+            <p>В случае ошибки <code>422 Unprocessable Entity</code> должна быть передана информации об ошибках валидации:</p>
+                <code>HTTP/1.1 404 Not Found</code>
+<pre class="code"><code>{
+    "code" : "",
+    "message": "Ошибка валидации",
+    "errors" : [
+        {
+            "field": "title",
+            "code": "missing_field"
+        }, {
+    
+        }
+    ]
+}</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="col-md-3">
+                <div data-spy="affix" data-offset-top="60" data-offset-bottom="200">
+                    <ul class="nav bs-sidenav">
+                        <li class="">
+                            <a href="#overview">Общие сведения</a>
+                            <ul class="nav">
+                                <li><a href="#js-individual-compiled">Ответы сервера</a></li>
+                                <li><a href="#js-data-attrs">Ошибки</a></li>
+                                <li><a href="#js-programmatic-api">Дата</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added within <code>#wrap</code> with <code>padding-top: 60px;</code> on the <code>.container</code>.</p>
-        <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
     </div>
 </div>
 
@@ -116,5 +255,8 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/github.min.css"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 </body>
 </html>
