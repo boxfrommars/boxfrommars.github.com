@@ -1,0 +1,20 @@
+<div id="footer">
+    <div class="container">
+        <p class="text-muted">&copy; 2014 Rutorika.</p>
+    </div>
+</div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('pre.code').each(function(i, e) {hljs.highlightBlock(e)});
+        console.log(location.pathname, $("a[href*='" + location.pathname + "']"));
+        $("a[href*='" + location.pathname + "']").parent('li').addClass('active');
+    });
+</script>

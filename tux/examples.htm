@@ -137,104 +137,18 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="page-header">
-                    <h1>Общие сведения</h1>
+                    <h1>Заголовок</h1>
                 </div>
-                <p>Запросы к серверу выполняются методами <code>GET</code> и <code>POST</code>, в ответ сервер возвращает json со следующими возможными кодами ответа:</p>
-                <h4 id="js-href-http_codes" class="anchored">Коды ответов сервера</h4>
-                <table class="table table-striped table-bordered">
-                    <tbody>
-                    <tr>
-                        <td><code>200 OK</code></td>
-                        <td>Запрос успешен</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><code>400 Bad Request</code></td>
-                        <td>Запрос составлен неверно</td>
-                        <td>Сервер не может распарсить запрос (или json пришедший в запросе)</td>
-                    </tr>
-                    <tr>
-                        <td><code>422 Unprocessable Entity</code></td>
-                        <td>Запрос составлен неверно</td>
-                        <td>Синтаксически верный, но не валидный запрос</td>
-                    </tr>
-                    <tr>
-                        <td><code>401 Unauthorized</code></td>
-                        <td>Неавторизованный доступ</td>
-                        <td>Пользователь не авторизован, требуется авторизация</td>
-                    </tr>
-                    <tr>
-                        <td><code>403 Forbidden</code></td>
-                        <td>Доступ запрещен</td>
-                        <td>Пользователь не имеет доступа к данному ресурсу/действию</td>
-                    </tr>
-                    <tr>
-                        <td><code>404 Not Found</code></td>
-                        <td>Не найдено</td>
-                        <td>Запрашиваемый ресурс не найден</td>
-                    </tr>
-                    <tr>
-                        <td><code>500 Server Error</code></td>
-                        <td>Внутренняя ошибка сервера</td>
-                        <td>Любая ошибка произошедшая на стороне сервера</td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <h2 id="js-href-http_errors" class="anchored">Ошибки</h2>
-                <p>Запрос завершился с ошибкой, если в ответе пришёл код, отличный от <code>200 OK</code>. В таком случае в ответе должно содержаться описание ошибки, например:</p>
-                <code>HTTP/1.1 404 Not Found</code>
-<pre class="code">
-{
-    "message" : "Такой поездки не существует",
-}
-</pre>
-                <p>В случае ошибки <code>422 Unprocessable Entity</code> должна быть передана информации об ошибках валидации:</p>
-                <code>HTTP/1.1 404 Not Found</code>
-<pre class="code">
-{
-    "message": "Ошибка валидации",
-    "errors" : [
-        {
-            "field": "title",
-            "code": "missing_field",
-            "message": "Отсутствует необходимое поле"
-        }, {
-            "field": "customer.phone",
-            "code": "invalid",
-            "message": "В поле допустимы только цифры, пробелы, дефисы и всё такое"
-        }
-    ]
-}
-</pre>
-                <h4>Возможные значения <code>code</code></h4>
-                <table class="table table-striped table-bordered">
-                    <tbody>
-                    <tr>
-                        <td><code>missing_field</code></td>
-                        <td>В запросе отсутствует необходимое поле</td>
-                    </tr>
-                    <tr>
-                        <td><code>invalid</code></td>
-                        <td>Поле имеет неверный формат (не проходит валидацию)</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <h2 id="js-href-date" class="anchored">Даты и координаты</h2>
-                <p>Вся информация о времени передаётся в формате ISO 8601 <code>YYYY-MM-DDTHH:MM:SSZ</code></p>
-                <p>Вся информация о координатах точек передаётся в формате WGS 84</p>
-
             </div>
 
             <div class="col-md-3 hidden-xs hidden-sm sidebar-column">
                 <div data-spy="affix" data-offset-top="40" data-offset-bottom="200" class="sidebar-affix">
                     <ul class="nav bs-sidenav">
                         <li class="">
-                            <a href="#">Общие сведения</a>
+                            <a href="#">Ссылки</a>
                             <ul class="nav">
-                                <li><a href="#js-href-http_codes">Ответы сервера</a></li>
-                                <li><a href="#js-href-http_errors">Ошибки</a></li>
-                                <li><a href="#js-href-date">Даты и координаты</a></li>
+                                <li><a href="#js-href-http_codes">Something</a></li>
+                                <li><a href="#js-href-http_errors">Nevermore</a></li>
                             </ul>
                         </li>
                     </ul>

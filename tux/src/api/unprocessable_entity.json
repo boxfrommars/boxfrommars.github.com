@@ -1,0 +1,14 @@
+{
+    "message": "Ошибка валидации",
+    "errors" : [
+        {
+            "field": "title",
+            "code": "missing_field",
+            "message": "Отсутствует необходимое поле"
+        }, {
+            "field": "customer.phone",
+            "code": "invalid",
+            "message": "В поле допустимы только цифры, пробелы, дефисы и всё такое"
+        }
+    ]
+}
