@@ -352,7 +352,151 @@ include "api/thread.json"
                 <p><b>Response</b></p>
                 <p>Тред уже с отправленным сообщением</p>
 
+                <h2 class="anchored" id="js-href-shift">Смены</h2>
+                <h4 class="anchored">Получение заявки на открытие смены</h4>
+                <p><b>Request</b></p>
+                <p><code>GET /shift/:shiftId</code></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>shiftId</code></td>
+                        <td>Идентификатор заявки на открытие смены</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p><b>Response</b></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td>Идентификатор заявки на открытие смены</td>
+                    </tr>
+                    <tr>
+                        <td><code>photo</code></td>
+                        <td><code>[string]</code> список файлов изображений, вида <code>["9b8wxcf8p80au9b.jpg", "4f3pzpeqywm2gei.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imagesBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>time</code></td>
+                        <td><code>ISO 8601</code> Время создания заявки</td>
+                    </tr>
+                    <tr>
+                        <td><code>lifetime</code></td>
+                        <td><code>int</code> "Время жизни" заявки у данного оператора, после окончания времени, заявка пересылается другому оператору</td>
+                    </tr>
+                    <tr>
+                        <td><code>attemptCount</code></td>
+                        <td><code>int</code> Количество неудачных попыток открытия смены</td>
+                    </tr>
+                    <tr>
+                        <td><code>comment</code></td>
+                        <td><code>string</code> Комментарий к заявке</td>
+                    </tr>
+                    <tr>
+                        <td><code>requirements</code></td>
+                        <td><code>{}</code> Требования</td>
+                    </tr>
+                    <tr>
+                        <td><code>requirements.vehicle</code></td>
+                        <td><code>[]</code> Требования к транспорту</td>
+                    </tr>
+                    <tr>
+                        <td><code>requirements.request</code></td>
+                        <td><code>[]</code> Требования к заявке (фотографии)</td>
+                    </tr>
+                    <tr>
+                        <td><code>requirements.vehicle[].id</code><br />
+                            <code>requirements.request[].id</code></td>
+                        <td><code>int</code> Идентификатор требования</td>
+                    </tr>
+                    <tr>
+                        <td><code>requirements.vehicle[].name</code><br />
+                            <code>requirements.request[].name</code></td>
+                        <td><code>string</code> Названия требования</td>
+                    </tr>
+                    <tr>
+                        <td><code>requirements.vehicle[].important</code><br />
+                            <code>requirements.request[].important</code></td>
+                        <td><code>bool</code> Обратить внимание на требование (т.к., например, в прошлый раз не прошёл по этому пункту)</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <code>HTTP/1.1 200 OK</code>
+<pre class="code">
+include "api/shift.json"
+</pre>
 
+                <h4 class="anchored">Ответ на заявку на открытие смены</h4>
+                <p><b>Request</b></p>
+                <p><code>POST /shift/:shiftId</code></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>shiftId</code></td>
+                        <td><code>int</code>Идентификатор заявки на открытие смены</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p>Те же поля, что и в request, но к каждому требованию добавлен параметр соответствия требованию</p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td>Идентификатор заявки на открытие смены</td>
+                    </tr>
+                    <tr>
+                        <td><code>photo</code></td>
+                        <td><code>[string]</code> список файлов изображений, вида <code>["9b8wxcf8p80au9b.jpg", "4f3pzpeqywm2gei.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imagesBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>time</code></td>
+                        <td><code>ISO 8601</code> Время создания заявки</td>
+                    </tr>
+                    <tr>
+                        <td><code>lifetime</code></td>
+                        <td><code>int</code> "Время жизни" заявки у данного оператора, после окончания времени, заявка пересылается другому оператору</td>
+                    </tr>
+                    <tr>
+                        <td><code>attemptCount</code></td>
+                        <td><code>int</code> Количество неудачных попыток открытия смены</td>
+                    </tr>
+                    <tr>
+                        <td><code>comment</code></td>
+                        <td><code>string</code> Комментарий к заявке</td>
+                    </tr>
+                    <tr>
+                        <td><code>requirements</code></td>
+                        <td><code>{}</code> Требования</td>
+                    </tr>
+                    <tr>
+                        <td><code>requirements.vehicle</code></td>
+                        <td><code>[]</code> Требования к транспорту</td>
+                    </tr>
+                    <tr>
+                        <td><code>requirements.request</code></td>
+                        <td><code>[]</code> Требования к заявке (фотографии)</td>
+                    </tr>
+                    <tr>
+                        <td><code>requirements.vehicle[].id</code><br />
+                            <code>requirements.request[].id</code></td>
+                        <td><code>int</code> Идентификатор требования</td>
+                    </tr>
+                    <tr>
+                        <td><code>requirements.vehicle[].name</code><br />
+                            <code>requirements.request[].name</code></td>
+                        <td><code>string</code> Названия требования</td>
+                    </tr>
+                    <tr>
+                        <td><code>requirements.vehicle[].important</code><br />
+                            <code>requirements.request[].important</code></td>
+                        <td><code>bool</code> Обратить внимание на требование (т.к., например, в прошлый раз не прошёл по этому пункту)</td>
+                    </tr>
+                    <tr>
+                        <td><code>requirements.vehicle[].isMatch</code><br />
+                            <code>requirements.request[].isMatch</code></td>
+                        <td><code>bool</code> Соответствует ли требованию</td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
 
 
@@ -378,7 +522,7 @@ include "api/thread.json"
                             </ul>
                         </li>
                         <li><a href="#js-href-message">Сообщения</a></li>
-                        <li><a href="#js-href-">Смены</a></li>
+                        <li><a href="#js-href-shift">Смены</a></li>
                         <li><a href="#js-href-">Словари</a></li>
                         <li><a href="#js-href-">Настройки</a></li>
                     </ul>
