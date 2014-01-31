@@ -1,0 +1,12 @@
+{
+    "code": "streets",
+    "name": "Улицы",
+    "data": [
+        {
+            "id": 1,
+            "districtId": 1,
+            "name": "Зиповская"
+        }
+    ]
+}
+

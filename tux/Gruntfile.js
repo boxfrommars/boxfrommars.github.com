@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         },
         watch: {
             html: {
-                files: ['src/api/**.json', 'src/**.htm', 'src/parts/**.htm'],
+                files: ['src/api/**.json', 'src/**.htm', 'src/parts/**.htm', 'src/api/dicts/**.json'],
                 tasks: ['includes']
             },
             options: {

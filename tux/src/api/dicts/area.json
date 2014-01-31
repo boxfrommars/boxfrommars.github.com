@@ -1,0 +1,13 @@
+{
+    "code": "areas",
+    "name": "Группы городов",
+    "data": [
+        {
+            "id": 1,
+            "name": "Сочи",
+            "currency": "Р",
+            "timezone": "Europe/Moscow",
+            "phoneCode": "8"
+        }
+    ]
+}

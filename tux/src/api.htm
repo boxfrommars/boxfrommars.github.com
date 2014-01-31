@@ -123,7 +123,7 @@ include "api/order.json"
                     </tr>
                     <tr>
                         <td><code>alertTypeId</code></td>
-                        <td>Способ оповещения, берётся из словаря <a href="#js-href-dict-alerttypes">способов оповещений</a></td>
+                        <td>Способ оповещения, берётся из словаря <a href="#js-href-dict-alert-type">способов оповещений</a></td>
                     </tr>
                     <tr>
                         <td><code>orderedProperties</code></td>
@@ -131,11 +131,11 @@ include "api/order.json"
                     </tr>
                     <tr>
                         <td><code>orderedProperties.options</code></td>
-                        <td><code>[int]</code> Список идентификаторов опций автомобиля, берётся из словаря <a href="#js-href-dict-vehicleoptions">опций автомобиля</a></td>
+                        <td><code>[int]</code> Список идентификаторов опций автомобиля, берётся из словаря <a href="#js-href-dict-vehicle-option">опций автомобиля</a></td>
                     </tr>
                     <tr>
                         <td><code>orderedProperties.typeId</code></td>
-                        <td><code>int</code> Тип автомобиля (грузовой, мотоцикл), берётся из словаря <a href="#js-href-dict-vehicletypes">типов автомобиля</a></td>
+                        <td><code>int</code> Тип автомобиля (грузовой, мотоцикл), берётся из словаря <a href="#js-href-dict-vehicle-type">типов автомобиля</a></td>
                     </tr>
                     <tr>
                         <td><code>phone</code></td>
@@ -159,7 +159,7 @@ include "api/order.json"
                     </tr>
                     <tr>
                         <td><code>timeline</code></td>
-                        <td><code>{}</code> Список событий, см <a href="#js-href-timeline">события</a></td>
+                        <td><code>[]</code> Список событий, см <a href="#js-href-timeline">события</a></td>
                     </tr>
                     <tr>
                         <td><code>path</code></td>
@@ -234,7 +234,7 @@ include "api/ride.json"
                     </tr>
                     <tr>
                         <td><code>alertTypeId</code></td>
-                        <td>Способ оповещения, берётся из словаря <a href="#js-href-dict-alerttypes">способов оповещений</a></td>
+                        <td>Способ оповещения, берётся из словаря <a href="#js-href-dict-alert-type">способов оповещений</a></td>
                     </tr>
                     <tr>
                         <td><code>orderedProperties</code></td>
@@ -242,11 +242,11 @@ include "api/ride.json"
                     </tr>
                     <tr>
                         <td><code>orderedProperties.options</code></td>
-                        <td><code>[int]</code> Список идентификаторов опций автомобиля, берётся из словаря <a href="#js-href-dict-vehicleoptions">опций автомобиля</a></td>
+                        <td><code>[int]</code> Список идентификаторов опций автомобиля, берётся из словаря <a href="#js-href-dict-vehicle-option">опций автомобиля</a></td>
                     </tr>
                     <tr>
                         <td><code>orderedProperties.typeId</code></td>
-                        <td><code>int</code> Тип автомобиля (грузовой, мотоцикл), берётся из словаря <a href="#js-href-dict-vehicletypes">типов автомобиля</a></td>
+                        <td><code>int</code> Тип автомобиля (грузовой, мотоцикл), берётся из словаря <a href="#js-href-dict-vehicle-type">типов автомобиля</a></td>
                     </tr>
                     <tr>
                         <td><code>phone</code></td>
@@ -373,7 +373,7 @@ include "api/thread.json"
                     </tr>
                     <tr>
                         <td><code>photo</code></td>
-                        <td><code>[string]</code> список файлов изображений, вида <code>["9b8wxcf8p80au9b.jpg", "4f3pzpeqywm2gei.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imagesBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
+                        <td><code>[string]</code> список файлов изображений, вида <code>["9b8wxcf8.jpg", "4f3pzp.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imageBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
                     </tr>
                     <tr>
                         <td><code>time</code></td>
@@ -445,7 +445,7 @@ include "api/shift.json"
                     </tr>
                     <tr>
                         <td><code>photo</code></td>
-                        <td><code>[string]</code> список файлов изображений, вида <code>["9b8wxcf8p80au9b.jpg", "4f3pzpeqywm2gei.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imagesBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
+                        <td><code>[string]</code> список файлов изображений, вида <code>["9b8wxc.jpg", "4f3p.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imageBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
                     </tr>
                     <tr>
                         <td><code>time</code></td>
@@ -497,6 +497,200 @@ include "api/shift.json"
                     </tr>
                     </tbody>
                 </table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <h2 class="anchored" id="js-href-dictionary">Словари</h2>
+                <h4 class="anchored">Получение словарей</h4>
+                <p><b>Request</b></p>
+                <p><code>GET /dictionaries</code></p>
+                <p><b>Response</b></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>version</code></td>
+                        <td><code>int</code> Текущяя версия словарей, необходима для получения обновлений словарей</td>
+                    </tr>
+                    <tr>
+                        <td><code>dictionaries</code></td>
+                        <td><code>[]</code> Список словарей</td>
+                    </tr>
+                    <tr>
+                        <td><code>dictionaries[].code</code></td>
+                        <td><code>string</code> Код словаря (например, areas)</td>
+                    </tr>
+                    <tr>
+                        <td><code>dictionaries[].name</code></td>
+                        <td><code>string</code> Название словаря</td>
+                    </tr>
+                    <tr>
+                        <td><code>dictionaries[].items</code></td>
+                        <td><code>[]</code> Собственно словари, вообще говоря, любой список однородных объектов. Описание конкретных словарей см. ниже</td>
+                    </tr>
+                    </tbody>
+                </table>
+<code>HTTP/1.1 200 OK</code>
+<pre class="code">
+include "api/dictionaries.json"
+</pre>
+                <h4 class="anchored" id="js-href-dict-index">Список словарей</h4>
+                <ul>
+                    <li><a href="#js-href-dict-area">Группы городов</a></li>
+                    <li><a href="#js-href-dict-city"></a>Города</li>
+                    <li><a href="#js-href-dict-district">Районы</a></li>
+                    <li><a href="#js-href-dict-street">Улицы</a></li>
+                    <li><a href="#js-href-dict-vehicle-option">Опции ТС</a></li>
+                    <li><a href="#js-href-dict-vehicle-type">Тип ТС</a></li>
+                    <li><a href="#js-href-dict-alert-type">Способы оповещения</a></li>
+                    <li><a href="#js-href-dict-order-cancel-type.json">Причины отмены заказа</a></li>
+                    <li><a href="#js-href-dict-message-cancel-type.json">Причины отказа для ответа на сообщения</a></li>
+                </ul>
+
+                <h5 class="anchored" id="js-href-dict-area"><b>Группы городов</b></h5>
+
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор</td>
+                    </tr>
+                    <tr>
+                        <td><code>name</code></td>
+                        <td><code>string</code> Название группы городов</td>
+                    </tr>
+                    <tr>
+                        <td><code>currency</code></td>
+                        <td><code>string</code> Деннежная единица</td>
+                    </tr>
+                    <tr>
+                        <td><code>timezone</code></td>
+                        <td><code>tz database</code> Временная зона</td>
+                    </tr>
+                    <tr>
+                        <td><code>phoneCode</code></td>
+                        <td><code>str</code> Телефонный код</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+include "api/dicts/area.json"
+</pre>
+
+                <h5 class="anchored" id="js-href-dict-city"><b>Города</b></h5>
+
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор</td>
+                    </tr>
+                    <tr>
+                        <td><code>name</code></td>
+                        <td><code>string</code> Название города</td>
+                    </tr>
+                    <tr>
+                        <td><code>phoneCode</code></td>
+                        <td><code>str</code> Телефонный код города</td>
+                    </tr>
+                    <tr>
+                        <td><code>cellPhoneLength</code></td>
+                        <td><code>int</code> Кол-во цифр в мобильном номере телефона</td>
+                    </tr>
+                    <tr>
+                        <td><code>landlinePhoneLength</code></td>
+                        <td><code>int</code> Кол-во цифр в стационарном номере телефона</td>
+                    </tr>
+                    <tr>
+                        <td><code>allowDestionation</code></td>
+                        <td><code>bool</code> Запрашивать ли пункт назначения</td>
+                    </tr>
+                    <tr>
+                        <td><code>allowSMSNotifications</code></td>
+                        <td><code>bool</code> Возможность выбора смс в качестве оповещения</td>
+                    </tr>
+                    <tr>
+                        <td><code>calculateCost</code></td>
+                        <td><code>bool</code> Расчитывать ли стоимость поездки</td>
+                    </tr>
+                    <tr>
+                        <td><code>minPreOrderInterval</code></td>
+                        <td><code>int</code> Минимальное время предзаказа, секунды</td>
+                    </tr>
+                    <tr>
+                        <td><code>maxPreOrderInterval</code></td>
+                        <td><code>int</code> Максимальное время предзаказа, секунды</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+include "api/dicts/city.json"
+</pre>
+
+                <h5 class="anchored" id="js-href-dict-district"><b>Районы</b></h5>
+                <h5 class="anchored" id="js-href-dict-street"><b>Улицы</b></h5>
+
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор</td>
+                    </tr>
+                    <tr>
+                        <td><code>idDistrict</code></td>
+                        <td><code>int</code> Идентификатор района, к которому привязана улица</td>
+                    </tr>
+                    <tr>
+                        <td><code>name</code></td>
+                        <td><code>string</code> Название улицы</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+include "api/dicts/street.json"
+</pre>
+
+                <h5 class="anchored" id="js-href-dict-vehicle-option"><b>Опции ТС</b></h5>
+<pre class="code">
+include "api/dicts/vehicle-option.json"
+</pre>
+                <h5 class="anchored" id="js-href-dict-vehicle-type"><b>Тип ТС</b></h5>
+<pre class="code">
+include "api/dicts/vehicle-type.json"
+</pre>
+                <h5 class="anchored" id="js-href-dict-alert-type"><b>Способы оповещения</b></h5>
+<pre class="code">
+include "api/dicts/alert-type.json"
+</pre>
+                <h5 class="anchored" id="js-href-dict-order-cancel-type.json"><b>Причины отмены заказа</b></h5>
+<pre class="code">
+include "api/dicts/order-cancel-type.json"
+</pre>
+                <h5 class="anchored" id="js-href-dict-message-cancel-type.json"><b>Причины отказа для ответа на сообщения</b></h5>
+<pre class="code">
+include "api/dicts/message-cancel-type.json"
+</pre>
+
+
+
+
             </div>
 
 
@@ -523,7 +717,12 @@ include "api/shift.json"
                         </li>
                         <li><a href="#js-href-message">Сообщения</a></li>
                         <li><a href="#js-href-shift">Смены</a></li>
-                        <li><a href="#js-href-">Словари</a></li>
+                        <li>
+                            <a href="#js-href-dictionary">Словари</a>
+                            <ul class="nav">
+                                <li><a href="#js-href-dict-index">Список словарей</a></li>
+                            </ul>
+                        </li>
                         <li><a href="#js-href-">Настройки</a></li>
                     </ul>
                 </div>
