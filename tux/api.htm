@@ -11,7 +11,7 @@
     <title>Tux API</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">-->
     <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/github.min.css">
 
@@ -71,6 +71,9 @@
             padding: 10px 0;
             width: 100%;
         }
+        .bs-sidenav .active .active {
+            background-color: #e7e7e7;
+        }
         .sidebar-affix {
             width: 263px;
         }
@@ -102,7 +105,7 @@
     <![endif]-->
 </head>
 
-<body>
+<body data-spy="scroll" data-target=".bs-sidenav">
 
 <!-- Wrap all page content here -->
 <div id="wrap">
@@ -351,19 +354,19 @@
                     </tr>
                     <tr>
                         <td><code>departureAdress</code></td>
-                        <td><code>{}</code> Пункт отбытия, см. <a href="#js-href-address">адрес</a></td>
+                        <td><code>{}</code> Пункт отбытия, см. <a href="#js-href-parts-address">адрес</a></td>
                     </tr>
                     <tr>
                         <td><code>destinationAdress</code></td>
-                        <td><code>{}</code> Пункт назначения, см. <a href="#js-href-address">адрес</a></td>
+                        <td><code>{}</code> Пункт назначения, см. <a href="#js-href-parts-address">адрес</a></td>
                     </tr>
                     <tr>
                         <td><code>vehicle</code></td>
-                        <td><code>{}</code> Информация о транспортном средстве, см. <a href="#js-href-vehicle">траснпортное средство</a></td>
+                        <td><code>{}</code> Информация о транспортном средстве, см. <a href="#js-href-parts-vehicle">траснпортное средство</a></td>
                     </tr>
                     <tr>
                         <td><code>timeline</code></td>
-                        <td><code>[]</code> Список событий, см <a href="#js-href-timeline">события</a></td>
+                        <td><code>[]</code> Список событий, см <a href="#js-href-parts-timeline">события</a></td>
                     </tr>
                     <tr>
                         <td><code>path</code></td>
@@ -534,15 +537,15 @@
                     </tr>
                     <tr>
                         <td><code>departureAdress</code></td>
-                        <td><code>{}</code> Пункт отбытия, см. <a href="#js-href-address">адрес</a></td>
+                        <td><code>{}</code> Пункт отбытия, см. <a href="#js-href-parts-address">адрес</a></td>
                     </tr>
                     <tr>
                         <td><code>destinationAdress</code></td>
-                        <td><code>{}</code> Пункт назначения, см. <a href="#js-href-address">адрес</a></td>
+                        <td><code>{}</code> Пункт назначения, см. <a href="#js-href-parts-address">адрес</a></td>
                     </tr>
                     <tr>
                         <td><code>vehicle</code></td>
-                        <td><code>{}</code> Информация о транспортном средстве, см. <a href="#js-href-vehicle">траснпортное средство</a></td>
+                        <td><code>{}</code> Информация о транспортном средстве, см. <a href="#js-href-parts-vehicle">траснпортное средство</a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -875,26 +878,6 @@
                     </tbody>
                 </table>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <h2 class="anchored" id="js-href-dictionary">Словари</h2>
                 <h4 class="anchored">Получение словарей</h4>
                 <p><b>Request</b></p>
@@ -1121,6 +1104,8 @@
 </pre>
 
                 <h5 class="anchored" id="js-href-dict-vehicle-option"><b>Опции ТС</b></h5>
+                <p>Возможные опции для выбора транспортного средства (Опции, которые может заказать клиент, такие как, кондиционер).</p>
+                <p class="alert alert-warning">Здесь передаётся только список существующих в базе опций (вообще), чтобы посмотреть текущие возможные опции, см. <a href="#">Синхронизирующиеся опции ТС</a></p>
 <pre class="code">
 {
     "code": "vehicle_options",
@@ -1161,9 +1146,8 @@
 </pre>
                 <h5 class="anchored" id="js-href-dict-order-cancel-type.json"><b>Причины отмены заказа</b></h5>
 <pre class="code">
-
 {
-    "code": "cancel_types",
+    "code": "order_cancel_types",
     "name": "Причины отмены заказа",
     "data": [
         {
@@ -1176,7 +1160,7 @@
                 <h5 class="anchored" id="js-href-dict-message-cancel-type.json"><b>Причины отказа для ответа на сообщения</b></h5>
 <pre class="code">
 {
-    "code": "cancel_types",
+    "code": "message_cancel_types",
     "name": "Причины отказа от сообщения",
     "data": [
         {
@@ -1187,12 +1171,13 @@
 }
 </pre>
 
-
-
+                <h2 class="anchored" id="js-href-settings">Настройки</h2>
+                <h2 class="anchored" id="js-href-parts">Части</h2>
+                <h5 class="anchored" id="js-href-parts-address"><b>Адрес</b></h5>
+                <h5 class="anchored" id="js-href-parts-vehicle"><b>Транспортное средство (ТС)</b></h5>
+                <h5 class="anchored" id="js-href-parts-timeline"><b>Таймлайн</b></h5>
 
             </div>
-
-
 
             <div class="col-md-3 hidden-xs hidden-sm sidebar-column">
                 <div data-spy="affix" data-offset-top="40" data-offset-bottom="200" class="sidebar-affix">
@@ -1222,7 +1207,11 @@
                                 <li><a href="#js-href-dict-index">Список словарей</a></li>
                             </ul>
                         </li>
-                        <li><a href="#js-href-">Настройки</a></li>
+                        <li><a href="#js-href-settings">Настройки</a></li>
+                        <li>
+                            <a href="#js-href-parts">Части</a>
+                            <ul class="nav"></ul>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -1242,7 +1231,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 <script>
     $(document).ready(function() {

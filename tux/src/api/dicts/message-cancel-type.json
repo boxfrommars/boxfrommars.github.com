@@ -1,5 +1,5 @@
 {
-    "code": "cancel_types",
+    "code": "message_cancel_types",
     "name": "Причины отказа от сообщения",
     "data": [
         {
