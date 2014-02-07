@@ -12,7 +12,6 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">-->
     <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/github.min.css">
 
     <!-- Custom styles for this template -->
@@ -74,8 +73,11 @@
         .bs-sidenav .active .active {
             background-color: #e7e7e7;
         }
+        .bs-sidenav .active {
+            background-color: #efefef;
+        }
         .sidebar-affix {
-            width: 263px;
+            width: 240px;
         }
         .bs-sidenav ul li a {
             padding-left: 45px;
@@ -94,15 +96,14 @@
             margin-top: -45px;
             padding-bottom: 0.8em;
         }
+        h6 {
+            font-size: 1em;
+            font-weight: normal;
+        }
         .bs-sidenav li>a {
             padding: 5px 15px;
         }
     </style>
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -256,13 +257,12 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 <script>
     $(document).ready(function() {
         $('pre.code').each(function(i, e) {hljs.highlightBlock(e)});
-        console.log(location.pathname, $("a[href*='" + location.pathname + "']"));
         $("a[href*='" + location.pathname + "']").parent('li').addClass('active');
     });
 </script>

@@ -12,7 +12,6 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-    <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">-->
     <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/github.min.css">
 
     <!-- Custom styles for this template -->
@@ -74,8 +73,11 @@
         .bs-sidenav .active .active {
             background-color: #e7e7e7;
         }
+        .bs-sidenav .active {
+            background-color: #efefef;
+        }
         .sidebar-affix {
-            width: 263px;
+            width: 240px;
         }
         .bs-sidenav ul li a {
             padding-left: 45px;
@@ -94,18 +96,17 @@
             margin-top: -45px;
             padding-bottom: 0.8em;
         }
+        h6 {
+            font-size: 1em;
+            font-weight: normal;
+        }
         .bs-sidenav li>a {
             padding: 5px 15px;
         }
     </style>
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
 </head>
 
-<body data-spy="scroll" data-target=".bs-sidenav">
+<body data-spy="scroll" data-target=".sidebar-affix">
 
 <!-- Wrap all page content here -->
 <div id="wrap">
@@ -157,23 +158,23 @@
                     <tbody>
                     <tr>
                         <td><code>id</code></td>
-                        <td>Идентификатор заказа</td>
+                        <td><code>int</code> Идентификатор заказа</td>
                     </tr>
                     <tr>
                         <td><code>customer</code></td>
-                        <td>Информация о клиенте</td>
+                        <td><code>customer</code> Информация о <a href="#js-href-parts-customer">клиенте</a></td>
                     </tr>
                     <tr>
                         <td><code>areaId</code></td>
-                        <td>Идентификатор группы городов. На её основе берутся настройки заказа применительные к данной группе, включая часовой пояс</td>
+                        <td><code>int</code> Идентификатор группы городов. На её основе берутся настройки заказа применительные к данной группе, включая часовой пояс</td>
                     </tr>
                     <tr>
                         <td><code>description</code></td>
-                        <td>Общее описание к заказу</td>
+                        <td><code>string</code> Общее описание к заказу</td>
                     </tr>
                     <tr>
                         <td><code>rides</code></td>
-                        <td>Список поездок</td>
+                        <td><code>[ride]</code> Список <a href="#js-href-ride">поездок</a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -204,15 +205,20 @@
         "description": "Клиент с собакой", // комментарий к поездке, такие как: на верхний багажник лыжи и сноуборд; 2 чемодана в багажник, и т.д
         "departureAdress": { // пункт отбытия
             "id": 11054,   // id адреса, если адрес есть в базе
-            "areaId": 2,     // группа городов
-            "cityId": 4,     // населённый пункт
+            "area": { // группа городов
+                "id": 2,
+                "name": "Сочи"
+            },
+            "city": { // населённый пункт
+                "id": 4,
+                "name": "Адлер"
+            },
             "street": {  // улица
                 "id": 7058,  // id улицы, если есть в словаре
-                "name": "Зиповская"
+                "name": "Зиповская" // необязательно, если есть id, но в ответе от сервера лучше передавать, из-за маловероятной возможности, что в ловаре ОП ещё нет этой улицы
             },
             "house": "5",        // дом
             "entrance": "33",    // подъезд
-            "publicPlace": "Руторика", // публичное место
 
             "location": {        // координаты
                 "lt": "+45.065397", // широта
@@ -221,14 +227,19 @@
             "description": "Между Белкой и Пиноккио Джан до конца, зелёная лестница" // постоянный комментарий/описание к адресу
         },
         "destination": { // пункт назначения (необязательно)
-            "areaId": 2,     // группа городов
-            "cityId": 4,     // населённый пункт
+            "area": { // группа городов
+                "id": 2,
+                "name": "Сочи"
+            },
+            "city": { // населённый пункт
+                "id": 4,
+                "name": "Адлер"
+            },
             "street": {  // улица
                 "name": "Уральская"
             },
             "house": "5",        // дом
             "entrance": "33",    // подъезд
-            "publicPlace": "", // публичное место
             "description": "" // постоянный комментарий/описание к адресу
         },
         "vehicle": {
@@ -237,7 +248,8 @@
             "brand": "Volvo", // марка машины
             "color": "sky blue", // цвет
             "typeId": 4, // тип автомобиля (грузовой, легковой, мотоцикл)
-            "number": "KK345O" // номер автомобиля
+            "number": "KK345O", // номер автомобиля
+            "options": [1, 2, 5 ,7] // опции автомобил
         },
         "timeline": [ // лог событий, от последнего к первому
             {
@@ -366,7 +378,7 @@
                     </tr>
                     <tr>
                         <td><code>timeline</code></td>
-                        <td><code>[]</code> Список событий, см <a href="#js-href-parts-timeline">события</a></td>
+                        <td><code>[timeline]</code> Список событий, см <a href="#js-href-parts-timeline">события</a></td>
                     </tr>
                     <tr>
                         <td><code>path</code></td>
@@ -427,15 +439,20 @@
     "description": "Клиент с собакой", // комментарий к поездке, такие как: на верхний багажник лыжи и сноуборд; 2 чемодана в багажник, и т.д
     "departureAdress": { // пункт отбытия
         "id": 11054,   // id адреса, если адрес есть в базе
-        "areaId": 2,     // группа городов
-        "cityId": 4,     // населённый пункт
+        "area": { // группа городов
+            "id": 2,
+            "name": "Сочи"
+        },
+        "city": { // населённый пункт
+            "id": 4,
+            "name": "Адлер"
+        },
         "street": {  // улица
             "id": 7058,  // id улицы, если есть в словаре
             "name": "Зиповская"
         },
         "house": "5",        // дом
         "entrance": "33",    // подъезд
-        "publicPlace": "Руторика", // публичное место
 
         "location": {        // координаты
             "lt": "+45.065397", // широта
@@ -444,14 +461,19 @@
         "description": "Между Белкой и Пиноккио Джан до конца, зелёная лестница" // постоянный комментарий/описание к адресу
     },
     "destination": { // пункт назначения (необязательно)
-        "areaId": 2,     // группа городов
-        "cityId": 4,     // населённый пункт
+        "area": { // группа городов
+            "id": 2,
+            "name": "Сочи"
+        },
+        "city": { // населённый пункт
+            "id": 4,
+            "name": "Адлер"
+        },
         "street": {  // улица
             "name": "Уральская"
         },
         "house": "5",        // дом
         "entrance": "33",    // подъезд
-        "publicPlace": "", // публичное место
         "description": "" // постоянный комментарий/описание к адресу
     },
     "vehicle": {
@@ -562,20 +584,31 @@
     "description": "Клиент с собакой", // комментарий к поездке, такие как: на верхний багажник лыжи и сноуборд; 2 чемодана в багажник, и т.д
     "departureAdress": { // пункт отбытия
         "id": 11054,   // id адреса, если адрес есть в базе
-        "areaId": 2,     // группа городов
-        "cityId": 4,     // населённый пункт
+        "area": { // группа городов
+            "id": 2,
+            "name": "Сочи"
+        },
+        "city": { // населённый пункт
+            "id": 4,
+            "name": "Адлер"
+        },
         "street": {  // улица
             "id": 7058,  // id улицы, если есть в словаре
             "name": "Зиповская"
         },
         "house": "5",        // дом
         "entrance": "33",    // подъезд
-        "publicPlace": "Руторика", // публичное место
         "description": "Между Белкой и Пиноккио Джан до конца, зелёная лестница" // постоянный комментарий/описание к адресу
     },
     "destination": { // пункт назначения (необязательно)
-        "areaId": 2,     // группа городов
-        "cityId": 4,     // населённый пункт
+        "area": { // группа городов
+            "id": 2,
+            "name": "Сочи"
+        },
+        "city": { // населённый пункт
+            "id": 4,
+            "name": "Адлер"
+        },
         "street": {  // улица
             "name": "Уральская"
         },
@@ -1173,14 +1206,264 @@
 
                 <h2 class="anchored" id="js-href-settings">Настройки</h2>
                 <h2 class="anchored" id="js-href-parts">Части</h2>
+
                 <h5 class="anchored" id="js-href-parts-address"><b>Адрес</b></h5>
+                <p>Используется в <a href="#js-href-ride">поездках</a></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> id адреса, если адрес есть в базе</td>
+                    </tr>
+                    <tr>
+                        <td><code>area</code></td>
+                        <td><code>{}</code> Группа городов</td>
+                    </tr>
+                    <tr>
+                        <td><code>area.id</code></td>
+                        <td><code>int</code> Идентификатор группы городов</td>
+                    </tr>
+                    <tr>
+                        <td><code>area.name</code></td>
+                        <td><code>string</code> Название группы городов</td>
+                    </tr>
+                    <tr>
+                        <td><code>city</code></td>
+                        <td><code>{}</code> Город</td>
+                    </tr>
+                    <tr>
+                        <td><code>city.id</code></td>
+                        <td><code>int</code> Идентификатор города</td>
+                    </tr>
+                    <tr>
+                        <td><code>city.name</code></td>
+                        <td><code>string</code> Название города</td>
+                    </tr>
+                    <tr>
+                        <td><code>street</code></td>
+                        <td><code>{}</code> Улица</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.id</code></td>
+                        <td><code>int</code> Идентификатор улицы</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.name</code></td>
+                        <td><code>string</code> Название улицы</td>
+                    </tr>
+                    <tr>
+                        <td><code>house</code></td>
+                        <td><code>string</code> Дом</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance</code></td>
+                        <td><code>string</code> Подъезд</td>
+                    </tr>
+                    <tr>
+                        <td><code>description</code></td>
+                        <td><code>string</code> Описание</td>
+                    </tr>
+                    <tr>
+                        <td><code>location</code></td>
+                        <td><code>{}</code> Координаты адреса</td>
+                    </tr>
+                    <tr>
+                        <td><code>location.lt</code></td>
+                        <td><code>WGS 84</code> Широта</td>
+                    </tr>
+                    <tr>
+                        <td><code>location.ln</code></td>
+                        <td><code>WGS 84</code> Долгота</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p class="alert alert-warning">Поля *.id и *.name -- при запросе на сервер необязательны, достаточно только одного из них: id, если улица/город/группа существует в словаре; name если нет. В ответах сервера оба поля обязательны</p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор</td>
+                    </tr>
+                    <tr>
+                        <td><code>callSign</code></td>
+                        <td><code>string</code> Позывной</td>
+                    </tr>
+                    <tr>
+                        <td><code>brand</code></td>
+                        <td><code>string</code> Марка ТС</td>
+                    </tr>
+                    <tr>
+                        <td><code>color</code></td>
+                        <td><code>string</code> Цвет</td>
+                    </tr>
+                    <tr>
+                        <td><code>typeId</code></td>
+                        <td><code>int</code> Тип автомобиля, словарь <a href="#js-href-dict-vehicle-type">типов ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>options</code></td>
+                        <td><code>[int]</code> Список идентификаторов <a href="#js-href-dict-vehicle-option">опций ТС</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+{
+    "id": 11054,   // id адреса, если адрес есть в базе
+    "area": { // группа городов
+        "id": 2,
+        "name": "Сочи"
+    },
+    "city": { // населённый пункт
+        "id": 4,
+        "name": "Адлер"
+    },
+    "street": {  // улица
+        "id": 7058,  // id улицы, если есть в словаре
+        "name": "Зиповская" // необязательно, если есть id, но в ответе от сервера лучше передавать, из-за маловероятной возможности, что в ловаре ОП ещё нет этой улицы
+    },
+    "house": "5",        // дом
+    "entrance": "33",    // подъезд
+
+    "location": {        // координаты
+        "lt": "+45.065397", // широта
+        "ln": "+38.993386"  // долгота
+    },
+    "description": "Между Белкой и Пиноккио Джан до конца, зелёная лестница" // постоянный комментарий/описание к адресу
+}
+</pre>
+
+                <h5 class="anchored" id="js-href-parts-customer"><b>Клиент</b></h5>
+<pre class="code">
+{
+    "id": 5687,                     // id клиента
+    "name": "Кирилл Евдаков",       // имя
+    "rank": 5,                      // кол-во звёздочек
+    "phone": "+7 (961) 537-34-07",  // номер телефона клиента
+    "discountCard": "505",          // номер скидочной карты
+    "frequentAddresses": []         // частые адреса (такой же формат, как и address, за исключением, может быть, комментария)
+}
+</pre>
+
                 <h5 class="anchored" id="js-href-parts-vehicle"><b>Транспортное средство (ТС)</b></h5>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор</td>
+                    </tr>
+                    <tr>
+                        <td><code>callSign</code></td>
+                        <td><code>string</code> Позывной</td>
+                    </tr>
+                    <tr>
+                        <td><code>brand</code></td>
+                        <td><code>string</code> Марка ТС</td>
+                    </tr>
+                    <tr>
+                        <td><code>color</code></td>
+                        <td><code>string</code> Цвет</td>
+                    </tr>
+                    <tr>
+                        <td><code>typeId</code></td>
+                        <td><code>int</code> Тип автомобиля, словарь <a href="#js-href-dict-vehicle-type">типов ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>options</code></td>
+                        <td><code>[int]</code> Список идентификаторов <a href="#js-href-dict-vehicle-option">опций ТС</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+{
+    "id": 234,
+    "callSign": "5CC1-4", // позывной
+    "brand": "Volvo", // марка машины
+    "color": "sky blue", // цвет
+    "typeId": 4, // тип автомобиля (грузовой, легковой, мотоцикл)
+    "number": "KK345O", // номер автомобиля
+    "options": [1, 2, 5 ,7] // опции автомобиля
+}
+</pre>
+
                 <h5 class="anchored" id="js-href-parts-timeline"><b>Таймлайн</b></h5>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>type</code></td>
+                        <td><code>string</code> Тип сообщения</td>
+                    </tr>
+                    <tr>
+                        <td><code>time</code></td>
+                        <td><code>ISO 8601</code> Время подачи</td>
+                    </tr>
+                    <tr>
+                        <td><code>message</code></td>
+                        <td><code>string</code> Сообщение</td>
+                    </tr>
+                    <tr>
+                        <td><code>data</code></td>
+                        <td><code>{}</code> Дополнительные данные</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h6>Возможные типы сообщения</h6>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>ride_order</code></td>
+                        <td>заказ поездки</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle_assign</code></td>
+                        <td>назначение автомобиля</td>
+                    </tr>
+                    <tr>
+                        <td><code>ride_change</code></td>
+                        <td>изменение поездки</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle_arrive</code></td>
+                        <td>прибытие автомобиля</td>
+                    </tr>
+                    <tr>
+                        <td><code>customer_not_go</code></td>
+                        <td>клиент не выходит</td>
+                    </tr>
+                    <tr>
+                        <td><code>ride_cancel</code></td>
+                        <td>отмена поездки</td>
+                    </tr>
+                    <tr>
+                        <td><code>ride_start</code></td>
+                        <td>начало поездки</td>
+                    </tr>
+                    <tr>
+                        <td><code>ride_end</code></td>
+                        <td>окончание поездки</td>
+                    </tr>
+                    <tr>
+                        <td><code>call</code></td>
+                        <td>звонок (если не входит в предыдущие пункты)</td>
+                    </tr>
+                    <tr>
+                        <td><code>message</code></td>
+                        <td>сообщение от водителя (если не входит в предыдущие)</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+{
+    "type": "arrive", // тип события, такие как:  звонок клиента (является ли это событием для лога?), назначение автомобиля (assign), автомобиль приехал, дозвон не удался, сообщение от пассажира и т.д.
+    "time": "2014-01-28T13:21:60Z", // unix timestamp события
+    "message": "какое-то сообщения", // сообщение
+    "data": {} // какая-то доп. информация
+}
+</pre>
 
             </div>
 
             <div class="col-md-3 hidden-xs hidden-sm sidebar-column">
-                <div data-spy="affix" data-offset-top="40" data-offset-bottom="200" class="sidebar-affix">
+                <div data-spy="affix" data-offset-top="40" data-offset-bottom="60" class="sidebar-affix">
                     <ul class="nav bs-sidenav">
                         <li><a href="#">API</a></li>
                         <li>
@@ -1208,10 +1491,7 @@
                             </ul>
                         </li>
                         <li><a href="#js-href-settings">Настройки</a></li>
-                        <li>
-                            <a href="#js-href-parts">Части</a>
-                            <ul class="nav"></ul>
-                        </li>
+                        <li><a href="#js-href-parts">Части</a></li>
                     </ul>
                 </div>
             </div>
@@ -1230,13 +1510,12 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 <script>
     $(document).ready(function() {
         $('pre.code').each(function(i, e) {hljs.highlightBlock(e)});
-        console.log(location.pathname, $("a[href*='" + location.pathname + "']"));
         $("a[href*='" + location.pathname + "']").parent('li').addClass('active');
     });
 </script>
