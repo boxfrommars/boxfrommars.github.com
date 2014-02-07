@@ -46,10 +46,6 @@ include "parts/head.htm"
                         <td><code>int</code> Идентификатор группы городов. На её основе берутся настройки заказа применительные к данной группе, включая часовой пояс</td>
                     </tr>
                     <tr>
-                        <td><code>description</code></td>
-                        <td><code>string</code> Общее описание к заказу</td>
-                    </tr>
-                    <tr>
                         <td><code>rides</code></td>
                         <td><code>[ride]</code> Список <a href="#js-href-ride">поездок</a></td>
                     </tr>
@@ -78,10 +74,6 @@ include "api/order.json"
                         <td><code>areaId</code></td>
                         <td>Идентификатор группы городов. На её основе берутся настройки заказа применительные
                             к данной группе, включая часовой пояс</td>
-                    </tr>
-                    <tr>
-                        <td><code>description</code></td>
-                        <td>Общее описание к заказу</td>
                     </tr>
                     <tr>
                         <td><code>rides</code></td>
@@ -114,8 +106,8 @@ include "api/order.json"
                         <td>Идентификатор заказа</td>
                     </tr>
                     <tr>
-                        <td><code>emergencyCall</code></td>
-                        <td><code>bool</code> Экстренный вызов</td>
+                        <td><code>orderType</code></td>
+                        <td><code>string</code> Тип вызова, возможные значения <code>emergency</code>, <code>normal</code>, <code>preorder</code></td>
                     </tr>
                     <tr>
                         <td><code>preOrderTime</code></td>
@@ -225,8 +217,8 @@ include "api/ride.json"
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
-                        <td><code>emergencyCall</code></td>
-                        <td><code>bool</code> Экстренный вызов</td>
+                        <td><code>orderType</code></td>
+                        <td><code>string</code> Тип вызова, возможные значения <code>emergency</code>, <code>normal</code>, <code>preorder</code></td>
                     </tr>
                     <tr>
                         <td><code>preOrderTime</code></td>
