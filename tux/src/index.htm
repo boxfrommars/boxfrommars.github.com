@@ -18,7 +18,7 @@ include "parts/head.htm"
                 <div class="page-header">
                     <h1>Общие сведения</h1>
                 </div>
-                <p>Запросы к серверу выполняются методами <code>GET</code> и <code>POST</code>, в ответ сервер возвращает json со следующими возможными кодами ответа:</p>
+                <!--<p>Запросы к серверу выполняются методами <code>GET</code> и <code>POST</code>, в ответ сервер возвращает json со следующими возможными кодами ответа:</p>-->
                 <h4 id="js-href-http_codes" class="anchored">Коды ответов сервера</h4>
                 <table class="table table-striped table-bordered">
                     <tbody>
@@ -69,7 +69,7 @@ include "parts/head.htm"
 }
 </pre>
                 <p>В случае ошибки <code>422 Unprocessable Entity</code> должна быть передана информации об ошибках валидации:</p>
-                <code>HTTP/1.1 404 Not Found</code>
+                <code>HTTP/1.1 422 Unprocessable Entity</code>
 <pre class="code">
 include "api/unprocessable_entity.json"
 </pre>
@@ -87,7 +87,7 @@ include "api/unprocessable_entity.json"
                     </tbody>
                 </table>
                 <h2 id="js-href-date" class="anchored">Даты и координаты</h2>
-                <p>Вся информация о времени передаётся в формате ISO 8601 <code>YYYY-MM-DDTHH:MM:SSZ</code></p>
+                <p>Вся информация о времени передаётся в формате ISO 8601, UTC <code>YYYY-MM-DDTHH:MM:SSZ</code></p>
                 <p>Вся информация о координатах точек передаётся в формате WGS 84</p>
 
             </div>

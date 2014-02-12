@@ -11,8 +11,7 @@
     <title>Tux API</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-    <!--<link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/default.min.css">-->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/github.min.css">
 
     <!-- Custom styles for this template -->
@@ -71,8 +70,14 @@
             padding: 10px 0;
             width: 100%;
         }
+        .bs-sidenav .active .active {
+            background-color: #e7e7e7;
+        }
+        .bs-sidenav .active {
+            background-color: #efefef;
+        }
         .sidebar-affix {
-            width: 263px;
+            width: 240px;
         }
         .bs-sidenav ul li a {
             padding-left: 45px;
@@ -91,15 +96,14 @@
             margin-top: -45px;
             padding-bottom: 0.8em;
         }
+        h6 {
+            font-size: 1em;
+            font-weight: normal;
+        }
         .bs-sidenav li>a {
             padding: 5px 15px;
         }
     </style>
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
 </head>
 
 <body>
@@ -137,7 +141,7 @@
                 <div class="page-header">
                     <h1>Общие сведения</h1>
                 </div>
-                <p>Запросы к серверу выполняются методами <code>GET</code> и <code>POST</code>, в ответ сервер возвращает json со следующими возможными кодами ответа:</p>
+                <!--<p>Запросы к серверу выполняются методами <code>GET</code> и <code>POST</code>, в ответ сервер возвращает json со следующими возможными кодами ответа:</p>-->
                 <h4 id="js-href-http_codes" class="anchored">Коды ответов сервера</h4>
                 <table class="table table-striped table-bordered">
                     <tbody>
@@ -188,7 +192,7 @@
 }
 </pre>
                 <p>В случае ошибки <code>422 Unprocessable Entity</code> должна быть передана информации об ошибках валидации:</p>
-                <code>HTTP/1.1 404 Not Found</code>
+                <code>HTTP/1.1 422 Unprocessable Entity</code>
 <pre class="code">
 {
     "message": "Ошибка валидации",
@@ -219,7 +223,7 @@
                     </tbody>
                 </table>
                 <h2 id="js-href-date" class="anchored">Даты и координаты</h2>
-                <p>Вся информация о времени передаётся в формате ISO 8601 <code>YYYY-MM-DDTHH:MM:SSZ</code></p>
+                <p>Вся информация о времени передаётся в формате ISO 8601, UTC <code>YYYY-MM-DDTHH:MM:SSZ</code></p>
                 <p>Вся информация о координатах точек передаётся в формате WGS 84</p>
 
             </div>
@@ -253,13 +257,12 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 <script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
 <script>
     $(document).ready(function() {
         $('pre.code').each(function(i, e) {hljs.highlightBlock(e)});
-        console.log(location.pathname, $("a[href*='" + location.pathname + "']"));
         $("a[href*='" + location.pathname + "']").parent('li').addClass('active');
     });
 </script>

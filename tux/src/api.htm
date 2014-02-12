@@ -3,7 +3,7 @@
 
 include "parts/head.htm"
 
-<body>
+<body data-spy="scroll" data-target=".sidebar-affix">
 
 <!-- Wrap all page content here -->
 <div id="wrap">
@@ -35,23 +35,19 @@ include "parts/head.htm"
                     <tbody>
                     <tr>
                         <td><code>id</code></td>
-                        <td>Идентификатор заказа</td>
+                        <td><code>int</code> Идентификатор заказа</td>
                     </tr>
                     <tr>
                         <td><code>customer</code></td>
-                        <td>Информация о клиенте</td>
+                        <td><code>customer</code> Информация о <a href="#js-href-parts-customer">клиенте</a></td>
                     </tr>
                     <tr>
                         <td><code>areaId</code></td>
-                        <td>Идентификатор группы городов. На её основе берутся настройки заказа применительные к данной группе, включая часовой пояс</td>
-                    </tr>
-                    <tr>
-                        <td><code>description</code></td>
-                        <td>Общее описание к заказу</td>
+                        <td><code>int</code> Идентификатор группы городов. На её основе берутся настройки заказа применительные к данной группе, включая часовой пояс</td>
                     </tr>
                     <tr>
                         <td><code>rides</code></td>
-                        <td>Список поездок</td>
+                        <td><code>[ride]</code> Список <a href="#js-href-ride">поездок</a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -78,10 +74,6 @@ include "api/order.json"
                         <td><code>areaId</code></td>
                         <td>Идентификатор группы городов. На её основе берутся настройки заказа применительные
                             к данной группе, включая часовой пояс</td>
-                    </tr>
-                    <tr>
-                        <td><code>description</code></td>
-                        <td>Общее описание к заказу</td>
                     </tr>
                     <tr>
                         <td><code>rides</code></td>
@@ -114,8 +106,8 @@ include "api/order.json"
                         <td>Идентификатор заказа</td>
                     </tr>
                     <tr>
-                        <td><code>emergencyCall</code></td>
-                        <td><code>bool</code> Экстренный вызов</td>
+                        <td><code>orderType</code></td>
+                        <td><code>string</code> Тип вызова, возможные значения <code>emergency</code>, <code>normal</code>, <code>preorder</code></td>
                     </tr>
                     <tr>
                         <td><code>preOrderTime</code></td>
@@ -147,19 +139,19 @@ include "api/order.json"
                     </tr>
                     <tr>
                         <td><code>departureAdress</code></td>
-                        <td><code>{}</code> Пункт отбытия, см. <a href="#js-href-address">адрес</a></td>
+                        <td><code>{}</code> Пункт отбытия, см. <a href="#js-href-parts-address">адрес</a></td>
                     </tr>
                     <tr>
                         <td><code>destinationAdress</code></td>
-                        <td><code>{}</code> Пункт назначения, см. <a href="#js-href-address">адрес</a></td>
+                        <td><code>{}</code> Пункт назначения, см. <a href="#js-href-parts-address">адрес</a></td>
                     </tr>
                     <tr>
                         <td><code>vehicle</code></td>
-                        <td><code>{}</code> Информация о транспортном средстве, см. <a href="#js-href-vehicle">траснпортное средство</a></td>
+                        <td><code>{}</code> Информация о транспортном средстве, см. <a href="#js-href-parts-vehicle">траснпортное средство</a></td>
                     </tr>
                     <tr>
                         <td><code>timeline</code></td>
-                        <td><code>[]</code> Список событий, см <a href="#js-href-timeline">события</a></td>
+                        <td><code>[timeline]</code> Список событий, см <a href="#js-href-parts-timeline">события</a></td>
                     </tr>
                     <tr>
                         <td><code>path</code></td>
@@ -225,8 +217,8 @@ include "api/ride.json"
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
-                        <td><code>emergencyCall</code></td>
-                        <td><code>bool</code> Экстренный вызов</td>
+                        <td><code>orderType</code></td>
+                        <td><code>string</code> Тип вызова, возможные значения <code>emergency</code>, <code>normal</code>, <code>preorder</code></td>
                     </tr>
                     <tr>
                         <td><code>preOrderTime</code></td>
@@ -258,15 +250,15 @@ include "api/ride.json"
                     </tr>
                     <tr>
                         <td><code>departureAdress</code></td>
-                        <td><code>{}</code> Пункт отбытия, см. <a href="#js-href-address">адрес</a></td>
+                        <td><code>{}</code> Пункт отбытия, см. <a href="#js-href-parts-address">адрес</a></td>
                     </tr>
                     <tr>
                         <td><code>destinationAdress</code></td>
-                        <td><code>{}</code> Пункт назначения, см. <a href="#js-href-address">адрес</a></td>
+                        <td><code>{}</code> Пункт назначения, см. <a href="#js-href-parts-address">адрес</a></td>
                     </tr>
                     <tr>
                         <td><code>vehicle</code></td>
-                        <td><code>{}</code> Информация о транспортном средстве, см. <a href="#js-href-vehicle">траснпортное средство</a></td>
+                        <td><code>{}</code> Информация о транспортном средстве, см. <a href="#js-href-parts-vehicle">траснпортное средство</a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -498,7 +490,10 @@ include "api/shift.json"
                     </tbody>
                 </table>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7c61ce3f7324a122744b03f6c994e7e7d4a8627b
                 <h2 class="anchored" id="js-href-dictionary">Словари</h2>
                 <h4 class="anchored">Получение словарей</h4>
                 <p><b>Request</b></p>
@@ -649,6 +644,8 @@ include "api/dicts/street.json"
 </pre>
 
                 <h5 class="anchored" id="js-href-dict-vehicle-option"><b>Опции ТС</b></h5>
+                <p>Возможные опции для выбора транспортного средства (Опции, которые может заказать клиент, такие как, кондиционер).</p>
+                <p class="alert alert-warning">Здесь передаётся только список существующих в базе опций (вообще), чтобы посмотреть текущие возможные опции, см. <a href="#">Синхронизирующиеся опции ТС</a></p>
 <pre class="code">
 include "api/dicts/vehicle-option.json"
 </pre>
@@ -669,15 +666,225 @@ include "api/dicts/order-cancel-type.json"
 include "api/dicts/message-cancel-type.json"
 </pre>
 
+                <h2 class="anchored" id="js-href-settings">Настройки</h2>
+                <h2 class="anchored" id="js-href-parts">Части</h2>
+
+                <h5 class="anchored" id="js-href-parts-address"><b>Адрес</b></h5>
+                <p>Используется в <a href="#js-href-ride">поездках</a></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> id адреса, если адрес есть в базе</td>
+                    </tr>
+                    <tr>
+                        <td><code>area</code></td>
+                        <td><code>{}</code> Группа городов</td>
+                    </tr>
+                    <tr>
+                        <td><code>area.id</code></td>
+                        <td><code>int</code> Идентификатор группы городов</td>
+                    </tr>
+                    <tr>
+                        <td><code>area.name</code></td>
+                        <td><code>string</code> Название группы городов</td>
+                    </tr>
+                    <tr>
+                        <td><code>city</code></td>
+                        <td><code>{}</code> Город</td>
+                    </tr>
+                    <tr>
+                        <td><code>city.id</code></td>
+                        <td><code>int</code> Идентификатор города</td>
+                    </tr>
+                    <tr>
+                        <td><code>city.name</code></td>
+                        <td><code>string</code> Название города</td>
+                    </tr>
+                    <tr>
+                        <td><code>street</code></td>
+                        <td><code>{}</code> Улица</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.id</code></td>
+                        <td><code>int</code> Идентификатор улицы</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.name</code></td>
+                        <td><code>string</code> Название улицы</td>
+                    </tr>
+                    <tr>
+                        <td><code>house</code></td>
+                        <td><code>string</code> Дом</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance</code></td>
+                        <td><code>string</code> Подъезд</td>
+                    </tr>
+                    <tr>
+                        <td><code>description</code></td>
+                        <td><code>string</code> Описание</td>
+                    </tr>
+                    <tr>
+                        <td><code>location</code></td>
+                        <td><code>{}</code> Координаты адреса</td>
+                    </tr>
+                    <tr>
+                        <td><code>location.lt</code></td>
+                        <td><code>WGS 84</code> Широта</td>
+                    </tr>
+                    <tr>
+                        <td><code>location.ln</code></td>
+                        <td><code>WGS 84</code> Долгота</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p class="alert alert-warning">Поля *.id и *.name -- при запросе на сервер необязательны, достаточно только одного из них: id, если улица/город/группа существует в словаре; name если нет. В ответах сервера оба поля обязательны</p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор</td>
+                    </tr>
+                    <tr>
+                        <td><code>callSign</code></td>
+                        <td><code>string</code> Позывной</td>
+                    </tr>
+                    <tr>
+                        <td><code>brand</code></td>
+                        <td><code>string</code> Марка ТС</td>
+                    </tr>
+                    <tr>
+                        <td><code>color</code></td>
+                        <td><code>string</code> Цвет</td>
+                    </tr>
+                    <tr>
+                        <td><code>typeId</code></td>
+                        <td><code>int</code> Тип автомобиля, словарь <a href="#js-href-dict-vehicle-type">типов ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>options</code></td>
+                        <td><code>[int]</code> Список идентификаторов <a href="#js-href-dict-vehicle-option">опций ТС</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+include "api/parts/address.json"
+</pre>
+
+                <h5 class="anchored" id="js-href-parts-customer"><b>Клиент</b></h5>
+<pre class="code">
+include "api/parts/customer.json"
+</pre>
+
+                <h5 class="anchored" id="js-href-parts-vehicle"><b>Транспортное средство (ТС)</b></h5>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор</td>
+                    </tr>
+                    <tr>
+                        <td><code>callSign</code></td>
+                        <td><code>string</code> Позывной</td>
+                    </tr>
+                    <tr>
+                        <td><code>brand</code></td>
+                        <td><code>string</code> Марка ТС</td>
+                    </tr>
+                    <tr>
+                        <td><code>color</code></td>
+                        <td><code>string</code> Цвет</td>
+                    </tr>
+                    <tr>
+                        <td><code>typeId</code></td>
+                        <td><code>int</code> Тип автомобиля, словарь <a href="#js-href-dict-vehicle-type">типов ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>options</code></td>
+                        <td><code>[int]</code> Список идентификаторов <a href="#js-href-dict-vehicle-option">опций ТС</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+include "api/parts/vehicle.json"
+</pre>
+
+                <h5 class="anchored" id="js-href-parts-timeline"><b>Таймлайн</b></h5>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>type</code></td>
+                        <td><code>string</code> Тип сообщения</td>
+                    </tr>
+                    <tr>
+                        <td><code>time</code></td>
+                        <td><code>ISO 8601</code> Время подачи</td>
+                    </tr>
+                    <tr>
+                        <td><code>message</code></td>
+                        <td><code>string</code> Сообщение</td>
+                    </tr>
+                    <tr>
+                        <td><code>data</code></td>
+                        <td><code>{}</code> Дополнительные данные</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h6>Возможные типы сообщения</h6>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>ride_order</code></td>
+                        <td>заказ поездки</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle_assign</code></td>
+                        <td>назначение автомобиля</td>
+                    </tr>
+                    <tr>
+                        <td><code>ride_change</code></td>
+                        <td>изменение поездки</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle_arrive</code></td>
+                        <td>прибытие автомобиля</td>
+                    </tr>
+                    <tr>
+                        <td><code>customer_not_go</code></td>
+                        <td>клиент не выходит</td>
+                    </tr>
+                    <tr>
+                        <td><code>ride_cancel</code></td>
+                        <td>отмена поездки</td>
+                    </tr>
+                    <tr>
+                        <td><code>ride_start</code></td>
+                        <td>начало поездки</td>
+                    </tr>
+                    <tr>
+                        <td><code>ride_end</code></td>
+                        <td>окончание поездки</td>
+                    </tr>
+                    <tr>
+                        <td><code>call</code></td>
+                        <td>звонок (если не входит в предыдущие пункты)</td>
+                    </tr>
+                    <tr>
+                        <td><code>message</code></td>
+                        <td>сообщение от водителя (если не входит в предыдущие)</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+include "api/parts/timeline.json"
+</pre>
 
 include "parts/disqus.htm"
-
             </div>
 
-
-
             <div class="col-md-3 hidden-xs hidden-sm sidebar-column">
-                <div data-spy="affix" data-offset-top="40" data-offset-bottom="200" class="sidebar-affix">
+                <div data-spy="affix" data-offset-top="40" data-offset-bottom="60" class="sidebar-affix">
                     <ul class="nav bs-sidenav">
                         <li><a href="#">API</a></li>
                         <li>
@@ -704,7 +911,8 @@ include "parts/disqus.htm"
                                 <li><a href="#js-href-dict-index">Список словарей</a></li>
                             </ul>
                         </li>
-                        <li><a href="#js-href-">Настройки</a></li>
+                        <li><a href="#js-href-settings">Настройки</a></li>
+                        <li><a href="#js-href-parts">Части</a></li>
                     </ul>
                 </div>
             </div>

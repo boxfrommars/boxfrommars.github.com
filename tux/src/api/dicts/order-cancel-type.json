@@ -1,6 +1,5 @@
-
 {
-    "code": "cancel_types",
+    "code": "order_cancel_types",
     "name": "Причины отмены заказа",
     "data": [
         {
