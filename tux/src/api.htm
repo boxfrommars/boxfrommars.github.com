@@ -5,13 +5,10 @@ include "parts/head.htm"
 
 <body data-spy="scroll" data-target=".sidebar-affix">
 
-<!-- Wrap all page content here -->
 <div id="wrap">
 
-    <!-- Fixed navbar -->
     include "parts/navbar.htm"
 
-    <!-- Begin page content -->
     <div class="container">
         <div class="row">
             <div class="col-md-9">
@@ -295,6 +292,7 @@ include "api/ride-post.json"
                         <td><code>int</code> Идентификатор поездки</td>
                     </tr>
                 </table>
+
                 <p><b>Response</b></p>
                 <table class="table table-bordered table-striped">
                     <tbody>
@@ -303,6 +301,7 @@ include "api/ride-post.json"
                         <td><code>true</code> Всегда передаётся true, так как в случае ошибки используется <a href="/tux/index.htm#js-href-http_errors">поведение при ошибках</a></td>
                     </tr>
                 </table>
+
 
                 <h2 class="anchored" id="js-href-message">Сообщения</h2>
                 <h4 class="anchored">Получение сообщений</h4>
@@ -316,11 +315,14 @@ include "api/ride-post.json"
                     </tr>
                     </tbody>
                 </table>
+
                 <p><b>Response</b></p>
                 <code>HTTP/1.1 200 OK</code>
 <pre class="code">
 include "api/thread.json"
 </pre>
+
+
                 <h4 class="anchored">Отправление сообщений</h4>
                 <p><b>Request</b></p>
                 <p><code>POST /thread/:threadId/message</code></p>
@@ -360,6 +362,7 @@ include "api/thread.json"
                     </tr>
                     </tbody>
                 </table>
+
                 <p><b>Response</b></p>
                 <table class="table table-bordered table-striped">
                     <tbody>
@@ -420,6 +423,7 @@ include "api/thread.json"
 <pre class="code">
 include "api/shift.json"
 </pre>
+
 
                 <h4 class="anchored">Ответ на заявку на открытие смены</h4>
                 <p><b>Request</b></p>
@@ -498,6 +502,7 @@ include "api/shift.json"
                 <h4 class="anchored">Получение словарей</h4>
                 <p><b>Request</b></p>
                 <p><code>GET /dictionaries</code></p>
+
                 <p><b>Response</b></p>
                 <table class="table table-bordered table-striped">
                     <tbody>
@@ -776,6 +781,7 @@ include "api/parts/address.json"
 <pre class="code">
 include "api/parts/customer.json"
 </pre>
+
 
                 <h5 class="anchored" id="js-href-parts-vehicle"><b>Транспортное средство (ТС)</b></h5>
                 <table class="table table-bordered table-striped">
