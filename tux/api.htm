@@ -1246,6 +1246,111 @@
 </pre>
 
                 <h2 class="anchored" id="js-href-settings">Настройки</h2>
+
+                <h2 class="anchored" id="js-href-search">Поиск</h2>
+                <p><b>Request</b></p>
+                <p><code>GET /search?page=1&per_page=20</code></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>page</code></td>
+                        <td><code>int</code> Номер страницы результата поиска</td>
+                    </tr>
+                    <tr>
+                        <td><code>per_page</code></td>
+                        <td><code>int</code> Сколько найденных заказов отображается на одной странице результатов</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p>Запрос на поиск. Все поля не обязательны, но хотя бы одно должно присутствовать</p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>phone</code></td>
+                        <td><code>string</code> Номер телефона</td>
+                    </tr>
+                    <tr class="danger">
+                        <td><code>destination</code></td>
+                        <td>Пока не понятно что</td>
+                    </tr>
+                    <tr class="danger">
+                        <td><code>departureAddress</code></td>
+                        <td>Пока не понятно что</td>
+                    </tr>
+                    <tr>
+                        <td><code>startTimeRange</code></td>
+                        <td><code>[ISO 8601, ISO 8601]</code> интервал, в котором началась поездка. пример: <code>[2014-01-28T13:00:60Z, 2014-01-28T14:00:60Z]</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>endTimeRange</code></td>
+                        <td><code>[ISO 8601, ISO 8601]</code> интервал, в котором поездка закончиалсь.</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle</code></td>
+                        <td><code>{}</code> параметры поиска по ТС</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle.callSign</code></td>
+                        <td><code>string</code> Позывной</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle.brand</code></td>
+                        <td><code>string</code>Марка ТС</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle.colorId</code></td>
+                        <td><code>int</code> Идентификатор цвета</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle.typeId</code></td>
+                        <td><code>int</code> Тип ТС</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle.number</code></td>
+                        <td><code>string</code> Номер ТС</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+<pre class="code">
+{
+    "phone": "79615373407",
+    "destination": {},
+    "departureAddress": {},
+    "startTimeRange": [1386759220, 1386769220],
+    "endTimeRange": [1386759220, 1386769220],
+    "vehicle": {
+        "callSign": "5CC1-4", // позывной
+        "brand": "Volvo", // марка машины
+        "colorId": 12, // цвет
+        "typeId": 4, // тип автомобиля (грузовой, легковой, мотоцикл)
+        "number": "KK345O" // номер автомобиля
+    },
+    "costRange": [120, 220]
+}
+</pre>
+                <p><b>Response</b></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>total</code></td>
+                        <td><code>int</code> Всего заказов удовлетворяющих поиску</td>
+                    </tr>
+                    <tr>
+                        <td><code>items</code></td>
+                        <td><code>[order]</code> <a href="#js-href-order">Заказы</a>, собственно результаты поиска</td>
+                    </tr>
+                    </tbody>
+                </table>
+<code>HTTP/1.1 200 OK</code>
+<pre class="code">
+{
+    "total": 528, // сколько всего записей удовлетворяет поиску
+    "items": [ // заказы (такие же как и в GET /api/v1/order/3385390)
+    ]
+}
+</pre>
+
                 <h2 class="anchored" id="js-href-parts">Части</h2>
 
                 <h5 class="anchored" id="js-href-parts-address"><b>Адрес</b></h5>
@@ -1509,20 +1614,7 @@
 }
 </pre>
 
-<div id="disqus_thread"></div>
-<script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'boxfrommars'; // required: replace example with your forum shortname
-
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    })();
-</script>
-<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+winclude "parts/disqus.htm"
 
             </div>
 
@@ -1555,6 +1647,7 @@
                             </ul>
                         </li>
                         <li><a href="#js-href-settings">Настройки</a></li>
+                        <li><a href="#js-href-search">Поиск</a></li>
                         <li><a href="#js-href-parts">Части</a></li>
                     </ul>
                 </div>

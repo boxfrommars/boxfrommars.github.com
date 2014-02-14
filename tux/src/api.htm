@@ -672,6 +672,93 @@ include "api/dicts/message-cancel-type.json"
 </pre>
 
                 <h2 class="anchored" id="js-href-settings">Настройки</h2>
+
+                <h2 class="anchored" id="js-href-search">Поиск</h2>
+                <p><b>Request</b></p>
+                <p><code>GET /search?page=1&per_page=20</code></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>page</code></td>
+                        <td><code>int</code> Номер страницы результата поиска</td>
+                    </tr>
+                    <tr>
+                        <td><code>per_page</code></td>
+                        <td><code>int</code> Сколько найденных заказов отображается на одной странице результатов</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p>Запрос на поиск. Все поля не обязательны, но хотя бы одно должно присутствовать</p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>phone</code></td>
+                        <td><code>string</code> Номер телефона</td>
+                    </tr>
+                    <tr class="danger">
+                        <td><code>destination</code></td>
+                        <td>Пока не понятно что</td>
+                    </tr>
+                    <tr class="danger">
+                        <td><code>departureAddress</code></td>
+                        <td>Пока не понятно что</td>
+                    </tr>
+                    <tr>
+                        <td><code>startTimeRange</code></td>
+                        <td><code>[ISO 8601, ISO 8601]</code> интервал, в котором началась поездка. пример: <code>[2014-01-28T13:00:60Z, 2014-01-28T14:00:60Z]</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>endTimeRange</code></td>
+                        <td><code>[ISO 8601, ISO 8601]</code> интервал, в котором поездка закончиалсь.</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle</code></td>
+                        <td><code>{}</code> параметры поиска по ТС</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle.callSign</code></td>
+                        <td><code>string</code> Позывной</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle.brand</code></td>
+                        <td><code>string</code>Марка ТС</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle.colorId</code></td>
+                        <td><code>int</code> Идентификатор цвета</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle.typeId</code></td>
+                        <td><code>int</code> Тип ТС</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle.number</code></td>
+                        <td><code>string</code> Номер ТС</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+<pre class="code">
+include "api/search-request.json"
+</pre>
+                <p><b>Response</b></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>total</code></td>
+                        <td><code>int</code> Всего заказов удовлетворяющих поиску</td>
+                    </tr>
+                    <tr>
+                        <td><code>items</code></td>
+                        <td><code>[order]</code> <a href="#js-href-order">Заказы</a>, собственно результаты поиска</td>
+                    </tr>
+                    </tbody>
+                </table>
+<code>HTTP/1.1 200 OK</code>
+<pre class="code">
+include "api/search-response.json"
+</pre>
+
                 <h2 class="anchored" id="js-href-parts">Части</h2>
 
                 <h5 class="anchored" id="js-href-parts-address"><b>Адрес</b></h5>
@@ -886,7 +973,7 @@ include "api/parts/vehicle.json"
 include "api/parts/timeline.json"
 </pre>
 
-include "parts/disqus.htm"
+winclude "parts/disqus.htm"
 
             </div>
 
@@ -919,6 +1006,7 @@ include "parts/disqus.htm"
                             </ul>
                         </li>
                         <li><a href="#js-href-settings">Настройки</a></li>
+                        <li><a href="#js-href-search">Поиск</a></li>
                         <li><a href="#js-href-parts">Части</a></li>
                     </ul>
                 </div>

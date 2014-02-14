@@ -1,0 +1,15 @@
+{
+    "phone": "79615373407",
+    "destination": {},
+    "departureAddress": {},
+    "startTimeRange": [1386759220, 1386769220],
+    "endTimeRange": [1386759220, 1386769220],
+    "vehicle": {
+        "callSign": "5CC1-4", // позывной
+        "brand": "Volvo", // марка машины
+        "colorId": 12, // цвет
+        "typeId": 4, // тип автомобиля (грузовой, легковой, мотоцикл)
+        "number": "KK345O" // номер автомобиля
+    },
+    "costRange": [120, 220]
+}
