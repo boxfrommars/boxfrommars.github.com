@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+include "parts/head.htm"
+
+<body>
+
+<!-- Wrap all page content here -->
+<div id="wrap">
+
+    <!-- Fixed navbar -->
+    include "parts/navbar.htm"
+
+    <!-- Begin page content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="page-header">
+                    <h1>WebSocket API</h1>
+                </div>
+                Ниже описаны сообщения, отправляемые сервером о протоколу Websocket
+
+                <h2>Общий вид</h2>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>type</code></td>
+                        <td><code>string</code> Тип сообщения (действия), один из типов перечисленных ниже</td>
+                    </tr>
+                    <tr>
+                        <td><code>data</code></td>
+                        <td><code>{}</code> Объект, данные нужные клиенту для дальнейших действий</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+include "websocket-api/template.json"
+</pre>
+                <h4>Типы сообщения</h4>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>order</code></td>
+                        <td>Уведомляем клиент о необходимости открыть заказ</td>
+                    </tr>
+                    <tr>
+                        <td><code>update-dictionaries</code></td>
+                        <td>Уведомление об обновлении списка словарей</td>
+                    </tr>
+                    <tr>
+                        <td><code>refresh-application</code></td>
+                        <td>Уведомление о необходимости обновить код клиентского приложение (обновить страницу в браузере, т.к. изменился js-код, если доступным языком)</td>
+                    </tr>
+                    <tr>
+                        <td><code>message</code></td>
+                        <td>Уведомление о новом сообщении</td>
+                    </tr>
+                    <tr>
+                        <td><code>shift</code></td>
+                        <td>Уведомление об открытии смены</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <p>Далее будет описываться только часть <code>data</code> сообщений</p>
+
+                include "parts/disqus.htm"
+            </div>
+
+            <div class="col-md-3 hidden-xs hidden-sm sidebar-column">
+                <div data-spy="affix" data-offset-top="40" data-offset-bottom="200" class="sidebar-affix">
+                    <ul class="nav bs-sidenav">
+                        <li class="">
+                            <a href="#">Ссылки</a>
+                            <ul class="nav">
+                                <li><a href="#js-href-http_codes">Something</a></li>
+                                <li><a href="#js-href-http_errors">Nevermore</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="push"></div>
+</div>
+
+include "parts/footer.htm"
+
+</body>
+</html>

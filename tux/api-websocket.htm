@@ -140,8 +140,58 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="page-header">
-                    <h1>Заголовок</h1>
+                    <h1>WebSocket API</h1>
                 </div>
+                Ниже описаны сообщения, отправляемые сервером о протоколу Websocket
+
+                <h2>Общий вид</h2>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>type</code></td>
+                        <td><code>string</code> Тип сообщения (действия), один из типов перечисленных ниже</td>
+                    </tr>
+                    <tr>
+                        <td><code>data</code></td>
+                        <td><code>{}</code> Объект, данные нужные клиенту для дальнейших действий</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+{
+    "type": "order", // тип сообщения (действия)
+    "data": { // любые данные, нужные клиенту для дальнейших действий
+        "orderId": 3385390
+    }
+}
+</pre>
+                <h4>Типы сообщения</h4>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>order</code></td>
+                        <td>Уведомляем клиент о необходимости открыть заказ</td>
+                    </tr>
+                    <tr>
+                        <td><code>update-dictionaries</code></td>
+                        <td>Уведомление об обновлении списка словарей</td>
+                    </tr>
+                    <tr>
+                        <td><code>refresh-application</code></td>
+                        <td>Уведомление о необходимости обновить код клиентского приложение (обновить страницу в браузере, т.к. изменился js-код, если доступным языком)</td>
+                    </tr>
+                    <tr>
+                        <td><code>message</code></td>
+                        <td>Уведомление о новом сообщении</td>
+                    </tr>
+                    <tr>
+                        <td><code>shift</code></td>
+                        <td>Уведомление об открытии смены</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <p>Далее будет описываться только часть <code>data</code> сообщений</p>
 
                 <div id="disqus_thread"></div>
                 <script type="text/javascript">
