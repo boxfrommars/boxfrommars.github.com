@@ -144,7 +144,7 @@
                 </div>
                 Ниже описаны сообщения, отправляемые сервером о протоколу Websocket
 
-                <h2>Общий вид</h2>
+                <h2 class="anchored" id="js-href-general">Общий вид</h2>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
@@ -165,7 +165,7 @@
     }
 }
 </pre>
-                <h4>Типы сообщения</h4>
+                <h4 class="anchored" id="js-href-types">Типы сообщения</h4>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
@@ -193,6 +193,77 @@
 
                 <p>Далее будет описываться только часть <code>data</code> сообщений</p>
 
+                <h4 class="anchored" id="js-href-type-order">Уведомление о заказе</h4>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td>Идентификатор заказа</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+{
+    "type": "order",
+    "data": {
+        "id": 3385390
+    }
+}
+</pre>
+
+                <h4 class="anchored" id="js-href-type-update-dictionary">Уведомление об обновлении списка словарей</h4>
+<pre class="code">
+{
+    "type": "update-dictionary",
+    "data": {}
+}
+</pre>
+
+                <h4 class="anchored" id="js-href-type-refresh-application">Уведомление о необходимости обновить код клиентского приложение</h4>
+<pre class="code">
+{
+    "type": "refresh-application",
+    "data": {}
+}
+</pre>
+
+                <h4 class="anchored" id="js-href-type-message">Уведомление о новом сообщении</h4>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td>Идентификатор треда</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+{
+    "type": "message",
+    "data": {
+        "id": 8444439 // id треда
+    }
+}
+</pre>
+
+                <h4 class="anchored" id="js-href-type-shift">Уведомление об открытии смены</h4>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td>Идентификатор запроса на открытие смены</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+{
+    "type": "shift",
+    "data": {
+        "id": 65408 // id смены
+    }
+}
+</pre>
+
+
                 <div id="disqus_thread"></div>
                 <script type="text/javascript">
                     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -213,11 +284,13 @@
                 <div data-spy="affix" data-offset-top="40" data-offset-bottom="200" class="sidebar-affix">
                     <ul class="nav bs-sidenav">
                         <li class="">
-                            <a href="#">Ссылки</a>
-                            <ul class="nav">
-                                <li><a href="#js-href-http_codes">Something</a></li>
-                                <li><a href="#js-href-http_errors">Nevermore</a></li>
-                            </ul>
+                            <a href="#js-href-general">Общий вид</a>
+                            <a href="#js-href-types">Типы сообщений</a>
+                            <a href="#js-href-type-order">Заказ</a>
+                            <a href="#js-href-type-update-dictionary">Обновление словарей</a>
+                            <a href="#js-href-type-refresh-application">Обновление</a>
+                            <a href="#js-href-type-message">Сообщение</a>
+                            <a href="#js-href-type-shift">Смена</a>
                         </li>
                     </ul>
                 </div>
