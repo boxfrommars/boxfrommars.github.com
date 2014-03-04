@@ -457,6 +457,105 @@ include "api/address.json"
                 </table>
 
                 <p><b>Response</b></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td>Идентификатор треда сообщений</td>
+                    </tr>
+                    <tr>
+                        <td><code>lifetime</code></td>
+                        <td><code>int</code> Время в секундах, после которого сообщение пересылается другому прользователю</td>
+                    </tr>
+                    <tr>
+                        <td><code>messages</code></td>
+                        <td><code>[]</code> Список сообщений в треде</td>
+                    </tr>
+                    <tr>
+                        <td><code>messages[].id</code></td>
+                        <td><code>int</code> Идентификатор сообщения</td>
+                    </tr>
+                    <tr>
+                        <td><code>messages[].time</code></td>
+                        <td><code>ISO 8601</code> Время отправки сообщения</td>
+                    </tr>
+                    <tr>
+                        <td><code>messages[].sender</code></td>
+                        <td><code>{}</code> Отправитель сообщения</td>
+                    </tr>
+                    <tr>
+                        <td><code>messages[].sender.type</code></td>
+                        <td><code>string</code> Тип отправителя сообщения. на данный момент <code>operator</code> -- оператор или <code>vehicle</code> -- такси</td>
+                    </tr>
+                    <tr>
+                        <td><code>messages[].sender.data</code></td>
+                        <td><code>{}</code> Данные отправителя (разнородные, для оператора свои, для водителя -- свои). подробнее -- см. ниже</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h5>Данные оператора в сообщении:</h5>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор оператора</td>
+                    </tr>
+                    <tr>
+                        <td><code>name</code></td>
+                        <td><code>string</code> Имя оператора</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h5>Данные таксиста (ТС) в сообщении:</h5>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор</td>
+                    </tr>
+                    <tr>
+                        <td><code>callSign</code></td>
+                        <td><code>string</code> Позывной</td>
+                    </tr>
+                    <tr>
+                        <td><code>number</code></td>
+                        <td><code>string</code> Номер ТС</td>
+                    </tr>
+                    <tr>
+                        <td><code>brand</code></td>
+                        <td><code>string</code> Марка ТС</td>
+                    </tr>
+                    <tr>
+                        <td><code>colorId</code></td>
+                        <td><code>int</code> Цвет, см. <a href="#js-href-dict-color">словарь цветов</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>type</code></td>
+                        <td><code>{}</code> Тип автомобиля</td>
+                    </tr>
+                    <tr>
+                        <td><code>type.id</code></td>
+                        <td><code>int</code> Тип автомобиля, словарь <a href="#js-href-dict-vehicle-type">типов ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>type.classId</code></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>options</code></td>
+                        <td><code>[int]</code> Список идентификаторов <a href="#js-href-dict-vehicle-option">опций ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>order</code></td>
+                        <td><code>order</code> Текущий <a href="#js-href-order-get">заказ</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>ride</code></td>
+                        <td><code>ride</code> Текущая <a href="#js-href-ride-get">поездка</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
                 <code>HTTP/1.1 200 OK</code>
 <pre class="code">
 include "api/thread.json"
@@ -1066,6 +1165,10 @@ include "api/parts/customer.json"
                     <tr>
                         <td><code>callSign</code></td>
                         <td><code>string</code> Позывной</td>
+                    </tr>
+                    <tr>
+                        <td><code>number</code></td>
+                        <td><code>string</code> Номер ТС</td>
                     </tr>
                     <tr>
                         <td><code>brand</code></td>

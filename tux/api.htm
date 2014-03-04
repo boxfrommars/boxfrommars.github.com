@@ -905,6 +905,105 @@
                 </table>
 
                 <p><b>Response</b></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td>Идентификатор треда сообщений</td>
+                    </tr>
+                    <tr>
+                        <td><code>lifetime</code></td>
+                        <td><code>int</code> Время в секундах, после которого сообщение пересылается другому прользователю</td>
+                    </tr>
+                    <tr>
+                        <td><code>messages</code></td>
+                        <td><code>[]</code> Список сообщений в треде</td>
+                    </tr>
+                    <tr>
+                        <td><code>messages[].id</code></td>
+                        <td><code>int</code> Идентификатор сообщения</td>
+                    </tr>
+                    <tr>
+                        <td><code>messages[].time</code></td>
+                        <td><code>ISO 8601</code> Время отправки сообщения</td>
+                    </tr>
+                    <tr>
+                        <td><code>messages[].sender</code></td>
+                        <td><code>{}</code> Отправитель сообщения</td>
+                    </tr>
+                    <tr>
+                        <td><code>messages[].sender.type</code></td>
+                        <td><code>string</code> Тип отправителя сообщения. на данный момент <code>operator</code> -- оператор или <code>vehicle</code> -- такси</td>
+                    </tr>
+                    <tr>
+                        <td><code>messages[].sender.data</code></td>
+                        <td><code>{}</code> Данные отправителя (разнородные, для оператора свои, для водителя -- свои). подробнее -- см. ниже</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h5>Данные оператора в сообщении:</h5>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор оператора</td>
+                    </tr>
+                    <tr>
+                        <td><code>name</code></td>
+                        <td><code>string</code> Имя оператора</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h5>Данные таксиста (ТС) в сообщении:</h5>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор</td>
+                    </tr>
+                    <tr>
+                        <td><code>callSign</code></td>
+                        <td><code>string</code> Позывной</td>
+                    </tr>
+                    <tr>
+                        <td><code>number</code></td>
+                        <td><code>string</code> Номер ТС</td>
+                    </tr>
+                    <tr>
+                        <td><code>brand</code></td>
+                        <td><code>string</code> Марка ТС</td>
+                    </tr>
+                    <tr>
+                        <td><code>colorId</code></td>
+                        <td><code>int</code> Цвет, см. <a href="#js-href-dict-color">словарь цветов</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>type</code></td>
+                        <td><code>{}</code> Тип автомобиля</td>
+                    </tr>
+                    <tr>
+                        <td><code>type.id</code></td>
+                        <td><code>int</code> Тип автомобиля, словарь <a href="#js-href-dict-vehicle-type">типов ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>type.classId</code></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>options</code></td>
+                        <td><code>[int]</code> Список идентификаторов <a href="#js-href-dict-vehicle-option">опций ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>order</code></td>
+                        <td><code>order</code> Текущий <a href="#js-href-order-get">заказ</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>ride</code></td>
+                        <td><code>ride</code> Текущая <a href="#js-href-ride-get">поездка</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
                 <code>HTTP/1.1 200 OK</code>
 <pre class="code">
 {
@@ -917,19 +1016,19 @@
             "time": "2014-01-28T13:21:60Z", // время отправки сообщения
             "sender": {
                 "type": "vehicle",
-                "vehicle": {
+                "data": {
                     "id": 234,
                     "callSign": "5CC1-4", // позывной
+                    "number": "KK345O", // номер автомобиля
                     "brand": "Volvo", // марка машины
                     "colorId": 1, // цвет
                     "typeId": { // тип автомобиля (грузовой, легковой, мотоцикл)
                         "id": 4,
                         "classId": 12 // класс автомобиля, если есть
                     },
-                    "number": "KK345O" // номер автомобиля
-                },
-                "order": {}, // заказ. так как текущая поездка водителя может быть в нескольких заказах, то показываем заказ который привязан к номеру для связи
-                "ride": {} // поездка, нужно получать поездку, а не только заказ, так как в заказе не сколько поездок и нет жёсткого правила, что две поездки не могут принадлежать одному водителю
+                    "order": {}, // заказ. так как текущая поездка водителя может быть в нескольких заказах, то показываем заказ который привязан к номеру для связи
+                    "ride": {} // поездка, нужно получать поездку, а не только заказ, так как в заказе не сколько поездок и нет жёсткого правила, что две поездки не могут принадлежать одному водителю
+                }
             }
         }, {
             "id": 8444472,
@@ -937,7 +1036,7 @@
             "time": "2014-01-28T13:21:60Z", // время отправки сообщения
             "sender": {
                 "type": "operator",
-                "operator": {
+                "data": {
                     "id": 783,
                     "name": "Дмитрий Гроза"
                 }
@@ -1787,6 +1886,10 @@
                         <td><code>string</code> Позывной</td>
                     </tr>
                     <tr>
+                        <td><code>number</code></td>
+                        <td><code>string</code> Номер ТС</td>
+                    </tr>
+                    <tr>
                         <td><code>brand</code></td>
                         <td><code>string</code> Марка ТС</td>
                     </tr>
@@ -1816,14 +1919,14 @@
 {
     "id": 234,
     "callSign": "5CC1-4", // позывной
+    "number": "KK345O", // номер автомобиля
     "brand": "Volvo", // марка машины
     "colorId": 1, // цвет
     "type": { // тип автомобиля (грузовой, легковой, мотоцикл)
         "id": 4,
         "classId": 12 // класс автомобиля, если есть
     },
-    "number": "KK345O", // номер автомобиля
-    "options": [1, 2, 5 ,7] // опции автомобиля
+    "options": [1, 2, 5, 7] // опции автомобиля
 }
 </pre>
 
