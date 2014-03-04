@@ -249,7 +249,7 @@
             "id": 234,
             "callSign": "5CC1-4", // позывной
             "brand": "Volvo", // марка машины
-            "color": "sky blue", // цвет
+            "colorId": 1, // цвет
             "type": { // тип автомобиля (грузовой, легковой, мотоцикл)
                 "id": 4,
                 "classId": 12 // класс автомобиля, если есть
@@ -356,8 +356,16 @@
                         <td><code>[int]</code> Список идентификаторов опций автомобиля, берётся из словаря <a href="#js-href-dict-vehicle-option">опций автомобиля</a></td>
                     </tr>
                     <tr>
-                        <td><code>orderedProperties.typeId</code></td>
-                        <td><code>int</code> Тип автомобиля (грузовой, мотоцикл), берётся из словаря <a href="#js-href-dict-vehicle-type">типов автомобиля</a></td>
+                        <td><code>orderedProperties.type</code></td>
+                        <td><code>{}</code> Тип автомобиля</td>
+                    </tr>
+                    <tr>
+                        <td><code>orderedProperties.type.id</code></td>
+                        <td><code>int</code> Тип автомобиля, словарь <a href="#js-href-dict-vehicle-type">типов ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>orderedProperties.type.classId</code></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>phone</code></td>
@@ -499,7 +507,7 @@
         "id": 234,
         "callSign": "5CC1-4", // позывной
         "brand": "Volvo", // марка машины
-        "color": "sky blue", // цвет
+        "colorId": 1, // цвет
         "type": { // тип автомобиля (грузовой, легковой, мотоцикл)
             "id": 4,
             "classId": 12 // класс автомобиля, если есть
@@ -570,8 +578,16 @@
                         <td><code>[int]</code> Список идентификаторов опций автомобиля, берётся из словаря <a href="#js-href-dict-vehicle-option">опций автомобиля</a></td>
                     </tr>
                     <tr>
-                        <td><code>orderedProperties.typeId</code></td>
-                        <td><code>int</code> Тип автомобиля (грузовой, мотоцикл), берётся из словаря <a href="#js-href-dict-vehicle-type">типов автомобиля</a></td>
+                        <td><code>orderedProperties.type</code></td>
+                        <td><code>{}</code> Тип автомобиля</td>
+                    </tr>
+                    <tr>
+                        <td><code>orderedProperties.type.id</code></td>
+                        <td><code>int</code> Тип автомобиля, словарь <a href="#js-href-dict-vehicle-type">типов ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>orderedProperties.type.classId</code></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>phone</code></td>
@@ -726,7 +742,7 @@
                     "id": 234,
                     "callSign": "5CC1-4", // позывной
                     "brand": "Volvo", // марка машины
-                    "colorId": 12, // цвет
+                    "colorId": 1, // цвет
                     "typeId": { // тип автомобиля (грузовой, легковой, мотоцикл)
                         "id": 4,
                         "classId": 12 // класс автомобиля, если есть
@@ -1033,6 +1049,8 @@
                     <li><a href="#js-href-dict-street">Улицы</a></li>
                     <li><a href="#js-href-dict-vehicle-option">Опции ТС</a></li>
                     <li><a href="#js-href-dict-vehicle-type">Тип ТС</a></li>
+                    <li><a href="#js-href-dict-vehicle-class">Класс ТС</a></li>
+                    <li><a href="#js-href-dict-color">Цвета</a></li>
                     <li><a href="#js-href-dict-alert-type">Способы оповещения</a></li>
                     <li><a href="#js-href-dict-order-cancel-type.json">Причины отмены заказа</a></li>
                     <li><a href="#js-href-dict-message-cancel-type.json">Причины отказа для ответа на сообщения</a></li>
@@ -1215,6 +1233,34 @@
     ]
 }
 </pre>
+                <h5 class="anchored" id="js-href-dict-vehicle-class"><b>Класс ТС</b></h5>
+<pre class="code">
+{
+    "code": "vehicle_classes",
+    "name": "Классы транспортного средства",
+    "data": [
+        {
+            "id": 1,
+            "name": "A",
+            "typeId": 2 // тип транспортного средства
+        }
+    ]
+}
+</pre>
+                <h5 class="anchored" id="js-href-dict-color"><b>Цвета</b></h5>
+<pre class="code">
+{
+    "code": "colors",
+    "name": "Цвета",
+    "data": [
+        {
+            "id": 1,
+            "name": "Небесно-голубой"
+        }
+        // ...
+    ]
+}
+</pre>
                 <h5 class="anchored" id="js-href-dict-alert-type"><b>Способы оповещения</b></h5>
 <pre class="code">
 {
@@ -1309,11 +1355,19 @@
                     </tr>
                     <tr>
                         <td><code>vehicle.colorId</code></td>
-                        <td><code>int</code> Идентификатор цвета</td>
+                        <td><code>int</code> Идентификатор цвета, см. <a href="#js-href-dict-color">словарь цветов</a></td>
                     </tr>
                     <tr>
-                        <td><code>vehicle.typeId</code></td>
-                        <td><code>int</code> Тип ТС</td>
+                        <td><code>vehicle.type</code></td>
+                        <td><code>{}</code> Тип автомобиля</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle.type.id</code></td>
+                        <td><code>int</code> Тип автомобиля, словарь <a href="#js-href-dict-vehicle-type">типов ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle.type.classId</code></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>vehicle.number</code></td>
@@ -1332,7 +1386,7 @@
     "vehicle": {
         "callSign": "5CC1-4", // позывной
         "brand": "Volvo", // марка машины
-        "colorId": 12, // цвет
+        "colorId": 1, // цвет
         "type": { // тип автомобиля (грузовой, легковой, мотоцикл)
             "id": 4,
             "classId": 12 // класс автомобиля, если есть
@@ -1452,12 +1506,20 @@
                         <td><code>string</code> Марка ТС</td>
                     </tr>
                     <tr>
-                        <td><code>color</code></td>
-                        <td><code>string</code> Цвет</td>
+                        <td><code>colorId</code></td>
+                        <td><code>int</code> Цвет, см. <a href="#js-href-dict-color">словарь цветов</a></td>
                     </tr>
                     <tr>
-                        <td><code>typeId</code></td>
+                        <td><code>type</code></td>
+                        <td><code>{}</code> Тип автомобиля</td>
+                    </tr>
+                    <tr>
+                        <td><code>type.id</code></td>
                         <td><code>int</code> Тип автомобиля, словарь <a href="#js-href-dict-vehicle-type">типов ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>type.classId</code></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>options</code></td>
@@ -1527,12 +1589,20 @@
                         <td><code>string</code> Марка ТС</td>
                     </tr>
                     <tr>
-                        <td><code>color</code></td>
-                        <td><code>string</code> Цвет</td>
+                        <td><code>colorId</code></td>
+                        <td><code>int</code> Цвет, см. <a href="#js-href-dict-color">словарь цветов</a></td>
                     </tr>
                     <tr>
-                        <td><code>typeId</code></td>
+                        <td><code>type</code></td>
+                        <td><code>{}</code> Тип автомобиля</td>
+                    </tr>
+                    <tr>
+                        <td><code>type.id</code></td>
                         <td><code>int</code> Тип автомобиля, словарь <a href="#js-href-dict-vehicle-type">типов ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>type.classId</code></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>options</code></td>
@@ -1545,7 +1615,7 @@
     "id": 234,
     "callSign": "5CC1-4", // позывной
     "brand": "Volvo", // марка машины
-    "color": "sky blue", // цвет
+    "colorId": 1, // цвет
     "type": { // тип автомобиля (грузовой, легковой, мотоцикл)
         "id": 4,
         "classId": 12 // класс автомобиля, если есть
@@ -1630,7 +1700,20 @@
 }
 </pre>
 
-winclude "parts/disqus.htm"
+<div id="disqus_thread"></div>
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'boxfrommars'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
             </div>
 
