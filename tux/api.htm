@@ -178,6 +178,7 @@
     "customer": {
         "id": 5687,                     // id клиента
         "name": "Кирилл Евдаков",       // имя
+        "language": "ru",               // язык
         "rank": 5,                      // кол-во звёздочек
         "phone": "79615373407",         // номер телефона клиента
         "discountCard": "505",          // номер скидочной карты
@@ -1561,9 +1562,42 @@
 </pre>
 
                 <h5 class="anchored" id="js-href-parts-customer"><b>Клиент</b></h5>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор</td>
+                    </tr>
+                    <tr>
+                        <td><code>language</code></td>
+                        <td><code>ISO 639-1</code> Язык клиента</td>
+                    </tr>
+                    <tr>
+                        <td><code>name</code></td>
+                        <td><code>string</code> Имя клиента</td>
+                    </tr>
+                    <tr>
+                        <td><code>rank</code></td>
+                        <td><code>int (0-5)</code> Оценка клиента</td>
+                    </tr>
+                    <tr>
+                        <td><code>phone</code></td>
+                        <td><code>numeric</code> Номер телефона клиента</td>
+                    </tr>
+                    <tr>
+                        <td><code>discountCard</code></td>
+                        <td><code>string</code> Скидочная карта клиента</td>
+                    </tr>
+                    <tr>
+                        <td><code>frequentAddresses</code></td>
+                        <td><code>[address]</code> частые адреса (такой же формат, как и <a href="#js-href-parts-address">адрес</a>, за исключением, может быть, комментария)</td>
+                    </tr>
+                    </tbody>
+                </table>
 <pre class="code">
 {
     "id": 5687,                     // id клиента
+    "language": "ru",               // язык
     "name": "Кирилл Евдаков",       // имя
     "rank": 5,                      // кол-во звёздочек
     "phone": "79615373407",         // номер телефона клиента
