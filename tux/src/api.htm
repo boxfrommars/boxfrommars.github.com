@@ -551,7 +551,7 @@ include "api/dictionaries.json"
                 <h4 class="anchored" id="js-href-dict-index">Список словарей</h4>
                 <ul>
                     <li><a href="#js-href-dict-area">Группы городов</a></li>
-                    <li><a href="#js-href-dict-city"></a>Города</li>
+                    <li><a href="#js-href-dict-city">Города</a></li>
                     <li><a href="#js-href-dict-district">Районы</a></li>
                     <li><a href="#js-href-dict-street">Улицы</a></li>
                     <li><a href="#js-href-dict-vehicle-option">Опции ТС</a></li>
@@ -604,6 +604,10 @@ include "api/dicts/area.json"
                     <tr>
                         <td><code>name</code></td>
                         <td><code>string</code> Название города</td>
+                    </tr>
+                    <tr>
+                        <td><code>isSuburb</code></td>
+                        <td><code>bool</code> Является ли населённый пункт пригородом</td>
                     </tr>
                     <tr>
                         <td><code>phoneCode</code></td>

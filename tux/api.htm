@@ -1045,7 +1045,7 @@
                 <h4 class="anchored" id="js-href-dict-index">Список словарей</h4>
                 <ul>
                     <li><a href="#js-href-dict-area">Группы городов</a></li>
-                    <li><a href="#js-href-dict-city"></a>Города</li>
+                    <li><a href="#js-href-dict-city">Города</a></li>
                     <li><a href="#js-href-dict-district">Районы</a></li>
                     <li><a href="#js-href-dict-street">Улицы</a></li>
                     <li><a href="#js-href-dict-vehicle-option">Опции ТС</a></li>
@@ -1112,6 +1112,10 @@
                         <td><code>string</code> Название города</td>
                     </tr>
                     <tr>
+                        <td><code>isSuburb</code></td>
+                        <td><code>bool</code> Является ли населённый пункт пригородом</td>
+                    </tr>
+                    <tr>
                         <td><code>phoneCode</code></td>
                         <td><code>str</code> Телефонный код города</td>
                     </tr>
@@ -1154,6 +1158,7 @@
             "id": 1,
             "areaId": 1,
             "name": "Краснодар",
+            "isSuburb": false, // пригород или нет
             "phoneCode": "612", // код города
             "cellPhoneLength": 10, // кол-во цифр в мобильном телефоне
             "landlinePhoneLength": 7, // кол-во цифр в городском телефоне

@@ -6,6 +6,7 @@
             "id": 1,
             "areaId": 1,
             "name": "Краснодар",
+            "isSuburb": false, // пригород или нет
             "phoneCode": "612", // код города
             "cellPhoneLength": 10, // кол-во цифр в мобильном телефоне
             "landlinePhoneLength": 7, // кол-во цифр в городском телефоне
