@@ -319,6 +319,130 @@ include "api/ride-post.json"
                 </table>
 
 
+                <h2 class="anchored" id="js-href-address">Адреса</h2>
+                <h4>Получение адресов по улице или району</h4>
+                <p><b>Request</b></p>
+                <p><code>GET /address?streetId=:streetId</code></p>
+                <p><code>GET /address?cityId=:cityId</code></p>
+                <p><code>GET /address?districtId=:districtId</code></p>
+                <p><code>GET /address?cityId=:cityId&isPublic=1</code></p>
+                <p><code>GET /address?districtId=:districtId&isPublic=1</code></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>streetId</code></td>
+                        <td><code>int</code> Идентификатор улицы</td>
+                    </tr>
+                    <tr>
+                        <td><code>cityId</code></td>
+                        <td><code>int</code> Идентификатор города</td>
+                    </tr>
+                    <tr>
+                        <td><code>districtId</code></td>
+                        <td><code>int</code> Идентификатор района</td>
+                    </tr>
+                    <tr>
+                        <td><code>isPublic</code></td>
+                        <td><code>int, 1</code> Только публичные</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <p><b>Response</b></p>
+
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> id адреса, если адрес есть в базе</td>
+                    </tr>
+                    <tr>
+                        <td><code>isPublic</code></td>
+                        <td><code>bool</code> Публичное ли место</td>
+                    </tr>
+                    <tr>
+                        <td><code>street</code></td>
+                        <td><code>{}</code> Улица</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.id</code></td>
+                        <td><code>int</code> Идентификатор улицы</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.name</code></td>
+                        <td><code>string</code> Название улицы</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.district</code></td>
+                        <td><code>{}</code> Район</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.district.id</code></td>
+                        <td><code>int</code> Идентификатор района</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.district.name</code></td>
+                        <td><code>string</code> Название района</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.district.city</code></td>
+                        <td><code>{}</code> Город</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.district.city.id</code></td>
+                        <td><code>int</code> Идентификатор города</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.district.city.name</code></td>
+                        <td><code>string</code> Название города</td>
+                    </tr>
+                    <tr>
+                        <td><code>house</code></td>
+                        <td><code>string</code> Дом</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance</code></td>
+                        <td><code>[{}]</code> Список возможных подъездов</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance[].id</code></td>
+                        <td><code>int</code> Идентификатор подъезда</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance[].name</code></td>
+                        <td><code>string</code> Название (описание) подъезда</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance[].location</code></td>
+                        <td><code>{}</code> Координаты подъезда</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance[].location.lt</code><br /><code>entrance[].location.ln</code></td>
+                        <td><code>WGS 84</code> Координаты подъезда (широта и долгота)</td>
+                    </tr>
+                    <tr>
+                        <td><code>description</code></td>
+                        <td><code>string</code> Описание</td>
+                    </tr>
+                    <tr>
+                        <td><code>location</code></td>
+                        <td><code>{}</code> Координаты адреса</td>
+                    </tr>
+                    <tr>
+                        <td><code>location.lt</code></td>
+                        <td><code>WGS 84</code> Широта</td>
+                    </tr>
+                    <tr>
+                        <td><code>location.ln</code></td>
+                        <td><code>WGS 84</code> Долгота</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <code>HTTP/1.1 200 OK</code>
+<pre class="code">
+include "api/address.json"
+</pre>
+
                 <h2 class="anchored" id="js-href-message">Сообщения</h2>
                 <h4 class="anchored">Получение сообщений</h4>
                 <p><b>Request</b></p>
@@ -808,28 +932,8 @@ include "api/search-response.json"
                         <td><code>int</code> id адреса, если адрес есть в базе</td>
                     </tr>
                     <tr>
-                        <td><code>area</code></td>
-                        <td><code>{}</code> Группа городов</td>
-                    </tr>
-                    <tr>
-                        <td><code>area.id</code></td>
-                        <td><code>int</code> Идентификатор группы городов</td>
-                    </tr>
-                    <tr>
-                        <td><code>area.name</code></td>
-                        <td><code>string</code> Название группы городов</td>
-                    </tr>
-                    <tr>
-                        <td><code>city</code></td>
-                        <td><code>{}</code> Город</td>
-                    </tr>
-                    <tr>
-                        <td><code>city.id</code></td>
-                        <td><code>int</code> Идентификатор города</td>
-                    </tr>
-                    <tr>
-                        <td><code>city.name</code></td>
-                        <td><code>string</code> Название города</td>
+                        <td><code>isPublic</code></td>
+                        <td><code>bool</code> Публичное ли место</td>
                     </tr>
                     <tr>
                         <td><code>street</code></td>
@@ -844,12 +948,52 @@ include "api/search-response.json"
                         <td><code>string</code> Название улицы</td>
                     </tr>
                     <tr>
+                        <td><code>street.district</code></td>
+                        <td><code>{}</code> Район</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.district.id</code></td>
+                        <td><code>int</code> Идентификатор района</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.district.name</code></td>
+                        <td><code>string</code> Название района</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.district.city</code></td>
+                        <td><code>{}</code> Город</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.district.city.id</code></td>
+                        <td><code>int</code> Идентификатор города</td>
+                    </tr>
+                    <tr>
+                        <td><code>street.district.city.name</code></td>
+                        <td><code>string</code> Название города</td>
+                    </tr>
+                    <tr>
                         <td><code>house</code></td>
                         <td><code>string</code> Дом</td>
                     </tr>
                     <tr>
                         <td><code>entrance</code></td>
-                        <td><code>string</code> Подъезд</td>
+                        <td><code>{}</code> Подъезд</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance.id</code></td>
+                        <td><code>int</code> Идентификатор подъезда</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance.name</code></td>
+                        <td><code>string</code> Название (описание) подъезда</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance.location</code></td>
+                        <td><code>{}</code> Координаты подъезда</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance.location.lt</code><br /><code>entrance.location.ln</code></td>
+                        <td><code>WGS 84</code> Координаты подъезда (широта и долгота)</td>
                     </tr>
                     <tr>
                         <td><code>description</code></td>
@@ -870,42 +1014,6 @@ include "api/search-response.json"
                     </tbody>
                 </table>
                 <p class="alert alert-warning">Поля *.id и *.name -- при запросе на сервер необязательны, достаточно только одного из них: id, если улица/город/группа существует в словаре; name если нет. В ответах сервера оба поля обязательны</p>
-                <table class="table table-bordered table-striped">
-                    <tbody>
-                    <tr>
-                        <td><code>id</code></td>
-                        <td><code>int</code> Идентификатор</td>
-                    </tr>
-                    <tr>
-                        <td><code>callSign</code></td>
-                        <td><code>string</code> Позывной</td>
-                    </tr>
-                    <tr>
-                        <td><code>brand</code></td>
-                        <td><code>string</code> Марка ТС</td>
-                    </tr>
-                    <tr>
-                        <td><code>colorId</code></td>
-                        <td><code>int</code> Цвет, см. <a href="#js-href-dict-color">словарь цветов</a></td>
-                    </tr>
-                    <tr>
-                        <td><code>type</code></td>
-                        <td><code>{}</code> Тип автомобиля</td>
-                    </tr>
-                    <tr>
-                        <td><code>type.id</code></td>
-                        <td><code>int</code> Тип автомобиля, словарь <a href="#js-href-dict-vehicle-type">типов ТС</a></td>
-                    </tr>
-                    <tr>
-                        <td><code>type.classId</code></td>
-                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
-                    </tr>
-                    <tr>
-                        <td><code>options</code></td>
-                        <td><code>[int]</code> Список идентификаторов <a href="#js-href-dict-vehicle-option">опций ТС</a></td>
-                    </tr>
-                    </tbody>
-                </table>
 <pre class="code">
 include "api/parts/address.json"
 </pre>
@@ -1083,6 +1191,7 @@ include "parts/disqus.htm"
                                 <li><a href="#js-href-ride-cansel">Отмена</a></li>
                             </ul>
                         </li>
+                        <li><a href="#js-href-address">Адреса</a></li>
                         <li><a href="#js-href-message">Сообщения</a></li>
                         <li><a href="#js-href-shift">Смены</a></li>
                         <li>
