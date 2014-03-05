@@ -997,12 +997,63 @@ include "api/dicts/message-cancel-type.json"
                         <td><code>language</code></td>
                         <td><code>ISO 639-1</code> Язык интерфейса приложения. На основе этого параметра меняется язык <b>только интерфейса</b>, всё остальное -- ответственность сервера (например, отдавать словари в нужной локализации)</td>
                     </tr>
+                    <tr>
+                        <td><code>sync</code></td>
+                        <td><code>{}</code> Настройки синхронизации</td>
+                    </tr>
+                    <tr>
+                        <td><code>sync.vehicleOptions</code></td>
+                        <td><code>{}</code> Настройки синхронизации текущих опций автомобиля</td>
+                    </tr>
+                    <tr>
+                        <td><code>sync.vehicleOptions</code></td>
+                        <td><code>{}</code> Настройки синхронизации времени приложения</td>
+                    </tr>
+                    <tr>
+                        <td><code>sync.**.interval</code></td>
+                        <td><code>int</code> Интервал в секундах, через который мы синхронизируем данные объекты</td>
+                    </tr>
                     </tbody>
                 </table>
                 <p><b>Response</b></p>
 <pre class="code">
 include "api/options.json"
 </pre>
+
+                <h2 class="anchored" id="js-href-sync">Синхронизация</h2>
+                <h4 class="anchored">Синхронизация доступных опций для автомобиля</h4>
+                <p><b>Request</b></p>
+                <p><code>GET /sync/vehicleOptions</code></p>
+                <p><b>Response</b></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>options</code></td>
+                        <td><code>[[idVehicleOption]]</code> Комбинации опций, доступные на данный момент</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+include "api/vehicle-options.json"
+</pre>
+                <h4 class="anchored">Синхронизация времени</h4>
+                <p><b>Request</b></p>
+                <p><code>GET /sync/time</code></p>
+                <p><b>Response</b></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>time</code></td>
+                        <td><code>ISO 8601</code> Текущее время сервера</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+include "api/time.json"
+</pre>
+
+
+
 
                 <h2 class="anchored" id="js-href-search">Поиск</h2>
                 <p><b>Request</b></p>
@@ -1355,7 +1406,6 @@ include "parts/disqus.htm"
             <div class="col-md-3 hidden-xs hidden-sm sidebar-column">
                 <div data-spy="affix" data-offset-top="40" data-offset-bottom="60" class="sidebar-affix">
                     <ul class="nav bs-sidenav">
-                        <li><a href="#">API</a></li>
                         <li>
                             <a href="#">Заказы</a>
                             <!--<ul class="nav">-->
@@ -1382,6 +1432,7 @@ include "parts/disqus.htm"
                             <!--</ul>-->
                         </li>
                         <li><a href="#js-href-settings">Настройки</a></li>
+                        <li><a href="#js-href-sync">Синхронизация</a></li>
                         <li><a href="#js-href-search">Поиск</a></li>
                         <li>
                             <a href="#js-href-parts">Части</a>

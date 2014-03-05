@@ -20,7 +20,7 @@ include "parts/head.htm"
                 </div>
 
                 <h2 class="anchored" id="js-href-process-call">1. Звонок</h2>
-                <p>Параллельно со звонком сервер, используя WebSocket отправляет сообщение в операторское приложение (далее -- приложение) с уведомлением о заказе. С точки зрения сервера, существуют три возможные ситуации:</p>
+                <p>Параллельно со звонком, сервер, используя WebSocket, отправляет сообщение в операторское приложение (далее -- приложение) с уведомлением о заказе. С точки зрения сервера, существуют три возможные ситуации:</p>
                 <ul>
                     <li>Клиент звонит первый раз. Тогда сервер создаёт пустой заказ и отправляет приложению</li>
                     <li>Клиент звонит в то время, когда у него уже есть заказ, тогда сервер отправляет <code>id</code> этого заказа</li>
@@ -163,6 +163,13 @@ include "api/shift-post.json"
 </pre>
                     </div>
                 </div>
+
+                <p>Если сервер получил заявку от оператора (в силу, например, медленного соединения) по прошествии
+                    времени, указанного в <code>lifetime</code>, он возвращает
+                    <a href="/tux/index.htm#js-href-http_codes">стандартное сообщение об ошибке</a> с кодом
+                    <code>422 Unprocessable Entity</code></p>
+
+
                 <h2 class="anchored" id="js-href-process-message">4. Сообщения</h2>
                 <p class="alert alert-warning">Сервер уведомляет приложение о новом сообщении в треде</p>
 <pre class="code">
@@ -192,7 +199,7 @@ include "api/message-post.json"
                 </div>
                 <p>В таком случае сервер возвращает тред уже с данным сообщением</p>
 
-                <p>Если сервер получил сообщение от опертора (в силу, например, медленного соединения) по прошествии
+                <p>Если сервер получил сообщение от оператора (в силу, например, медленного соединения) по прошествии
                     времени, указанного в <code>lifetime</code>, он возвращает
                     <a href="/tux/index.htm#js-href-http_codes">стандартное сообщение об ошибке</a> с кодом
                     <code>422 Unprocessable Entity</code></p>
@@ -207,7 +214,7 @@ include "websocket-api/update-dictionary.json"
                     приложением) версии словарей, для этого в запрос включается идентификатор текущей версии словарей
                     <code>currentVersionId</code></p>
 
-                <p><code>GET /api/v1/dictionaries/:currentVersionId/difference </code></p>
+                <p><code>GET /dictionaries/:currentVersionId/difference</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-dictionaries-diff" class="pseudo-link"><b>Пример ответа от сервера</b></a></p>
                     <div id="js-collapse-dictionaries-diff" class="collapse">
@@ -218,8 +225,31 @@ include "api/dictionaries-diff.json"
                     </div>
                 </div>
 
+                <h2 class="anchored" id="js-href-process-sync">5. Синхронизация данных</h2>
+                <p>Приложение на основе <a href="/tux/api.htm#js-href-settings">настроек синхронизации</a> каждый <code>interval</code> отправляет на сервер запросы вида</p>
+
+                <p><code>GET /sync/time</code></p>
+                <div class="collapse-wrap">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-process-sync-time" class="pseudo-link"><b>Пример ответа от сервера</b></a></p>
+                    <div id="js-collapse-process-sync-time" class="collapse">
+<pre class="code">
+include "api/time.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-process-sync-time" class="pseudo-link">Свернуть</a>
+</pre>
+                    </div>
+                </div>
 
 
+                <p><code>GET /sync/vehicleOptions</code></p>
+                <div class="collapse-wrap">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-process-sync-vehicleOptions" class="pseudo-link"><b>Пример ответа от сервера</b></a></p>
+                    <div id="js-collapse-process-sync-vehicleOptions" class="collapse">
+<pre class="code">
+include "api/vehicle-options.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-process-sync-vehicleOptions" class="pseudo-link">Свернуть</a>
+</pre>
+                    </div>
+                </div>
 
                 include "parts/disqus.htm"
             </div>
@@ -232,6 +262,7 @@ include "api/dictionaries-diff.json"
                         <li><a href="#js-href-process-shift">Смены</a></li>
                         <li><a href="#js-href-process-message">Сообщения</a></li>
                         <li><a href="#js-href-process-dictionaries">Обновление словарей</a></li>
+                        <li><a href="#js-href-process-sync">Синхронизация данных</a></li>
                     </ul>
                 </div>
             </div>
