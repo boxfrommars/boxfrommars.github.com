@@ -1,4 +1,5 @@
 {
     "mapService": "osm", // сервис карт
-    "imagesBaseUrl": "http://example.com/i/", // базовый путь к картинкам (наприм для открытия смен)
+    "imagesBaseUrl": "http://example.com/i/", // базовый путь к картинкам (например, для открытия смен)
+    "language": "ru" // язык интерфейса
 }

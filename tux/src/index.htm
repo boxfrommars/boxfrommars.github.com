@@ -85,9 +85,10 @@ include "api/unprocessable_entity.json"
                     </tr>
                     </tbody>
                 </table>
-                <h2 id="js-href-date" class="anchored">Даты и координаты</h2>
-                <p>Вся информация о времени передаётся в формате ISO 8601, UTC <code>YYYY-MM-DDTHH:MM:SSZ</code></p>
-                <p>Вся информация о координатах точек передаётся в формате WGS 84</p>
+                <h2 id="js-href-format" class="anchored">Форматы данных</h2>
+                <p>Вся информация о времени передаётся в формате <code>ISO 8601</code>, UTC: <code>YYYY-MM-DDTHH:MM:SSZ</code></p>
+                <p>Вся информация о координатах точек передаётся в формате <code>WGS 84</code></p>
+                <p>Вся информация о языке передаётся в формате <code>ISO 639-1</code></p>
 
                 include "parts/disqus.htm"
             </div>
@@ -100,7 +101,7 @@ include "api/unprocessable_entity.json"
                             <ul class="nav">
                                 <li><a href="#js-href-http_codes">Ответы сервера</a></li>
                                 <li><a href="#js-href-http_errors">Ошибки</a></li>
-                                <li><a href="#js-href-date">Даты и координаты</a></li>
+                                <li><a href="#js-href-format">Форматы данных</a></li>
                             </ul>
                         </li>
                     </ul>

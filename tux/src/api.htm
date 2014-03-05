@@ -981,6 +981,28 @@ include "api/dicts/message-cancel-type.json"
 </pre>
 
                 <h2 class="anchored" id="js-href-settings">Настройки</h2>
+                <p><b>Request</b></p>
+                <p><code>GET /options</code></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>mapService</code></td>
+                        <td><code>string</code> Используемый сервис карт. Пока только <code>osm</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>imagesBaseUrl</code></td>
+                        <td><code>string (url)</code> Базовый путь к изображениям (например, для изображений в <a href="#js-href-shift">заявках на открытие смены</a>)</td>
+                    </tr>
+                    <tr>
+                        <td><code>language</code></td>
+                        <td><code>ISO 639-1</code> Язык интерфейса приложения. На основе этого параметра меняется язык <b>только интерфейса</b>, всё остальное -- ответственность сервера (например, отдавать словари в нужной локализации)</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p><b>Response</b></p>
+<pre class="code">
+include "api/options.json"
+</pre>
 
                 <h2 class="anchored" id="js-href-search">Поиск</h2>
                 <p><b>Request</b></p>
