@@ -19,19 +19,162 @@ include "parts/head.htm"
                     <h1>Примеры взаимодействия</h1>
                 </div>
 
+                <h2 class="anchored" id="js-href-process-call">1. Звонок</h2>
+                <p>Параллельно со звонком сервер, используя WebSocket отправляет сообщение в операторское приложение (далее -- приложение) с уведомлением о заказе. С точки зрения сервера, существуют три возможные ситуации:</p>
+                <ul>
+                    <li>Клиент звонит первый раз. Тогда сервер создаёт пустой заказ и отправляет приложению</li>
+                    <li>Клиент звонит в то время, когда у него уже есть заказ, тогда сервер отправляет <code>id</code> этого заказа</li>
+                    <li>Клиент звонит, и у него есть недавно завершившийся заказ. И в этом случае сервер отдаёт приложению <code>id</code> этого заказа</li>
+                </ul>
+                <p>Как видим, во всех случаях сервер посылает <a href="/tux/api-websocket.htm#js-href-type-order">уведомление о заказе</a> с <code>id</code> заказа. приложение же на основе лога событий (<a href="/tux/api.htm#js-href-parts-timeline">timeline</a>) "понимает" текущее состояние заказа</p>
+                <h4 class="anchored">Итак, сервер при звонке <b>всегда</b> отдаёт приложению websocket-сообщение вида:</h4>
+<pre class="code">
+include "websocket-api/order.json"
+</pre>
+                <h4 class="anchored">При поступлении такого уведомления приложение <a href="/tux/api.htm#js-href-order-get">запрашивает у сервера</a> заказ с переданным <code>id</code></h4>
+                <p><code>GET /order/:orderId</code></p>
+                <div class="collapse-wrap">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-order" class="pseudo-link"><b>Пример ответа сервера</b></a></p>
+                    <div id="js-collapse-order" class="collapse">
+<pre class="code">
+include "api/order.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-order" class="pseudo-link">Свернуть</a>
+</pre>
+                    </div>
+                </div>
+
+                <p>Получив ответ, приложение анализрует таймлайн и определяет текущую ситуацию с заказом.
+                    С точки зрения взаимодействия с сервером, существует 4 ситуации:</p>
+                <ul>
+                    <li><a href="#">а. Клиент звонит первый раз, оператор заполняет карточку заказа</a></li>
+                    <li><a href="#">б. Клиент звонит повторно, требуются изменение заказа</a></li>
+                    <li><a href="#">в. Клиент звонит повторно, требуются удаление поездки из заказа</a></li>
+                    <li><a href="#">г. Клиент звонит повторно, никакого взаимодействия с сервером не требуется</a></li>
+                </ul>
+
+                <p>При добавлении/изменении заказа клиентское приложение отсылает на сервер не заказ целиком, а отдельные поездки.
+                    Отличие между добавлением и изменением поездки только лишь в количестве передаваемой информации -- при обновлении
+                    отправляемая поездка может содержать таймлайн, информацию о ТС, и т.д., эти нередактируемые (а добавляемые
+                    сервером при обработке заказа) поля должны игнорироваться сервером.</p>
+
+                <h4 class="anchored">Перед отправкой отредактированной/добавленой поездки приложение
+                    <b>может</b> <a href="/tux/api.htm#js-href-address">запросить у сервера информацию об адресах</a>
+                    текущей улицы или района (для выбора в приложении точного адреса)</h4>
+
+                <p><code>GET /address?streetId=:streetId</code></p>
+                <div class="collapse-wrap">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-address" class="pseudo-link"><b>Пример ответа сервера</b></a></p>
+                    <div id="js-collapse-address" class="collapse">
+<pre class="code">
+include "api/address.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-address" class="pseudo-link">Свернуть</a>
+</pre>
+                    </div>
+                </div>
+
+                <h4 class="anchored">В случаях <code>1.а</code> и <code>1.б</code> (добавление или изменение поездки) оператор создаёт/изменяет поездку и <a href="/tux/api.htm#js-href-ride-post">отправляет данные на сервер</a></h4>
+                <p><code>POST /order/:orderId/ride</code></p>
+                <div class="collapse-wrap">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-ride-post" class="pseudo-link"><b>Пример запроса на добавление</b></a></p>
+                    <div id="js-collapse-ride-post" class="collapse">
+<pre class="code">
+include "api/ride-post.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-ride-post" class="pseudo-link">Свернуть</a>
+</pre>
+                    </div>
+                </div>
+                <p>В ответ получает <b>полную</b> поездку, то есть:</p>
+                <div class="collapse-wrap">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-ride-get" class="pseudo-link"><b>Пример ответа сервера на запрос на добавление</b></a></p>
+                    <div id="js-collapse-ride-get" class="collapse">
+<pre class="code">
+include "api/ride.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-ride-get" class="pseudo-link">Свернуть</a>
+</pre>
+                    </div>
+                </div>
+
+                <h4 class="anchored">В случае <code>1.в</code> (удаление поездки) приложение <a href="/tux/api.htm#js-href-ride-cansel">отправляет на сервер запрос</a> вида</h4>
+                <p><code>POST /ride/:rideId/cancel</code></p>
+                <div class="collapse-wrap">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-ride-cancel" class="pseudo-link"><b>Пример запроса на отмену поездки</b></a></p>
+                    <div id="js-collapse-ride-cancel" class="collapse">
+<pre class="code">
+include "api/ride-cancel.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-ride-cancel" class="pseudo-link">Свернуть</a>
+</pre>
+                    </div>
+                </div>
+                <p>При удачной отмене сервер возвращает любой ответ с кодом <code>200</code>, при неудаче -- <a href="/tux/index.htm#js-href-http_errors">стандартное сообщение об ошибке</a></p>
+
+                <h2 class="anchored" id="js-href-process-begin">2. Аутентификация</h2>
+
+                <h4 class="anchored">а. После удачной аутентификации приложение запрашивает список всех словарей</h4>
+                <p><code>GET /dictionaries</code></p>
+                <div class="collapse-wrap">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-dictionaries" class="pseudo-link"><b>Пример ответа сервера</b></a></p>
+                    <div id="js-collapse-dictionaries" class="collapse">
+<pre class="code">
+include "api/dictionaries.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-dictionaries" class="pseudo-link">Свернуть</a>
+</pre>
+                    </div>
+                </div>
+
+                <h4 class="anchored">б. Список опций</h4>
+                <p><code>GET /options</code></p>
+                <div class="collapse-wrap">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-options" class="pseudo-link"><b>Пример ответа сервера</b></a></p>
+                    <div id="js-collapse-options" class="collapse">
+<pre class="code">
+include "api/options.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-options" class="pseudo-link">Свернуть</a>
+</pre>
+                    </div>
+                </div>
+
+
+                <h2 class="anchored" id="js-href-process-shift">3. Смены</h2>
+                <h4 class="anchored">Сервер уведомляет приложение о заявке на открытие смены</h4>
+<pre class="code">
+include "websocket-api/shift.json"
+</pre>
+                <h4 class="anchored">Оператор запрашивает заявку</h4>
+                <p><code>GET /shift/:shiftId</code></p>
+                <div class="collapse-wrap">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-shift-get" class="pseudo-link"><b>Пример ответа сервера</b></a></p>
+                    <div id="js-collapse-shift-get" class="collapse">
+<pre class="code">
+include "api/shift.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-shift-get" class="pseudo-link">Свернуть</a>
+</pre>
+                    </div>
+                </div>
+
+                <h4 class="anchored">Оператор, после проверки данных отправляет запрос на сервер, содержащий заявку на открытие смены с проставленным параметром <code>isMatch</code></h4>
+                <p><code>POST /shift/:shiftId</code></p>
+                <div class="collapse-wrap">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-shift-post" class="pseudo-link"><b>Пример запроса</b></a></p>
+                    <div id="js-collapse-shift-post" class="collapse">
+<pre class="code">
+include "api/shift-post.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-shift-post" class="pseudo-link">Свернуть</a>
+</pre>
+                    </div>
+                </div>
+                <h2 class="anchored" id="js-href-process-message">4. Сообщения</h2>
+
+
                 include "parts/disqus.htm"
             </div>
 
             <div class="col-md-3 hidden-xs hidden-sm sidebar-column">
                 <div data-spy="affix" data-offset-top="40" data-offset-bottom="200" class="sidebar-affix">
                     <ul class="nav bs-sidenav">
-                        <li class="">
-                            <a href="#">Ссылки</a>
-                            <ul class="nav">
-                                <li><a href="#js-href-http_codes">Something</a></li>
-                                <li><a href="#js-href-http_errors">Nevermore</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="#js-href-process-call">Звонок</a></li>
+                        <li><a href="#js-href-process-begin">Аутентификация</a></li>
+                        <li><a href="#js-href-process-shift">Смены</a></li>
+                        <li><a href="#js-href-process-message">Сообщения</a></li>
                     </ul>
                 </div>
             </div>

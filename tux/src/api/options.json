@@ -1,0 +1,4 @@
+{
+    "mapService": "osm", // сервис карт
+    "imagesBaseUrl": "http://example.com/i/", // базовый путь к картинкам (наприм для открытия смен)
+}

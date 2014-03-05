@@ -10,11 +10,13 @@
             {
                 "id": 1,
                 "name": "Чистая машина",
-                "important": false // если нужно выделить этот пункт (т.к., например, в прошлый раз не прошёл по этому пункту)
+                "important": false, // если нужно выделить этот пункт (т.к., например, в прошлый раз не прошёл по этому пункту)
+                "isMatch": true // соответствует ли требованию
             }, {
                 "id": 2,
                 "name": "Нет повреждений",
-                "important": true
+                "important": true,
+                "isMatch": true
             }
             // ...
         ],
@@ -22,11 +24,13 @@
             {
                 "id": 1,
                 "name": "Видно всю машину",
-                "important": false
+                "important": false,
+                "isMatch": true
             }, {
                 "id": 1,
                 "name": "Видно номер",
-                "important": false
+                "important": false,
+                "isMatch": true
             }
             // ...
         ]

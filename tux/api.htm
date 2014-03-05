@@ -103,6 +103,14 @@
         .bs-sidenav li>a {
             padding: 5px 15px;
         }
+        .pseudo-link {
+            border-bottom: 1px dashed #428bca;
+        }
+        .pseudo-link:hover,
+        .pseudo-link:focus {
+            text-decoration: none;
+            border-bottom: 1px solid #2a6496;
+        }
     </style>
 </head>
 
@@ -391,7 +399,7 @@
                     </tr>
                     <tr>
                         <td><code>timeline</code></td>
-                        <td><code>[timeline]</code> Список событий, см <a href="#js-href-parts-timeline">события</a></td>
+                        <td><code>[timeline]</code> Список событий, см <a href="#js-href-parts-timeline">таймлайн</a></td>
                     </tr>
                     <tr>
                         <td><code>path</code></td>
@@ -1287,7 +1295,7 @@
 <code>HTTP/1.1 200 OK</code>
 <pre class="code">
 {
-    "version": 1356, // версия словарей, отправляем версию на сервер для получения изменений в словарях
+    "version": 1356, // версия словарей. позже, во время обновления словарей, отправляем версию на сервер для получения изменений в словарях
     "dictionaries": [
         {
             "code": "areas",
@@ -2027,32 +2035,40 @@
                         <li><a href="#">API</a></li>
                         <li>
                             <a href="#">Заказы</a>
-                            <ul class="nav">
-                                <li><a href="#js-href-order-get">Получение</a></li>
-                                <li><a href="#js-href-order-post">Создание</a></li>
-                            </ul>
+                            <!--<ul class="nav">-->
+                                <!--<li><a href="#js-href-order-get">Получение</a></li>-->
+                                <!--<li><a href="#js-href-order-post">Создание</a></li>-->
+                            <!--</ul>-->
                         </li>
                         <li>
                             <a href="#js-href-ride">Поездки</a>
-                            <ul class="nav">
-                                <li><a href="#js-href-ride-get">Получение</a></li>
-                                <li><a href="#js-href-ride-post">Создание</a></li>
-                                <li><a href="#js-href-ride-edit">Редактирование</a></li>
-                                <li><a href="#js-href-ride-cansel">Отмена</a></li>
-                            </ul>
+                            <!--<ul class="nav">-->
+                                <!--<li><a href="#js-href-ride-get">Получение</a></li>-->
+                                <!--<li><a href="#js-href-ride-post">Создание</a></li>-->
+                                <!--<li><a href="#js-href-ride-edit">Редактирование</a></li>-->
+                                <!--<li><a href="#js-href-ride-cansel">Отмена</a></li>-->
+                            <!--</ul>-->
                         </li>
                         <li><a href="#js-href-address">Адреса</a></li>
                         <li><a href="#js-href-message">Сообщения</a></li>
                         <li><a href="#js-href-shift">Смены</a></li>
                         <li>
                             <a href="#js-href-dictionary">Словари</a>
-                            <ul class="nav">
-                                <li><a href="#js-href-dict-index">Список словарей</a></li>
-                            </ul>
+                            <!--<ul class="nav">-->
+                                <!--<li><a href="#js-href-dict-index">Список словарей</a></li>-->
+                            <!--</ul>-->
                         </li>
                         <li><a href="#js-href-settings">Настройки</a></li>
                         <li><a href="#js-href-search">Поиск</a></li>
-                        <li><a href="#js-href-parts">Части</a></li>
+                        <li>
+                            <a href="#js-href-parts">Части</a>
+                            <ul class="nav">
+                                <li><a href="#js-href-parts-address">Адрес</a></li>
+                                <li><a href="#js-href-parts-customer">Клиент</a></li>
+                                <li><a href="#js-href-parts-vehicle">Транспортное средство</a></li>
+                                <li><a href="#js-href-parts-timeline">Таймлайн</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
             </div>
