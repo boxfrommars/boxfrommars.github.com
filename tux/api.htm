@@ -323,7 +323,7 @@
                     </tbody>
                 </table>
                 <p><b>Response</b></p>
-                <p>Ответ точно такой же, как и при <a href="#js-href-order-get">получении заказа</a> -- сформированный заказ, с указанной информацией о заказчике, с присвоенными идентификаторами поездок и прочее.</p>
+                <p>Ответ точно такой же, как и при <a href="#js-href-order-get">получении заказа</a>, -- сформированный заказ с указанной информацией о заказчике, с присвоенными идентификаторами поездок и прочее.</p>
 
 
                 <h2 class="anchored" id="js-href-ride">Поездки</h2>
@@ -375,7 +375,7 @@
                     </tr>
                     <tr>
                         <td><code>orderedProperties.type.classId</code></td>
-                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например, у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>phone</code></td>
@@ -415,7 +415,7 @@
                     </tr>
                     <tr>
                         <td><code>path[].time</code></td>
-                        <td><code>ISO 8601</code> Время, когда ТС находилсось в данной точке</td>
+                        <td><code>ISO 8601</code> Время, когда ТС находилось в данной точке</td>
                     </tr>
                     <tr>
                         <td><code>costDetails</code></td>
@@ -563,7 +563,7 @@
                     <tbody>
                     <tr>
                         <td><code>orderId</code></td>
-                        <td><code>int</code> Идентификатор заказа (нужен для того чтобы привязать его к клиенту, при этом, если указан другой номер для связи создаётся ещё один заказ, для указанного номера)</td>
+                        <td><code>int</code> Идентификатор заказа (нужен для того, чтобы привязать его к клиенту, при этом, если указан другой номер для связи, создаётся ещё один заказ для указанного номера)</td>
                     </tr>
                 </table>
 
@@ -571,7 +571,7 @@
                     <tbody>
                     <tr>
                         <td><code>orderType</code></td>
-                        <td><code>string</code> Тип вызова, возможные значения <code>emergency</code>, <code>normal</code>, <code>preorder</code></td>
+                        <td><code>string</code> Тип вызова, возможные значения: <code>emergency</code>, <code>normal</code>, <code>preorder</code></td>
                     </tr>
                     <tr>
                         <td><code>preOrderTime</code></td>
@@ -599,7 +599,7 @@
                     </tr>
                     <tr>
                         <td><code>orderedProperties.type.classId</code></td>
-                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например, у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>phone</code></td>
@@ -690,7 +690,7 @@
 }
 </pre>
                 <p><b>Response</b></p>
-                <p>Такой же как и при <a href="#js-href-ride-get">получении поездки</a>, с указанным id, с проставленными id для адресов, с таймлайном, в котором есть событие "заказ поездки"</p>
+                <p>Такой же, как и при <a href="#js-href-ride-get">получении поездки</a> -- с указанным id, с проставленными id для адресов, с таймлайном, в котором есть событие "заказ поездки"</p>
 
                 <h4 class="anchored" id="js-href-ride-edit">Редактирование поездки</h4>
                 <p><b>Request</b></p>
@@ -702,7 +702,7 @@
                         <td><code>int</code> Идентификатор поездки</td>
                     </tr>
                 </table>
-                <p>Все параметры такие же (?), как и при <a href="#js-href-ride-post">создании поездки</a></p>
+                <p>Все параметры такие же, как и при <a href="#js-href-ride-post">создании поездки</a></p>
 
 
                 <h4 class="anchored" id="js-href-ride-cansel">Отмена поездки</h4>
@@ -940,11 +940,11 @@
                     </tr>
                     <tr>
                         <td><code>messages[].sender.type</code></td>
-                        <td><code>string</code> Тип отправителя сообщения. на данный момент <code>operator</code> -- оператор или <code>vehicle</code> -- такси</td>
+                        <td><code>string</code> Тип отправителя сообщения. На данный момент <code>operator</code> -- оператор или <code>vehicle</code> -- такси</td>
                     </tr>
                     <tr>
                         <td><code>messages[].sender.data</code></td>
-                        <td><code>{}</code> Данные отправителя (разнородные, для оператора свои, для водителя -- свои). подробнее -- см. ниже</td>
+                        <td><code>{}</code> Данные отправителя (разнородные: для оператора свои, для водителя -- свои). Подробнее -- см. ниже</td>
                     </tr>
                     </tbody>
                 </table>
@@ -994,7 +994,7 @@
                     </tr>
                     <tr>
                         <td><code>type.classId</code></td>
-                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например, у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>options</code></td>
@@ -1103,7 +1103,7 @@
                     </tr>
                     <tr>
                         <td><code>photo</code></td>
-                        <td><code>[string]</code> список файлов изображений, вида <code>["9b8wxcf8.jpg", "4f3pzp.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imageBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
+                        <td><code>[string]</code> Список файлов изображений вида <code>["9b8wxcf8.jpg", "4f3pzp.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imageBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
                     </tr>
                     <tr>
                         <td><code>time</code></td>
@@ -1111,7 +1111,7 @@
                     </tr>
                     <tr>
                         <td><code>lifetime</code></td>
-                        <td><code>int</code> "Время жизни" заявки у данного оператора, после окончания времени, заявка пересылается другому оператору</td>
+                        <td><code>int</code> "Время жизни" заявки у данного оператора, после окончания времени заявка пересылается другому оператору</td>
                     </tr>
                     <tr>
                         <td><code>attemptCount</code></td>
@@ -1209,7 +1209,7 @@
                     </tr>
                     <tr>
                         <td><code>photo</code></td>
-                        <td><code>[string]</code> список файлов изображений, вида <code>["9b8wxc.jpg", "4f3p.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imageBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
+                        <td><code>[string]</code> Список файлов изображений вида <code>["9b8wxc.jpg", "4f3p.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imageBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
                     </tr>
                     <tr>
                         <td><code>time</code></td>
@@ -1217,7 +1217,7 @@
                     </tr>
                     <tr>
                         <td><code>lifetime</code></td>
-                        <td><code>int</code> "Время жизни" заявки у данного оператора, после окончания времени, заявка пересылается другому оператору</td>
+                        <td><code>int</code> "Время жизни" заявки у данного оператора, после окончания времени заявка пересылается другому оператору</td>
                     </tr>
                     <tr>
                         <td><code>attemptCount</code></td>
@@ -1272,7 +1272,7 @@
                     <tbody>
                     <tr>
                         <td><code>version</code></td>
-                        <td><code>int</code> Текущяя версия словарей, необходима для получения обновлений словарей</td>
+                        <td><code>int</code> Текущая версия словарей, необходима для получения обновлений словарей</td>
                     </tr>
                     <tr>
                         <td><code>dictionaries</code></td>
@@ -1280,7 +1280,7 @@
                     </tr>
                     <tr>
                         <td><code>dictionaries[].code</code></td>
-                        <td><code>string</code> Код словаря (например, areas)</td>
+                        <td><code>string</code> Код словаря (например, <code>areas</code>)</td>
                     </tr>
                     <tr>
                         <td><code>dictionaries[].name</code></td>
@@ -1334,7 +1334,7 @@
                     <tbody>
                     <tr>
                         <td><code>version</code></td>
-                        <td><code>int</code> Текущяя версия словарей, необходима для получения обновлений словарей</td>
+                        <td><code>int</code> Текущая версия словарей, необходима для получения обновлений словарей</td>
                     </tr>
                     <tr>
                         <td><code>dictionaries</code></td>
@@ -1342,19 +1342,19 @@
                     </tr>
                     <tr>
                         <td><code>dictionaries[].code</code></td>
-                        <td><code>string</code> Код изменяемого словаря (например, areas)</td>
+                        <td><code>string</code> Код изменяемого словаря (например, <code>areas</code>)</td>
                     </tr>
                     <tr>
                         <td><code>dictionaries[].differences</code></td>
-                        <td><code>[]</code> Изменения произошедшие в словаре</td>
+                        <td><code>[]</code> Изменения, произошедшие в словаре</td>
                     </tr>
                     <tr>
                         <td><code>dictionaries[].differences[].method</code></td>
-                        <td><code>string</code> метод изменения, доступные значения: <code>update</code>, <code>delete</code>, <code>add</code></td>
+                        <td><code>string</code> Метод изменения, доступные значения: <code>update</code>, <code>delete</code>, <code>add</code></td>
                     </tr>
                     <tr>
                         <td><code>dictionaries[].differences[].item</code></td>
-                        <td><code>{}</code> Изменения произошедшие в колнкретной сущности. Если метод <code>delete</code>, то достаточно одного параметра <code>id</code>, если <code>add</code> или <code>update</code>, то должна быть передана вся сущность словаря. Подробности о полях сущности см. <a href="/tux/api.htm#js-href-dict-index">в соответствующем разделе словарей</a></td>
+                        <td><code>{}</code> Изменения, произошедшие в конкретной сущности. Если метод <code>delete</code>, то достаточно одного параметра <code>id</code>, если <code>add</code> или <code>update</code>, то должна быть передана вся сущность словаря. Подробности о полях сущности см. <a href="/tux/api.htm#js-href-dict-index">в соответствующем разделе словарей</a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -1428,7 +1428,7 @@
                     </tr>
                     <tr>
                         <td><code>currency</code></td>
-                        <td><code>string</code> Деннежная единица</td>
+                        <td><code>string</code> Денежная единица</td>
                     </tr>
                     <tr>
                         <td><code>timezone</code></td>
@@ -1494,7 +1494,7 @@
                     </tr>
                     <tr>
                         <td><code>calculateCost</code></td>
-                        <td><code>bool</code> Расчитывать ли стоимость поездки</td>
+                        <td><code>bool</code> Рассчитывать ли стоимость поездки</td>
                     </tr>
                     <tr>
                         <td><code>minPreOrderInterval</code></td>
@@ -1599,8 +1599,8 @@
 </pre>
 
                 <h5 class="anchored" id="js-href-dict-vehicle-option"><b>Опции ТС</b></h5>
-                <p>Возможные опции для выбора транспортного средства (Опции, которые может заказать клиент, такие как, кондиционер).</p>
-                <p class="alert alert-warning">Здесь передаётся только список существующих в базе опций (вообще), чтобы посмотреть текущие возможные опции, см. <a href="#">Синхронизирующиеся опции ТС</a></p>
+                <p>Возможные опции для выбора транспортного средства (опции, которые может заказать клиент, такие как кондиционер).</p>
+                <p class="alert alert-warning">Здесь передаётся только список существующих в базе опций (вообще), чтобы посмотреть текущие возможные опции, см. <a href="#js-href-sync">Синхронизирующиеся опции</a> ТС</p>
 <pre class="code">
 {
     "code": "vehicle_options",
@@ -1680,7 +1680,7 @@
     ]
 }
 </pre>
-                <h5 class="anchored" id="js-href-dict-message-cancel-type.json"><b>Причины отказа для ответа на сообщения</b></h5>
+                <h5 class="anchored" id="js-href-dict-message-cancel-type.json"><b>Причины отказа для ответа на сообщение</b></h5>
 <pre class="code">
 {
     "code": "message_cancel_types",
@@ -1786,9 +1786,6 @@
 }
 </pre>
 
-
-
-
                 <h2 class="anchored" id="js-href-search">Поиск</h2>
                 <p><b>Request</b></p>
                 <p><code>GET /search?page=1&per_page=20</code></p>
@@ -1804,7 +1801,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <p>Запрос на поиск. Все поля не обязательны, но хотя бы одно должно присутствовать</p>
+                <p>Запрос на поиск. Все поля необязательны, но хотя бы одно должно присутствовать</p>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
@@ -1813,23 +1810,23 @@
                     </tr>
                     <tr class="danger">
                         <td><code>destination</code></td>
-                        <td>Пока не понятно что</td>
+                        <td>Пока не понятно, что</td>
                     </tr>
                     <tr class="danger">
                         <td><code>departureAddress</code></td>
-                        <td>Пока не понятно что</td>
+                        <td>Пока не понятно, что</td>
                     </tr>
                     <tr>
                         <td><code>startTimeRange</code></td>
-                        <td><code>[ISO 8601, ISO 8601]</code> интервал, в котором началась поездка. пример: <code>[2014-01-28T13:00:60Z, 2014-01-28T14:00:60Z]</code></td>
+                        <td><code>[ISO 8601, ISO 8601]</code> Интервал, в котором началась поездка. Пример: <code>[2014-01-28T13:00:60Z, 2014-01-28T14:00:60Z]</code></td>
                     </tr>
                     <tr>
                         <td><code>endTimeRange</code></td>
-                        <td><code>[ISO 8601, ISO 8601]</code> интервал, в котором поездка закончиалсь.</td>
+                        <td><code>[ISO 8601, ISO 8601]</code> Мнтервал, в котором поездка закончилась.</td>
                     </tr>
                     <tr>
                         <td><code>vehicle</code></td>
-                        <td><code>{}</code> параметры поиска по ТС</td>
+                        <td><code>{}</code> Параметры поиска по ТС</td>
                     </tr>
                     <tr>
                         <td><code>vehicle.callSign</code></td>
@@ -1837,7 +1834,7 @@
                     </tr>
                     <tr>
                         <td><code>vehicle.brand</code></td>
-                        <td><code>string</code>Марка ТС</td>
+                        <td><code>string</code> Марка ТС</td>
                     </tr>
                     <tr>
                         <td><code>vehicle.colorId</code></td>
@@ -1853,7 +1850,7 @@
                     </tr>
                     <tr>
                         <td><code>vehicle.type.classId</code></td>
-                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например, у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>vehicle.number</code></td>
@@ -1887,7 +1884,7 @@
                     <tbody>
                     <tr>
                         <td><code>total</code></td>
-                        <td><code>int</code> Всего заказов удовлетворяющих поиску</td>
+                        <td><code>int</code> Всего заказов, удовлетворяющих поиску</td>
                     </tr>
                     <tr>
                         <td><code>items</code></td>
@@ -1912,7 +1909,7 @@
                     <tbody>
                     <tr>
                         <td><code>id</code></td>
-                        <td><code>int</code> id адреса, если адрес есть в базе</td>
+                        <td><code>int</code> <code>id</code> адреса, если адрес есть в базе</td>
                     </tr>
                     <tr>
                         <td><code>isPublic</code></td>
@@ -1996,7 +1993,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <p class="alert alert-warning">Поля *.id и *.name -- при запросе на сервер необязательны, достаточно только одного из них: id, если улица/город/группа существует в словаре; name если нет. В ответах сервера оба поля обязательны</p>
+                <p class="alert alert-warning">Поля *.id и *.name при запросе на сервер необязательны, достаточно только одного из них: id, если улица/город/группа существует в словаре, name -- если нет. В ответах сервера оба поля обязательны</p>
 <pre class="code">
 {
     "id": 11054,   // id адреса, если адрес есть в базе
@@ -2060,7 +2057,7 @@
                     </tr>
                     <tr>
                         <td><code>frequentAddresses</code></td>
-                        <td><code>[address]</code> частые адреса (такой же формат, как и <a href="#js-href-parts-address">адрес</a>, за исключением, может быть, комментария)</td>
+                        <td><code>[address]</code> Частые адреса (такой же формат, как и <a href="#js-href-parts-address">адрес</a>, за исключением, может быть, комментария)</td>
                     </tr>
                     </tbody>
                 </table>
@@ -2110,7 +2107,7 @@
                     </tr>
                     <tr>
                         <td><code>type.classId</code></td>
-                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например, у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>options</code></td>
