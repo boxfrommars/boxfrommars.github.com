@@ -78,7 +78,7 @@ include "api/order.json"
                     </tbody>
                 </table>
                 <p><b>Response</b></p>
-                <p>Ответ точно такой же, как и при <a href="#js-href-order-get">получении заказа</a> -- сформированный заказ, с указанной информацией о заказчике, с присвоенными идентификаторами поездок и прочее.</p>
+                <p>Ответ точно такой же, как и при <a href="#js-href-order-get">получении заказа</a>, -- сформированный заказ с указанной информацией о заказчике, с присвоенными идентификаторами поездок и прочее.</p>
 
 
                 <h2 class="anchored" id="js-href-ride">Поездки</h2>
@@ -130,7 +130,7 @@ include "api/order.json"
                     </tr>
                     <tr>
                         <td><code>orderedProperties.type.classId</code></td>
-                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например, у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>phone</code></td>
@@ -170,7 +170,7 @@ include "api/order.json"
                     </tr>
                     <tr>
                         <td><code>path[].time</code></td>
-                        <td><code>ISO 8601</code> Время, когда ТС находилсось в данной точке</td>
+                        <td><code>ISO 8601</code> Время, когда ТС находилось в данной точке</td>
                     </tr>
                     <tr>
                         <td><code>costDetails</code></td>
@@ -217,7 +217,7 @@ include "api/ride.json"
                     <tbody>
                     <tr>
                         <td><code>orderId</code></td>
-                        <td><code>int</code> Идентификатор заказа (нужен для того чтобы привязать его к клиенту, при этом, если указан другой номер для связи создаётся ещё один заказ, для указанного номера)</td>
+                        <td><code>int</code> Идентификатор заказа (нужен для того, чтобы привязать его к клиенту, при этом, если указан другой номер для связи, создаётся ещё один заказ для указанного номера)</td>
                     </tr>
                 </table>
 
@@ -225,7 +225,7 @@ include "api/ride.json"
                     <tbody>
                     <tr>
                         <td><code>orderType</code></td>
-                        <td><code>string</code> Тип вызова, возможные значения <code>emergency</code>, <code>normal</code>, <code>preorder</code></td>
+                        <td><code>string</code> Тип вызова, возможные значения: <code>emergency</code>, <code>normal</code>, <code>preorder</code></td>
                     </tr>
                     <tr>
                         <td><code>preOrderTime</code></td>
@@ -253,7 +253,7 @@ include "api/ride.json"
                     </tr>
                     <tr>
                         <td><code>orderedProperties.type.classId</code></td>
-                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например, у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>phone</code></td>
@@ -281,7 +281,7 @@ include "api/ride.json"
 include "api/ride-post.json"
 </pre>
                 <p><b>Response</b></p>
-                <p>Такой же как и при <a href="#js-href-ride-get">получении поездки</a>, с указанным id, с проставленными id для адресов, с таймлайном, в котором есть событие "заказ поездки"</p>
+                <p>Такой же, как и при <a href="#js-href-ride-get">получении поездки</a> -- с указанным id, с проставленными id для адресов, с таймлайном, в котором есть событие "заказ поездки"</p>
 
                 <h4 class="anchored" id="js-href-ride-edit">Редактирование поездки</h4>
                 <p><b>Request</b></p>
@@ -293,7 +293,7 @@ include "api/ride-post.json"
                         <td><code>int</code> Идентификатор поездки</td>
                     </tr>
                 </table>
-                <p>Все параметры такие же (?), как и при <a href="#js-href-ride-post">создании поездки</a></p>
+                <p>Все параметры такие же, как и при <a href="#js-href-ride-post">создании поездки</a></p>
 
 
                 <h4 class="anchored" id="js-href-ride-cansel">Отмена поездки</h4>
@@ -483,11 +483,11 @@ include "api/address.json"
                     </tr>
                     <tr>
                         <td><code>messages[].sender.type</code></td>
-                        <td><code>string</code> Тип отправителя сообщения. на данный момент <code>operator</code> -- оператор или <code>vehicle</code> -- такси</td>
+                        <td><code>string</code> Тип отправителя сообщения. На данный момент <code>operator</code> -- оператор или <code>vehicle</code> -- такси</td>
                     </tr>
                     <tr>
                         <td><code>messages[].sender.data</code></td>
-                        <td><code>{}</code> Данные отправителя (разнородные, для оператора свои, для водителя -- свои). подробнее -- см. ниже</td>
+                        <td><code>{}</code> Данные отправителя (разнородные: для оператора свои, для водителя -- свои). Подробнее -- см. ниже</td>
                     </tr>
                     </tbody>
                 </table>
@@ -537,7 +537,7 @@ include "api/address.json"
                     </tr>
                     <tr>
                         <td><code>type.classId</code></td>
-                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например, у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>options</code></td>
@@ -609,7 +609,7 @@ include "api/thread.json"
                     </tr>
                     <tr>
                         <td><code>photo</code></td>
-                        <td><code>[string]</code> список файлов изображений, вида <code>["9b8wxcf8.jpg", "4f3pzp.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imageBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
+                        <td><code>[string]</code> Список файлов изображений вида <code>["9b8wxcf8.jpg", "4f3pzp.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imageBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
                     </tr>
                     <tr>
                         <td><code>time</code></td>
@@ -617,7 +617,7 @@ include "api/thread.json"
                     </tr>
                     <tr>
                         <td><code>lifetime</code></td>
-                        <td><code>int</code> "Время жизни" заявки у данного оператора, после окончания времени, заявка пересылается другому оператору</td>
+                        <td><code>int</code> "Время жизни" заявки у данного оператора, после окончания времени заявка пересылается другому оператору</td>
                     </tr>
                     <tr>
                         <td><code>attemptCount</code></td>
@@ -682,7 +682,7 @@ include "api/shift.json"
                     </tr>
                     <tr>
                         <td><code>photo</code></td>
-                        <td><code>[string]</code> список файлов изображений, вида <code>["9b8wxc.jpg", "4f3p.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imageBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
+                        <td><code>[string]</code> Список файлов изображений вида <code>["9b8wxc.jpg", "4f3p.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imageBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
                     </tr>
                     <tr>
                         <td><code>time</code></td>
@@ -690,7 +690,7 @@ include "api/shift.json"
                     </tr>
                     <tr>
                         <td><code>lifetime</code></td>
-                        <td><code>int</code> "Время жизни" заявки у данного оператора, после окончания времени, заявка пересылается другому оператору</td>
+                        <td><code>int</code> "Время жизни" заявки у данного оператора, после окончания времени заявка пересылается другому оператору</td>
                     </tr>
                     <tr>
                         <td><code>attemptCount</code></td>
