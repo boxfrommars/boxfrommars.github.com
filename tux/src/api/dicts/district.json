@@ -1,7 +1,11 @@
 {
-    "code": "",
-    "name": "",
+    "code": "districts",
+    "name": "Районы",
     "data": [
-
+        {
+            "id": 1,
+            "areaId": 1,
+            "name": "Центральный"
+        }
     ]
 }

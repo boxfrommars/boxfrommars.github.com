@@ -580,9 +580,7 @@ include "api/thread.json"
                     </tbody>
                 </table>
 <pre class="code">
-{
-    message: "нет"
-}
+include "api/message-post.json"
 </pre>
                 <p><b>Response</b></p>
                 <p>Тред уже с отправленным сообщением</p>
@@ -769,6 +767,46 @@ include "api/shift.json"
 <pre class="code">
 include "api/dictionaries.json"
 </pre>
+                <h4 class="anchored">Обновление словарей</h4>
+                <p><b>Request</b></p>
+                <p><code>GET /api/v1/dictionaries/:currentVersionId/difference </code></p>
+                <p><b>Response</b></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>version</code></td>
+                        <td><code>int</code> Текущяя версия словарей, необходима для получения обновлений словарей</td>
+                    </tr>
+                    <tr>
+                        <td><code>dictionaries</code></td>
+                        <td><code>[]</code> Список словарей, в которых произошли изменения</td>
+                    </tr>
+                    <tr>
+                        <td><code>dictionaries[].code</code></td>
+                        <td><code>string</code> Код изменяемого словаря (например, areas)</td>
+                    </tr>
+                    <tr>
+                        <td><code>dictionaries[].differences</code></td>
+                        <td><code>[]</code> Изменения произошедшие в словаре</td>
+                    </tr>
+                    <tr>
+                        <td><code>dictionaries[].differences[].method</code></td>
+                        <td><code>string</code> метод изменения, доступные значения: <code>update</code>, <code>delete</code>, <code>add</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>dictionaries[].differences[].item</code></td>
+                        <td><code>{}</code> Изменения произошедшие в колнкретной сущности. Если метод <code>delete</code>, то достаточно одного параметра <code>id</code>, если <code>add</code> или <code>update</code>, то должна быть передана вся сущность словаря. Подробности о полях сущности см. <a href="/tux/api.htm#js-href-dict-index">в соответствующем разделе словарей</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <code>HTTP/1.1 200 OK</code>
+<pre class="code">
+include "api/dictionaries-diff.json"
+</pre>
+
+
+
                 <h4 class="anchored" id="js-href-dict-index">Список словарей</h4>
                 <ul>
                     <li><a href="#js-href-dict-area">Группы городов</a></li>
@@ -869,6 +907,26 @@ include "api/dicts/city.json"
 </pre>
 
                 <h5 class="anchored" id="js-href-dict-district"><b>Районы</b></h5>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор</td>
+                    </tr>
+                    <tr>
+                        <td><code>districtId</code></td>
+                        <td><code>int</code> Идентификатор города, к которому привязан район</td>
+                    </tr>
+                    <tr>
+                        <td><code>name</code></td>
+                        <td><code>string</code> Название района</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+include "api/dicts/district.json"
+</pre>
+
                 <h5 class="anchored" id="js-href-dict-street"><b>Улицы</b></h5>
 
                 <table class="table table-bordered table-striped">
@@ -878,7 +936,7 @@ include "api/dicts/city.json"
                         <td><code>int</code> Идентификатор</td>
                     </tr>
                     <tr>
-                        <td><code>idDistrict</code></td>
+                        <td><code>districtId</code></td>
                         <td><code>int</code> Идентификатор района, к которому привязана улица</td>
                     </tr>
                     <tr>

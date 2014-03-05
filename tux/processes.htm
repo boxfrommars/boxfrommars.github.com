@@ -136,7 +136,7 @@
                     <li><a href="/tux/index.htm">Общие сведения</a></li>
                     <li><a href="/tux/api.htm">API</a></li>
                     <li><a href="/tux/api-websocket.htm">WebSocket API</a></li>
-                    <li><a href="/tux/examples.htm">Примеры взаимодействия</a></li>
+                    <li><a href="/tux/processes.htm">Процессы взаимодействия</a></li>
                     <li><a href="/tux/changelog.htm">Changelog</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
@@ -159,7 +159,7 @@
                     <li>Клиент звонит, и у него есть недавно завершившийся заказ. И в этом случае сервер отдаёт приложению <code>id</code> этого заказа</li>
                 </ul>
                 <p>Как видим, во всех случаях сервер посылает <a href="/tux/api-websocket.htm#js-href-type-order">уведомление о заказе</a> с <code>id</code> заказа. приложение же на основе лога событий (<a href="/tux/api.htm#js-href-parts-timeline">timeline</a>) "понимает" текущее состояние заказа</p>
-                <h4 class="anchored">Итак, сервер при звонке <b>всегда</b> отдаёт приложению websocket-сообщение вида:</h4>
+                <p class="alert alert-warning">Итак, сервер при звонке <b>всегда</b> отдаёт приложению websocket-сообщение вида:</p>
 <pre class="code">
 {
     "type": "order",
@@ -168,7 +168,7 @@
     }
 }
 </pre>
-                <h4 class="anchored">При поступлении такого уведомления приложение <a href="/tux/api.htm#js-href-order-get">запрашивает у сервера</a> заказ с переданным <code>id</code></h4>
+                <p class="alert alert-warning">При поступлении такого уведомления приложение <a href="/tux/api.htm#js-href-order-get">запрашивает у сервера</a> заказ с переданным <code>id</code></p>
                 <p><code>GET /order/:orderId</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-order" class="pseudo-link"><b>Пример ответа сервера</b></a></p>
@@ -296,10 +296,10 @@
                 <p>Получив ответ, приложение анализрует таймлайн и определяет текущую ситуацию с заказом.
                     С точки зрения взаимодействия с сервером, существует 4 ситуации:</p>
                 <ul>
-                    <li><a href="#">а. Клиент звонит первый раз, оператор заполняет карточку заказа</a></li>
-                    <li><a href="#">б. Клиент звонит повторно, требуются изменение заказа</a></li>
-                    <li><a href="#">в. Клиент звонит повторно, требуются удаление поездки из заказа</a></li>
-                    <li><a href="#">г. Клиент звонит повторно, никакого взаимодействия с сервером не требуется</a></li>
+                    <li>а. Клиент звонит первый раз, оператор заполняет карточку заказа</li>
+                    <li>б. Клиент звонит повторно, требуются изменение заказа</li>
+                    <li>в. Клиент звонит повторно, требуются удаление поездки из заказа</li>
+                    <li>г. Клиент звонит повторно, никакого взаимодействия с сервером не требуется</li>
                 </ul>
 
                 <p>При добавлении/изменении заказа клиентское приложение отсылает на сервер не заказ целиком, а отдельные поездки.
@@ -307,9 +307,9 @@
                     отправляемая поездка может содержать таймлайн, информацию о ТС, и т.д., эти нередактируемые (а добавляемые
                     сервером при обработке заказа) поля должны игнорироваться сервером.</p>
 
-                <h4 class="anchored">Перед отправкой отредактированной/добавленой поездки приложение
+                <p class="alert alert-warning">Перед отправкой отредактированной/добавленой поездки приложение
                     <b>может</b> <a href="/tux/api.htm#js-href-address">запросить у сервера информацию об адресах</a>
-                    текущей улицы или района (для выбора в приложении точного адреса)</h4>
+                    текущей улицы или района (для выбора в приложении точного адреса)</p>
 
                 <p><code>GET /address?streetId=:streetId</code></p>
                 <div class="collapse-wrap">
@@ -370,7 +370,7 @@
                     </div>
                 </div>
 
-                <h4 class="anchored">В случаях <code>1.а</code> и <code>1.б</code> (добавление или изменение поездки) оператор создаёт/изменяет поездку и <a href="/tux/api.htm#js-href-ride-post">отправляет данные на сервер</a></h4>
+                <p class="alert alert-warning">В случаях <code>1.а</code> и <code>1.б</code> (добавление или изменение поездки) оператор создаёт/изменяет поездку и <a href="/tux/api.htm#js-href-ride-post">отправляет данные на сервер</a></p>
                 <p><code>1.а</code> <code>POST /order/:orderId/ride</code> добавление поездки к заказу</p>
                 <p><code>1.б</code> <code>POST /ride/:rideId</code> изменение поездки</p>
                 <div class="collapse-wrap">
@@ -557,7 +557,7 @@
                     </div>
                 </div>
 
-                <h4 class="anchored">В случае <code>1.в</code> (удаление поездки) приложение <a href="/tux/api.htm#js-href-ride-cansel">отправляет на сервер запрос</a> вида</h4>
+                <p class="alert alert-warning">В случае <code>1.в</code> (удаление поездки) приложение <a href="/tux/api.htm#js-href-ride-cansel">отправляет на сервер запрос</a> вида</p>
                 <p><code>POST /ride/:rideId/cancel</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-ride-cancel" class="pseudo-link"><b>Пример запроса на отмену поездки</b></a></p>
@@ -574,7 +574,7 @@
 
                 <h2 class="anchored" id="js-href-process-begin">2. Аутентификация</h2>
 
-                <h4 class="anchored">а. После удачной аутентификации приложение запрашивает список всех словарей</h4>
+                <p class="alert alert-warning">а. После удачной аутентификации приложение запрашивает список всех словарей</p>
                 <p><code>GET /dictionaries</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-dictionaries" class="pseudo-link"><b>Пример ответа сервера</b></a></p>
@@ -616,7 +616,7 @@
                     </div>
                 </div>
 
-                <h4 class="anchored">б. Список опций</h4>
+                <p class="alert alert-warning">б. Список опций</p>
                 <p><code>GET /options</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-options" class="pseudo-link"><b>Пример ответа сервера</b></a></p>
@@ -633,7 +633,7 @@
 
 
                 <h2 class="anchored" id="js-href-process-shift">3. Смены</h2>
-                <h4 class="anchored">Сервер с помощью websocket-сообщения уведомляет приложение о заявке на открытие смены</h4>
+                <p class="alert alert-warning">Сервер с помощью websocket-сообщения уведомляет приложение о заявке на открытие смены</p>
 <pre class="code">
 {
     "type": "shift",
@@ -642,7 +642,7 @@
     }
 }
 </pre>
-                <h4 class="anchored">Оператор запрашивает заявку</h4>
+                <p class="alert alert-warning">Приложение запрашивает заявку</p>
                 <p><code>GET /shift/:shiftId</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-shift-get" class="pseudo-link"><b>Пример ответа сервера</b></a></p>
@@ -687,7 +687,7 @@
                     </div>
                 </div>
 
-                <h4 class="anchored">Оператор, после проверки данных отправляет запрос на сервер, содержащий заявку на открытие смены с проставленным параметром <code>isMatch</code></h4>
+                <p class="alert alert-warning">Оператор, после проверки данных отправляет запрос на сервер, содержащий заявку на открытие смены с проставленным параметром <code>isMatch</code></p>
                 <p><code>POST /shift/:shiftId</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-shift-post" class="pseudo-link"><b>Пример запроса</b></a></p>
@@ -736,7 +736,7 @@
                     </div>
                 </div>
                 <h2 class="anchored" id="js-href-process-message">4. Сообщения</h2>
-                <h4 class="anchored">Сервер уведомляет приложение о новом сообщении в треде</h4>
+                <p class="alert alert-warning">Сервер уведомляет приложение о новом сообщении в треде</p>
 <pre class="code">
 {
     "type": "message",
@@ -745,7 +745,7 @@
     }
 }
 </pre>
-                <h4>Приложение запрашивает это сообщение</h4>
+                <p class="alert alert-warning">Приложение запрашивает это сообщение</p>
                 <p><code>GET /thread/:threadId</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-message-get" class="pseudo-link"><b>Пример запроса</b></a></p>
@@ -793,7 +793,7 @@
 </pre>
                     </div>
                 </div>
-                <p>Если оператор успевает ответить на сообщение в течение времени указанного в параметре <code>lifetime</code>, то приложение отправляет на сервер ответ вида</p>
+                <p class="alert alert-warning">Если оператор успевает ответить на сообщение в течение времени указанного в параметре <code>lifetime</code>, то приложение отправляет на сервер ответ вида</p>
                 <p><code>POST /thread/:threadId/message</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-message-post" class="pseudo-link"><b>Пример запроса</b></a></p>
@@ -822,7 +822,7 @@
     "data": {}
 }
 </pre>
-                <p>Приложение запрашивает изменения произошедшие в словарях с момента получения текущей (используемой
+                <p class="alert alert-warning">Приложение запрашивает изменения произошедшие в словарях с момента получения текущей (используемой
                     приложением) версии словарей, для этого в запрос включается идентификатор текущей версии словарей
                     <code>currentVersionId</code></p>
 

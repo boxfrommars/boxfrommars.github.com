@@ -27,11 +27,11 @@ include "parts/head.htm"
                     <li>Клиент звонит, и у него есть недавно завершившийся заказ. И в этом случае сервер отдаёт приложению <code>id</code> этого заказа</li>
                 </ul>
                 <p>Как видим, во всех случаях сервер посылает <a href="/tux/api-websocket.htm#js-href-type-order">уведомление о заказе</a> с <code>id</code> заказа. приложение же на основе лога событий (<a href="/tux/api.htm#js-href-parts-timeline">timeline</a>) "понимает" текущее состояние заказа</p>
-                <h4 class="anchored">Итак, сервер при звонке <b>всегда</b> отдаёт приложению websocket-сообщение вида:</h4>
+                <p class="alert alert-warning">Итак, сервер при звонке <b>всегда</b> отдаёт приложению websocket-сообщение вида:</p>
 <pre class="code">
 include "websocket-api/order.json"
 </pre>
-                <h4 class="anchored">При поступлении такого уведомления приложение <a href="/tux/api.htm#js-href-order-get">запрашивает у сервера</a> заказ с переданным <code>id</code></h4>
+                <p class="alert alert-warning">При поступлении такого уведомления приложение <a href="/tux/api.htm#js-href-order-get">запрашивает у сервера</a> заказ с переданным <code>id</code></p>
                 <p><code>GET /order/:orderId</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-order" class="pseudo-link"><b>Пример ответа сервера</b></a></p>
@@ -46,10 +46,10 @@ include "api/order.json"
                 <p>Получив ответ, приложение анализрует таймлайн и определяет текущую ситуацию с заказом.
                     С точки зрения взаимодействия с сервером, существует 4 ситуации:</p>
                 <ul>
-                    <li><a href="#">а. Клиент звонит первый раз, оператор заполняет карточку заказа</a></li>
-                    <li><a href="#">б. Клиент звонит повторно, требуются изменение заказа</a></li>
-                    <li><a href="#">в. Клиент звонит повторно, требуются удаление поездки из заказа</a></li>
-                    <li><a href="#">г. Клиент звонит повторно, никакого взаимодействия с сервером не требуется</a></li>
+                    <li>а. Клиент звонит первый раз, оператор заполняет карточку заказа</li>
+                    <li>б. Клиент звонит повторно, требуются изменение заказа</li>
+                    <li>в. Клиент звонит повторно, требуются удаление поездки из заказа</li>
+                    <li>г. Клиент звонит повторно, никакого взаимодействия с сервером не требуется</li>
                 </ul>
 
                 <p>При добавлении/изменении заказа клиентское приложение отсылает на сервер не заказ целиком, а отдельные поездки.
@@ -57,9 +57,9 @@ include "api/order.json"
                     отправляемая поездка может содержать таймлайн, информацию о ТС, и т.д., эти нередактируемые (а добавляемые
                     сервером при обработке заказа) поля должны игнорироваться сервером.</p>
 
-                <h4 class="anchored">Перед отправкой отредактированной/добавленой поездки приложение
+                <p class="alert alert-warning">Перед отправкой отредактированной/добавленой поездки приложение
                     <b>может</b> <a href="/tux/api.htm#js-href-address">запросить у сервера информацию об адресах</a>
-                    текущей улицы или района (для выбора в приложении точного адреса)</h4>
+                    текущей улицы или района (для выбора в приложении точного адреса)</p>
 
                 <p><code>GET /address?streetId=:streetId</code></p>
                 <div class="collapse-wrap">
@@ -72,8 +72,9 @@ include "api/address.json"
                     </div>
                 </div>
 
-                <h4 class="anchored">В случаях <code>1.а</code> и <code>1.б</code> (добавление или изменение поездки) оператор создаёт/изменяет поездку и <a href="/tux/api.htm#js-href-ride-post">отправляет данные на сервер</a></h4>
-                <p><code>POST /order/:orderId/ride</code></p>
+                <p class="alert alert-warning">В случаях <code>1.а</code> и <code>1.б</code> (добавление или изменение поездки) оператор создаёт/изменяет поездку и <a href="/tux/api.htm#js-href-ride-post">отправляет данные на сервер</a></p>
+                <p><code>1.а</code> <code>POST /order/:orderId/ride</code> добавление поездки к заказу</p>
+                <p><code>1.б</code> <code>POST /ride/:rideId</code> изменение поездки</p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-ride-post" class="pseudo-link"><b>Пример запроса на добавление</b></a></p>
                     <div id="js-collapse-ride-post" class="collapse">
@@ -94,7 +95,7 @@ include "api/ride.json"
                     </div>
                 </div>
 
-                <h4 class="anchored">В случае <code>1.в</code> (удаление поездки) приложение <a href="/tux/api.htm#js-href-ride-cansel">отправляет на сервер запрос</a> вида</h4>
+                <p class="alert alert-warning">В случае <code>1.в</code> (удаление поездки) приложение <a href="/tux/api.htm#js-href-ride-cansel">отправляет на сервер запрос</a> вида</p>
                 <p><code>POST /ride/:rideId/cancel</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-ride-cancel" class="pseudo-link"><b>Пример запроса на отмену поездки</b></a></p>
@@ -109,7 +110,7 @@ include "api/ride-cancel.json"
 
                 <h2 class="anchored" id="js-href-process-begin">2. Аутентификация</h2>
 
-                <h4 class="anchored">а. После удачной аутентификации приложение запрашивает список всех словарей</h4>
+                <p class="alert alert-warning">а. После удачной аутентификации приложение запрашивает список всех словарей</p>
                 <p><code>GET /dictionaries</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-dictionaries" class="pseudo-link"><b>Пример ответа сервера</b></a></p>
@@ -121,7 +122,7 @@ include "api/dictionaries.json"
                     </div>
                 </div>
 
-                <h4 class="anchored">б. Список опций</h4>
+                <p class="alert alert-warning">б. Список опций</p>
                 <p><code>GET /options</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-options" class="pseudo-link"><b>Пример ответа сервера</b></a></p>
@@ -135,11 +136,11 @@ include "api/options.json"
 
 
                 <h2 class="anchored" id="js-href-process-shift">3. Смены</h2>
-                <h4 class="anchored">Сервер уведомляет приложение о заявке на открытие смены</h4>
+                <p class="alert alert-warning">Сервер с помощью websocket-сообщения уведомляет приложение о заявке на открытие смены</p>
 <pre class="code">
 include "websocket-api/shift.json"
 </pre>
-                <h4 class="anchored">Оператор запрашивает заявку</h4>
+                <p class="alert alert-warning">Приложение запрашивает заявку</p>
                 <p><code>GET /shift/:shiftId</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-shift-get" class="pseudo-link"><b>Пример ответа сервера</b></a></p>
@@ -151,7 +152,7 @@ include "api/shift.json"
                     </div>
                 </div>
 
-                <h4 class="anchored">Оператор, после проверки данных отправляет запрос на сервер, содержащий заявку на открытие смены с проставленным параметром <code>isMatch</code></h4>
+                <p class="alert alert-warning">Оператор, после проверки данных отправляет запрос на сервер, содержащий заявку на открытие смены с проставленным параметром <code>isMatch</code></p>
                 <p><code>POST /shift/:shiftId</code></p>
                 <div class="collapse-wrap">
                     <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-shift-post" class="pseudo-link"><b>Пример запроса</b></a></p>
@@ -163,6 +164,61 @@ include "api/shift-post.json"
                     </div>
                 </div>
                 <h2 class="anchored" id="js-href-process-message">4. Сообщения</h2>
+                <p class="alert alert-warning">Сервер уведомляет приложение о новом сообщении в треде</p>
+<pre class="code">
+include "websocket-api/message.json"
+</pre>
+                <p class="alert alert-warning">Приложение запрашивает это сообщение</p>
+                <p><code>GET /thread/:threadId</code></p>
+                <div class="collapse-wrap">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-message-get" class="pseudo-link"><b>Пример запроса</b></a></p>
+                    <div id="js-collapse-message-get" class="collapse">
+<pre class="code">
+include "api/thread.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-message-get" class="pseudo-link">Свернуть</a>
+</pre>
+                    </div>
+                </div>
+                <p class="alert alert-warning">Если оператор успевает ответить на сообщение в течение времени указанного в параметре <code>lifetime</code>, то приложение отправляет на сервер ответ вида</p>
+                <p><code>POST /thread/:threadId/message</code></p>
+                <div class="collapse-wrap">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-message-post" class="pseudo-link"><b>Пример запроса</b></a></p>
+                    <div id="js-collapse-message-post" class="collapse">
+<pre class="code">
+include "api/message-post.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-message-post" class="pseudo-link">Свернуть</a>
+</pre>
+                    </div>
+                </div>
+                <p>В таком случае сервер возвращает тред уже с данным сообщением</p>
+
+                <p>Если сервер получил сообщение от опертора (в силу, например, медленного соединения) по прошествии
+                    времени, указанного в <code>lifetime</code>, он возвращает
+                    <a href="/tux/index.htm#js-href-http_codes">стандартное сообщение об ошибке</a> с кодом
+                    <code>422 Unprocessable Entity</code></p>
+
+                <h2 class="anchored" id="js-href-process-dictionaries">5. Обновление словарей</h2>
+                <p>При обновлении словарей на сервере (добавилась новая улица, тип автомобиля и т.д.) сервер уведомляет
+                    об этом приложение<code></code></p>
+<pre class="code">
+include "websocket-api/update-dictionary.json"
+</pre>
+                <p class="alert alert-warning">Приложение запрашивает изменения произошедшие в словарях с момента получения текущей (используемой
+                    приложением) версии словарей, для этого в запрос включается идентификатор текущей версии словарей
+                    <code>currentVersionId</code></p>
+
+                <p><code>GET /api/v1/dictionaries/:currentVersionId/difference </code></p>
+                <div class="collapse-wrap">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-dictionaries-diff" class="pseudo-link"><b>Пример ответа от сервера</b></a></p>
+                    <div id="js-collapse-dictionaries-diff" class="collapse">
+<pre class="code">
+include "api/dictionaries-diff.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-dictionaries-diff" class="pseudo-link">Свернуть</a>
+</pre>
+                    </div>
+                </div>
+
+
 
 
                 include "parts/disqus.htm"
@@ -175,6 +231,7 @@ include "api/shift-post.json"
                         <li><a href="#js-href-process-begin">Аутентификация</a></li>
                         <li><a href="#js-href-process-shift">Смены</a></li>
                         <li><a href="#js-href-process-message">Сообщения</a></li>
+                        <li><a href="#js-href-process-dictionaries">Обновление словарей</a></li>
                     </ul>
                 </div>
             </div>
