@@ -1,0 +1,34 @@
+{
+    "version": 1359, // новая версия словарей
+    "dictionaries": [
+        {
+            "code": "streets", // код изменяемого словаря
+            "differences": [
+                {
+                    "method": "update", // update|delete|add
+                    "item": {
+                        "id": 1,
+                        "cityId": 1,
+                        "name": "ЗипАвская",
+                        "isPublicPlace": false
+                    }
+                }, {
+                    "method": "delete",
+                    "item": {
+                        "id": 2
+                    }
+                }, {
+                    "method": "add",
+                    "item": {
+                        "id": 3,
+                        "cityId": 1,
+                        "name": "Ленина",
+                        "isPublicPlace": false
+                    }
+                }
+                // ...
+            ]
+        }
+        // ... остальные словари
+    ]
+}

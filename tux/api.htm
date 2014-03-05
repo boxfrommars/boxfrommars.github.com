@@ -134,7 +134,7 @@
                     <li><a href="/tux/index.htm">Общие сведения</a></li>
                     <li><a href="/tux/api.htm">API</a></li>
                     <li><a href="/tux/api-websocket.htm">WebSocket API</a></li>
-                    <li><a href="/tux/examples.htm">Примеры взаимодействия</a></li>
+                    <li><a href="/tux/processes.htm">Процессы взаимодействия</a></li>
                     <li><a href="/tux/changelog.htm">Changelog</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
@@ -1075,7 +1075,7 @@
                 </table>
 <pre class="code">
 {
-    message: "нет"
+    "message": "нет"
 }
 </pre>
                 <p><b>Response</b></p>
@@ -1326,6 +1326,79 @@
     ]
 }
 </pre>
+                <h4 class="anchored">Обновление словарей</h4>
+                <p><b>Request</b></p>
+                <p><code>GET /api/v1/dictionaries/:currentVersionId/difference </code></p>
+                <p><b>Response</b></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>version</code></td>
+                        <td><code>int</code> Текущяя версия словарей, необходима для получения обновлений словарей</td>
+                    </tr>
+                    <tr>
+                        <td><code>dictionaries</code></td>
+                        <td><code>[]</code> Список словарей, в которых произошли изменения</td>
+                    </tr>
+                    <tr>
+                        <td><code>dictionaries[].code</code></td>
+                        <td><code>string</code> Код изменяемого словаря (например, areas)</td>
+                    </tr>
+                    <tr>
+                        <td><code>dictionaries[].differences</code></td>
+                        <td><code>[]</code> Изменения произошедшие в словаре</td>
+                    </tr>
+                    <tr>
+                        <td><code>dictionaries[].differences[].method</code></td>
+                        <td><code>string</code> метод изменения, доступные значения: <code>update</code>, <code>delete</code>, <code>add</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>dictionaries[].differences[].item</code></td>
+                        <td><code>{}</code> Изменения произошедшие в колнкретной сущности. Если метод <code>delete</code>, то достаточно одного параметра <code>id</code>, если <code>add</code> или <code>update</code>, то должна быть передана вся сущность словаря. Подробности о полях сущности см. <a href="/tux/api.htm#js-href-dict-index">в соответствующем разделе словарей</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <code>HTTP/1.1 200 OK</code>
+<pre class="code">
+{
+    "version": 1359, // новая версия словарей
+    "dictionaries": [
+        {
+            "code": "streets", // код изменяемого словаря
+            "differences": [
+                {
+                    "method": "update", // update|delete|add
+                    "item": {
+                        "id": 1,
+                        "cityId": 1,
+                        "name": "ЗипАвская",
+                        "isPublicPlace": false
+                    }
+                }, {
+                    "method": "delete",
+                    "item": {
+                        "id": 2
+                    }
+                }, {
+                    "method": "add",
+                    "item": {
+                        "id": 3,
+                        "cityId": 1,
+                        "name": "Ленина",
+                        "isPublicPlace": false
+                    }
+                }
+                // ...
+            ]
+        }
+        // ... остальные словари
+    ]
+}
+</pre>
+
+
+
                 <h4 class="anchored" id="js-href-dict-index">Список словарей</h4>
                 <ul>
                     <li><a href="#js-href-dict-area">Группы городов</a></li>
@@ -1461,6 +1534,36 @@
 </pre>
 
                 <h5 class="anchored" id="js-href-dict-district"><b>Районы</b></h5>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор</td>
+                    </tr>
+                    <tr>
+                        <td><code>districtId</code></td>
+                        <td><code>int</code> Идентификатор города, к которому привязан район</td>
+                    </tr>
+                    <tr>
+                        <td><code>name</code></td>
+                        <td><code>string</code> Название района</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+{
+    "code": "districts",
+    "name": "Районы",
+    "data": [
+        {
+            "id": 1,
+            "areaId": 1,
+            "name": "Центральный"
+        }
+    ]
+}
+</pre>
+
                 <h5 class="anchored" id="js-href-dict-street"><b>Улицы</b></h5>
 
                 <table class="table table-bordered table-striped">
@@ -1470,7 +1573,7 @@
                         <td><code>int</code> Идентификатор</td>
                     </tr>
                     <tr>
-                        <td><code>idDistrict</code></td>
+                        <td><code>districtId</code></td>
                         <td><code>int</code> Идентификатор района, к которому привязана улица</td>
                     </tr>
                     <tr>
@@ -1592,6 +1695,99 @@
 </pre>
 
                 <h2 class="anchored" id="js-href-settings">Настройки</h2>
+                <p><b>Request</b></p>
+                <p><code>GET /options</code></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>mapService</code></td>
+                        <td><code>string</code> Используемый сервис карт. Пока только <code>osm</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>imagesBaseUrl</code></td>
+                        <td><code>string (url)</code> Базовый путь к изображениям (например, для изображений в <a href="#js-href-shift">заявках на открытие смены</a>)</td>
+                    </tr>
+                    <tr>
+                        <td><code>language</code></td>
+                        <td><code>ISO 639-1</code> Язык интерфейса приложения. На основе этого параметра меняется язык <b>только интерфейса</b>, всё остальное -- ответственность сервера (например, отдавать словари в нужной локализации)</td>
+                    </tr>
+                    <tr>
+                        <td><code>sync</code></td>
+                        <td><code>{}</code> Настройки синхронизации</td>
+                    </tr>
+                    <tr>
+                        <td><code>sync.vehicleOptions</code></td>
+                        <td><code>{}</code> Настройки синхронизации текущих опций автомобиля</td>
+                    </tr>
+                    <tr>
+                        <td><code>sync.vehicleOptions</code></td>
+                        <td><code>{}</code> Настройки синхронизации времени приложения</td>
+                    </tr>
+                    <tr>
+                        <td><code>sync.**.interval</code></td>
+                        <td><code>int</code> Интервал в секундах, через который мы синхронизируем данные объекты</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p><b>Response</b></p>
+<pre class="code">
+{
+    "mapService": "osm", // сервис карт
+    "imagesBaseUrl": "http://example.com/i/", // базовый путь к картинкам (например, для открытия смен)
+    "language": "ru", // язык интерфейса
+    "sync": {
+        "vehicleOptions": {
+            "interval": 360
+        },
+        "time": {
+            "interval": 3600
+        }
+    }
+}
+</pre>
+
+                <h2 class="anchored" id="js-href-sync">Синхронизация</h2>
+                <h4 class="anchored">Синхронизация доступных опций для автомобиля</h4>
+                <p><b>Request</b></p>
+                <p><code>GET /sync/vehicleOptions</code></p>
+                <p><b>Response</b></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>options</code></td>
+                        <td><code>[[idVehicleOption]]</code> Комбинации опций, доступные на данный момент</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+{
+    "vehicleOptions": [
+        [1, 2, 3],
+        [1, 4, 6, 9],
+        [12, 15]
+    ]
+}
+</pre>
+                <h4 class="anchored">Синхронизация времени</h4>
+                <p><b>Request</b></p>
+                <p><code>GET /sync/time</code></p>
+                <p><b>Response</b></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>time</code></td>
+                        <td><code>ISO 8601</code> Текущее время сервера</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+{
+    "time": "2014-03-05T13:21:60Z"
+}
+</pre>
+
+
+
 
                 <h2 class="anchored" id="js-href-search">Поиск</h2>
                 <p><b>Request</b></p>
@@ -2032,7 +2228,6 @@
             <div class="col-md-3 hidden-xs hidden-sm sidebar-column">
                 <div data-spy="affix" data-offset-top="40" data-offset-bottom="60" class="sidebar-affix">
                     <ul class="nav bs-sidenav">
-                        <li><a href="#">API</a></li>
                         <li>
                             <a href="#">Заказы</a>
                             <!--<ul class="nav">-->
@@ -2059,6 +2254,7 @@
                             <!--</ul>-->
                         </li>
                         <li><a href="#js-href-settings">Настройки</a></li>
+                        <li><a href="#js-href-sync">Синхронизация</a></li>
                         <li><a href="#js-href-search">Поиск</a></li>
                         <li>
                             <a href="#js-href-parts">Части</a>
