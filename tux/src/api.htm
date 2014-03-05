@@ -743,7 +743,7 @@ include "api/shift.json"
                     <tbody>
                     <tr>
                         <td><code>version</code></td>
-                        <td><code>int</code> Текущяя версия словарей, необходима для получения обновлений словарей</td>
+                        <td><code>int</code> Текущая версия словарей, необходима для получения обновлений словарей</td>
                     </tr>
                     <tr>
                         <td><code>dictionaries</code></td>
@@ -751,7 +751,7 @@ include "api/shift.json"
                     </tr>
                     <tr>
                         <td><code>dictionaries[].code</code></td>
-                        <td><code>string</code> Код словаря (например, areas)</td>
+                        <td><code>string</code> Код словаря (например, <code>areas</code>)</td>
                     </tr>
                     <tr>
                         <td><code>dictionaries[].name</code></td>
@@ -775,7 +775,7 @@ include "api/dictionaries.json"
                     <tbody>
                     <tr>
                         <td><code>version</code></td>
-                        <td><code>int</code> Текущяя версия словарей, необходима для получения обновлений словарей</td>
+                        <td><code>int</code> Текущая версия словарей, необходима для получения обновлений словарей</td>
                     </tr>
                     <tr>
                         <td><code>dictionaries</code></td>
@@ -783,19 +783,19 @@ include "api/dictionaries.json"
                     </tr>
                     <tr>
                         <td><code>dictionaries[].code</code></td>
-                        <td><code>string</code> Код изменяемого словаря (например, areas)</td>
+                        <td><code>string</code> Код изменяемого словаря (например, <code>areas</code>)</td>
                     </tr>
                     <tr>
                         <td><code>dictionaries[].differences</code></td>
-                        <td><code>[]</code> Изменения произошедшие в словаре</td>
+                        <td><code>[]</code> Изменения, произошедшие в словаре</td>
                     </tr>
                     <tr>
                         <td><code>dictionaries[].differences[].method</code></td>
-                        <td><code>string</code> метод изменения, доступные значения: <code>update</code>, <code>delete</code>, <code>add</code></td>
+                        <td><code>string</code> Метод изменения, доступные значения: <code>update</code>, <code>delete</code>, <code>add</code></td>
                     </tr>
                     <tr>
                         <td><code>dictionaries[].differences[].item</code></td>
-                        <td><code>{}</code> Изменения произошедшие в колнкретной сущности. Если метод <code>delete</code>, то достаточно одного параметра <code>id</code>, если <code>add</code> или <code>update</code>, то должна быть передана вся сущность словаря. Подробности о полях сущности см. <a href="/tux/api.htm#js-href-dict-index">в соответствующем разделе словарей</a></td>
+                        <td><code>{}</code> Изменения, произошедшие в конкретной сущности. Если метод <code>delete</code>, то достаточно одного параметра <code>id</code>, если <code>add</code> или <code>update</code>, то должна быть передана вся сущность словаря. Подробности о полях сущности см. <a href="/tux/api.htm#js-href-dict-index">в соответствующем разделе словарей</a></td>
                     </tr>
                     </tbody>
                 </table>
@@ -836,7 +836,7 @@ include "api/dictionaries-diff.json"
                     </tr>
                     <tr>
                         <td><code>currency</code></td>
-                        <td><code>string</code> Деннежная единица</td>
+                        <td><code>string</code> Денежная единица</td>
                     </tr>
                     <tr>
                         <td><code>timezone</code></td>
@@ -890,7 +890,7 @@ include "api/dicts/area.json"
                     </tr>
                     <tr>
                         <td><code>calculateCost</code></td>
-                        <td><code>bool</code> Расчитывать ли стоимость поездки</td>
+                        <td><code>bool</code> Рассчитывать ли стоимость поездки</td>
                     </tr>
                     <tr>
                         <td><code>minPreOrderInterval</code></td>
@@ -950,8 +950,8 @@ include "api/dicts/street.json"
 </pre>
 
                 <h5 class="anchored" id="js-href-dict-vehicle-option"><b>Опции ТС</b></h5>
-                <p>Возможные опции для выбора транспортного средства (Опции, которые может заказать клиент, такие как, кондиционер).</p>
-                <p class="alert alert-warning">Здесь передаётся только список существующих в базе опций (вообще), чтобы посмотреть текущие возможные опции, см. <a href="#">Синхронизирующиеся опции ТС</a></p>
+                <p>Возможные опции для выбора транспортного средства (опции, которые может заказать клиент, такие как кондиционер).</p>
+                <p class="alert alert-warning">Здесь передаётся только список существующих в базе опций (вообще), чтобы посмотреть текущие возможные опции, см. <a href="#js-href-sync">Синхронизирующиеся опции</a> ТС</p>
 <pre class="code">
 include "api/dicts/vehicle-option.json"
 </pre>
@@ -975,7 +975,7 @@ include "api/dicts/alert-type.json"
 <pre class="code">
 include "api/dicts/order-cancel-type.json"
 </pre>
-                <h5 class="anchored" id="js-href-dict-message-cancel-type.json"><b>Причины отказа для ответа на сообщения</b></h5>
+                <h5 class="anchored" id="js-href-dict-message-cancel-type.json"><b>Причины отказа для ответа на сообщение</b></h5>
 <pre class="code">
 include "api/dicts/message-cancel-type.json"
 </pre>
@@ -1052,9 +1052,6 @@ include "api/vehicle-options.json"
 include "api/time.json"
 </pre>
 
-
-
-
                 <h2 class="anchored" id="js-href-search">Поиск</h2>
                 <p><b>Request</b></p>
                 <p><code>GET /search?page=1&per_page=20</code></p>
@@ -1070,7 +1067,7 @@ include "api/time.json"
                     </tr>
                     </tbody>
                 </table>
-                <p>Запрос на поиск. Все поля не обязательны, но хотя бы одно должно присутствовать</p>
+                <p>Запрос на поиск. Все поля необязательны, но хотя бы одно должно присутствовать</p>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
@@ -1079,23 +1076,23 @@ include "api/time.json"
                     </tr>
                     <tr class="danger">
                         <td><code>destination</code></td>
-                        <td>Пока не понятно что</td>
+                        <td>Пока не понятно, что</td>
                     </tr>
                     <tr class="danger">
                         <td><code>departureAddress</code></td>
-                        <td>Пока не понятно что</td>
+                        <td>Пока не понятно, что</td>
                     </tr>
                     <tr>
                         <td><code>startTimeRange</code></td>
-                        <td><code>[ISO 8601, ISO 8601]</code> интервал, в котором началась поездка. пример: <code>[2014-01-28T13:00:60Z, 2014-01-28T14:00:60Z]</code></td>
+                        <td><code>[ISO 8601, ISO 8601]</code> Интервал, в котором началась поездка. Пример: <code>[2014-01-28T13:00:60Z, 2014-01-28T14:00:60Z]</code></td>
                     </tr>
                     <tr>
                         <td><code>endTimeRange</code></td>
-                        <td><code>[ISO 8601, ISO 8601]</code> интервал, в котором поездка закончиалсь.</td>
+                        <td><code>[ISO 8601, ISO 8601]</code> Мнтервал, в котором поездка закончилась.</td>
                     </tr>
                     <tr>
                         <td><code>vehicle</code></td>
-                        <td><code>{}</code> параметры поиска по ТС</td>
+                        <td><code>{}</code> Параметры поиска по ТС</td>
                     </tr>
                     <tr>
                         <td><code>vehicle.callSign</code></td>
@@ -1103,7 +1100,7 @@ include "api/time.json"
                     </tr>
                     <tr>
                         <td><code>vehicle.brand</code></td>
-                        <td><code>string</code>Марка ТС</td>
+                        <td><code>string</code> Марка ТС</td>
                     </tr>
                     <tr>
                         <td><code>vehicle.colorId</code></td>
@@ -1119,7 +1116,7 @@ include "api/time.json"
                     </tr>
                     <tr>
                         <td><code>vehicle.type.classId</code></td>
-                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например, у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>vehicle.number</code></td>
@@ -1136,7 +1133,7 @@ include "api/search-request.json"
                     <tbody>
                     <tr>
                         <td><code>total</code></td>
-                        <td><code>int</code> Всего заказов удовлетворяющих поиску</td>
+                        <td><code>int</code> Всего заказов, удовлетворяющих поиску</td>
                     </tr>
                     <tr>
                         <td><code>items</code></td>
@@ -1157,7 +1154,7 @@ include "api/search-response.json"
                     <tbody>
                     <tr>
                         <td><code>id</code></td>
-                        <td><code>int</code> id адреса, если адрес есть в базе</td>
+                        <td><code>int</code> <code>id</code> адреса, если адрес есть в базе</td>
                     </tr>
                     <tr>
                         <td><code>isPublic</code></td>
@@ -1241,7 +1238,7 @@ include "api/search-response.json"
                     </tr>
                     </tbody>
                 </table>
-                <p class="alert alert-warning">Поля *.id и *.name -- при запросе на сервер необязательны, достаточно только одного из них: id, если улица/город/группа существует в словаре; name если нет. В ответах сервера оба поля обязательны</p>
+                <p class="alert alert-warning">Поля *.id и *.name при запросе на сервер необязательны, достаточно только одного из них: id, если улица/город/группа существует в словаре, name -- если нет. В ответах сервера оба поля обязательны</p>
 <pre class="code">
 include "api/parts/address.json"
 </pre>
@@ -1275,7 +1272,7 @@ include "api/parts/address.json"
                     </tr>
                     <tr>
                         <td><code>frequentAddresses</code></td>
-                        <td><code>[address]</code> частые адреса (такой же формат, как и <a href="#js-href-parts-address">адрес</a>, за исключением, может быть, комментария)</td>
+                        <td><code>[address]</code> Частые адреса (такой же формат, как и <a href="#js-href-parts-address">адрес</a>, за исключением, может быть, комментария)</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1317,7 +1314,7 @@ include "api/parts/customer.json"
                     </tr>
                     <tr>
                         <td><code>type.classId</code></td>
-                        <td><code>int</code> Класс автомобиля, если есть. Например у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
+                        <td><code>int</code> Класс автомобиля, если есть. Например, у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>options</code></td>

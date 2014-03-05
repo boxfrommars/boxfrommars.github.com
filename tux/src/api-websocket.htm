@@ -18,14 +18,14 @@ include "parts/head.htm"
                 <div class="page-header">
                     <h1>WebSocket API</h1>
                 </div>
-                <p>Ниже описаны сообщения, отправляемые сервером по протоколу Websocket и инициирующие действия на стороне клиента</p>
+                <p>Ниже описаны сообщения, отправляемые сервером по протоколу Websocket и инициирующие действия на стороне приложения</p>
 
                 <h2 class="anchored" id="js-href-general">Общий вид</h2>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
                         <td><code>type</code></td>
-                        <td><code>string</code> Тип сообщения (действия), один из типов перечисленных ниже</td>
+                        <td><code>string</code> Тип сообщения (действия), один из типов, перечисленных ниже</td>
                     </tr>
                     <tr>
                         <td><code>data</code></td>
@@ -41,7 +41,7 @@ include "websocket-api/template.json"
                     <tbody>
                     <tr>
                         <td><code>order</code></td>
-                        <td>Уведомляем клиент о необходимости открыть заказ</td>
+                        <td>Уведомляем приложение о необходимости открыть заказ</td>
                     </tr>
                     <tr>
                         <td><code>update-dictionary</code></td>
@@ -49,7 +49,7 @@ include "websocket-api/template.json"
                     </tr>
                     <tr>
                         <td><code>refresh-application</code></td>
-                        <td>Уведомление о необходимости обновить код клиентского приложение (обновить страницу в браузере, т.к. изменился js-код, если доступным языком)</td>
+                        <td>Уведомление о необходимости обновить код клиентского приложения (обновить страницу в браузере, т.к. изменился js-код, если доступным языком)</td>
                     </tr>
                     <tr>
                         <td><code>message</code></td>
