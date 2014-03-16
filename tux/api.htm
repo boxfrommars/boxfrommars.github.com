@@ -323,7 +323,7 @@
                     </tbody>
                 </table>
                 <p><b>Response</b></p>
-                <p>Ответ точно такой же, как и при <a href="#js-href-order-get">получении заказа</a>, -- сформированный заказ с указанной информацией о заказчике, с присвоенными идентификаторами поездок и прочее.</p>
+                <p>Ответ точно такой же, как и при <a href="#js-href-order-get">получении заказа</a>, — сформированный заказ с указанной информацией о заказчике, с присвоенными идентификаторами поездок и прочее.</p>
 
 
                 <h2 class="anchored" id="js-href-ride">Поездки</h2>
@@ -690,7 +690,7 @@
 }
 </pre>
                 <p><b>Response</b></p>
-                <p>Такой же, как и при <a href="#js-href-ride-get">получении поездки</a> -- с указанным id, с проставленными id для адресов, с таймлайном, в котором есть событие "заказ поездки"</p>
+                <p>Такой же, как и при <a href="#js-href-ride-get">получении поездки</a> — с указанным id, с проставленными id для адресов, с таймлайном, в котором есть событие "заказ поездки"</p>
 
                 <h4 class="anchored" id="js-href-ride-edit">Редактирование поездки</h4>
                 <p><b>Request</b></p>
@@ -940,11 +940,11 @@
                     </tr>
                     <tr>
                         <td><code>messages[].sender.type</code></td>
-                        <td><code>string</code> Тип отправителя сообщения. На данный момент <code>operator</code> -- оператор или <code>vehicle</code> -- такси</td>
+                        <td><code>string</code> Тип отправителя сообщения. На данный момент <code>operator</code> — оператор или <code>vehicle</code> — такси</td>
                     </tr>
                     <tr>
                         <td><code>messages[].sender.data</code></td>
-                        <td><code>{}</code> Данные отправителя (разнородные: для оператора свои, для водителя -- свои). Подробнее -- см. ниже</td>
+                        <td><code>{}</code> Данные отправителя (разнородные: для оператора свои, для водителя — свои). Подробнее — см. ниже</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1713,7 +1713,7 @@
                     </tr>
                     <tr>
                         <td><code>language</code></td>
-                        <td><code>ISO 639-1</code> Язык интерфейса приложения. На основе этого параметра меняется язык <b>только интерфейса</b>, всё остальное -- ответственность сервера (например, отдавать словари в нужной локализации)</td>
+                        <td><code>ISO 639-1</code> Язык интерфейса приложения. На основе этого параметра меняется язык <b>только интерфейса</b>, всё остальное — ответственность сервера (например, отдавать словари в нужной локализации)</td>
                     </tr>
                     <tr>
                         <td><code>sync</code></td>
@@ -1904,6 +1904,105 @@
     ]
 }
 </pre>
+                <h2 class="anchored" id="js-href-break">Перерыв</h2>
+                <h4 class="anchored">Получение информации об очереди на перерыв</h4>
+                <p><b>Request</b></p>
+                <p><code>GET /api/v1/break/:breakType</code></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>breakType</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p><b>Response</b></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>type</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>queue</code></td>
+                        <td><code>int</code> Всего операторов в очереди</td>
+                    </tr>
+                    <tr>
+                        <td><code>position</code></td>
+                        <td><code>int</code> Позиция в очереди (начиная с единицы, если никого нет перед оператором, то значение&nbsp;—&nbsp;<code>1</code>, если оператор не участвует в очереди, то&nbsp;<code>null</code>)</td>
+                    </tr>
+                    <tr>
+                        <td><code>estimatedStartTime</code></td>
+                        <td><code>int</code> Секунды, ожидаемое время начала перерыва</td>
+                    </tr>
+                    </tbody>
+                </table>
+<code>HTTP/1.1 200 OK</code>
+<pre class="code">
+{
+    "type": "smoking",
+    "queue": 17,
+    "position": null,
+    "estimatedStartTime": 600
+}
+</pre>
+                <h4 class="anchored">Встать в очередь на перерыв</h4>
+                <p><b>Request</b></p>
+                <p><code>POST /api/v1/break/:breakType</code></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>breakType</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p><b>Response</b></p>
+                <p class="alert alert-warning">Если на данный момент оператор не может встать в очередь, то ответ должен быть <code>422 Unprocessable Entity</code> с описанием ошибки</p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>type</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>queue</code></td>
+                        <td><code>int</code> Всего операторов в очереди</td>
+                    </tr>
+                    <tr>
+                        <td><code>position</code></td>
+                        <td><code>int</code> Позиция в очереди (начиная с единицы, если никого нет перед оператором, то значение&nbsp;—&nbsp;<code>1</code>)</td>
+                    </tr>
+                    <tr>
+                        <td><code>estimatedStartTime</code></td>
+                        <td><code>int</code> Секунды, ожидаемое время начала перерыва</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <code>HTTP/1.1 200 OK</code>
+<pre class="code">
+{
+    "type": "smoking",
+    "queue": 17,
+    "position": 15,
+    "estimatedStartTime": 600
+}
+</pre>
+                <h4 class="anchored">Выйти из очереди на перерыв</h4>
+                <p><b>Request</b></p>
+                <p><code>POST /api/v1/break/:breakType/decline</code></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>breakType</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p><b>Response</b></p>
+                <p>Любой ответ с кодом <code>200 OK </code>, если успешно убрали из очереди, <code>422 Unprocessable Entity</code> в другом случае.</p>
+
+
 
                 <h2 class="anchored" id="js-href-parts">Части</h2>
 
@@ -1997,7 +2096,7 @@
                     </tr>
                     </tbody>
                 </table>
-                <p class="alert alert-warning">Поля *.id и *.name при запросе на сервер необязательны, достаточно только одного из них: id, если улица/город/группа существует в словаре, name -- если нет. В ответах сервера оба поля обязательны</p>
+                <p class="alert alert-warning">Поля *.id и *.name при запросе на сервер необязательны, достаточно только одного из них: id, если улица/город/группа существует в словаре, name — если нет. В ответах сервера оба поля обязательны</p>
 <pre class="code">
 {
     "id": 11054,   // id адреса, если адрес есть в базе
@@ -2257,6 +2356,7 @@
                         <li><a href="#js-href-settings">Настройки</a></li>
                         <li><a href="#js-href-sync">Синхронизация</a></li>
                         <li><a href="#js-href-search">Поиск</a></li>
+                        <li><a href="#js-href-break">Перерыв</a></li>
                         <li>
                             <a href="#js-href-parts">Части</a>
                             <ul class="nav">

@@ -196,6 +196,10 @@
                         <td><code>shift</code></td>
                         <td>Уведомление об открытии смены</td>
                     </tr>
+                    <tr>
+                        <td><code>break</code></td>
+                        <td>Уведомление об изменении позиции в очереди</td>
+                    </tr>
                     </tbody>
                 </table>
 
@@ -271,6 +275,40 @@
 }
 </pre>
 
+                <h4 class="anchored" id="js-href-type-break">Уведомление об изменении позиции в очереди</h4>
+                <p>В <code>data</code> точно такой же формат, как и в <a href="api.htm#js-href-break">API перерывов</a></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>type</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>queue</code></td>
+                        <td><code>int</code> Всего операторов в очереди</td>
+                    </tr>
+                    <tr>
+                        <td><code>position</code></td>
+                        <td><code>int</code> Позиция в очереди (начиная с единицы, если никого нет перед оператором, то значение&nbsp;—&nbsp;<code>1</code>)</td>
+                    </tr>
+                    <tr>
+                        <td><code>estimatedStartTime</code></td>
+                        <td><code>int</code> Секунды, ожидаемое время начала перерыва</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+{
+    "type": "message",
+    "data": {
+        "type": "smoking",
+        "queue": 17,
+        "position": 15,
+        "estimatedStartTime": 600
+    }
+}
+</pre>
+
 
                 <div id="disqus_thread"></div>
                 <script type="text/javascript">
@@ -299,6 +337,7 @@
                             <a href="#js-href-type-refresh-application">Обновление</a>
                             <a href="#js-href-type-message">Сообщение</a>
                             <a href="#js-href-type-shift">Смена</a>
+                            <a href="#js-href-type-break">Перерыв</a>
                         </li>
                     </ul>
                 </div>
