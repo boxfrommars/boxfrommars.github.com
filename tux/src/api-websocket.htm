@@ -34,7 +34,7 @@ include "parts/head.htm"
                     </tbody>
                 </table>
 <pre class="code">
-include "websocket-api/template.json"
+include "websocket-api/order.json"
 </pre>
                 <h4 class="anchored" id="js-href-types">Типы сообщения</h4>
                 <table class="table table-bordered table-striped">
@@ -74,6 +74,10 @@ include "websocket-api/template.json"
                     <tr>
                         <td><code>id</code></td>
                         <td>Идентификатор заказа</td>
+                    </tr>
+                    <tr>
+                        <td><code>type</code></td>
+                        <td><code>string</code> Тип представления, на данный момент возможные значения: <code>client</code> и <code>driver</code>, в зависимости от того, кто звонит</td>
                     </tr>
                     </tbody>
                 </table>

@@ -167,9 +167,10 @@
                 </table>
 <pre class="code">
 {
-    "type": "order", // тип сообщения (действия)
-    "data": { // любые данные, нужные клиенту для дальнейших действий
-        "orderId": 3385390
+    "type": "order",
+    "data": {
+        "id": 3385390,
+        "type": "client" // нужен для представления, возможные значения: driver client
     }
 }
 </pre>
@@ -212,13 +213,18 @@
                         <td><code>id</code></td>
                         <td>Идентификатор заказа</td>
                     </tr>
+                    <tr>
+                        <td><code>type</code></td>
+                        <td><code>string</code> Тип представления, на данный момент возможные значения: <code>client</code> и <code>driver</code>, в зависимости от того, кто звонит</td>
+                    </tr>
                     </tbody>
                 </table>
 <pre class="code">
 {
     "type": "order",
     "data": {
-        "id": 3385390
+        "id": 3385390,
+        "type": "client" // нужен для представления, возможные значения: driver client
     }
 }
 </pre>

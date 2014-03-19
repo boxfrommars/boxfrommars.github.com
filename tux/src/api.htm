@@ -306,15 +306,24 @@ include "api/ride-post.json"
                         <td><code>int</code> Идентификатор поездки</td>
                     </tr>
                 </table>
-
-                <p><b>Response</b></p>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
-                        <td><code>success</code></td>
-                        <td><code>true</code> Всегда передаётся true, так как в случае ошибки используется <a href="/tux/index.htm#js-href-http_errors">поведение при ошибках</a></td>
+                        <td><code>cancelTypeId</code></td>
+                        <td><code>int</code> Идентификатор причины отмены поездки</td>
+                    </tr>
+                    <tr>
+                        <td><code>text</code></td>
+                        <td><code>string</code> Описание причины поездки (если позволяет причина)</td>
                     </tr>
                 </table>
+<pre class="code">
+include "api/ride-cancel.json"
+</pre>
+
+
+                <p><b>Response</b></p>
+                <p>Любой ответ с кодом <code>200 OK</code></p>
 
 
                 <h2 class="anchored" id="js-href-address">Адреса</h2>
@@ -460,10 +469,6 @@ include "api/address.json"
                     <tr>
                         <td><code>id</code></td>
                         <td>Идентификатор треда сообщений</td>
-                    </tr>
-                    <tr>
-                        <td><code>lifetime</code></td>
-                        <td><code>int</code> Время в секундах, после которого сообщение пересылается другому прользователю</td>
                     </tr>
                     <tr>
                         <td><code>messages</code></td>
@@ -614,10 +619,6 @@ include "api/message-post.json"
                         <td><code>ISO 8601</code> Время создания заявки</td>
                     </tr>
                     <tr>
-                        <td><code>lifetime</code></td>
-                        <td><code>int</code> "Время жизни" заявки у данного оператора, после окончания времени заявка пересылается другому оператору</td>
-                    </tr>
-                    <tr>
                         <td><code>attemptCount</code></td>
                         <td><code>int</code> Количество неудачных попыток открытия смены</td>
                     </tr>
@@ -634,21 +635,28 @@ include "api/message-post.json"
                         <td><code>[]</code> Требования к транспорту</td>
                     </tr>
                     <tr>
+                        <td><code>requirements.priorities</code></td>
+                        <td><code>[]</code> Приоритеты</td>
+                    </tr>
+                    <tr>
                         <td><code>requirements.request</code></td>
                         <td><code>[]</code> Требования к заявке (фотографии)</td>
                     </tr>
                     <tr>
                         <td><code>requirements.vehicle[].id</code><br />
+                            <code>requirements.priorities[].id</code><br />
                             <code>requirements.request[].id</code></td>
                         <td><code>int</code> Идентификатор требования</td>
                     </tr>
                     <tr>
                         <td><code>requirements.vehicle[].name</code><br />
+                            <code>requirements.priorities[].name</code><br />
                             <code>requirements.request[].name</code></td>
                         <td><code>string</code> Названия требования</td>
                     </tr>
                     <tr>
                         <td><code>requirements.vehicle[].important</code><br />
+                            <code>requirements.priorities[].important</code><br />
                             <code>requirements.request[].important</code></td>
                         <td><code>bool</code> Обратить внимание на требование (т.к., например, в прошлый раз не прошёл по этому пункту)</td>
                     </tr>
@@ -685,10 +693,6 @@ include "api/shift.json"
                     <tr>
                         <td><code>time</code></td>
                         <td><code>ISO 8601</code> Время создания заявки</td>
-                    </tr>
-                    <tr>
-                        <td><code>lifetime</code></td>
-                        <td><code>int</code> "Время жизни" заявки у данного оператора, после окончания времени заявка пересылается другому оператору</td>
                     </tr>
                     <tr>
                         <td><code>attemptCount</code></td>
@@ -767,43 +771,43 @@ include "api/shift.json"
 <pre class="code">
 include "api/dictionaries.json"
 </pre>
-                <h4 class="anchored">Обновление словарей</h4>
-                <p><b>Request</b></p>
-                <p><code>GET /api/v1/dictionaries/:currentVersionId/difference </code></p>
-                <p><b>Response</b></p>
-                <table class="table table-bordered table-striped">
-                    <tbody>
-                    <tr>
-                        <td><code>version</code></td>
-                        <td><code>int</code> Текущая версия словарей, необходима для получения обновлений словарей</td>
-                    </tr>
-                    <tr>
-                        <td><code>dictionaries</code></td>
-                        <td><code>[]</code> Список словарей, в которых произошли изменения</td>
-                    </tr>
-                    <tr>
-                        <td><code>dictionaries[].code</code></td>
-                        <td><code>string</code> Код изменяемого словаря (например, <code>areas</code>)</td>
-                    </tr>
-                    <tr>
-                        <td><code>dictionaries[].differences</code></td>
-                        <td><code>[]</code> Изменения, произошедшие в словаре</td>
-                    </tr>
-                    <tr>
-                        <td><code>dictionaries[].differences[].method</code></td>
-                        <td><code>string</code> Метод изменения, доступные значения: <code>update</code>, <code>delete</code>, <code>add</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>dictionaries[].differences[].item</code></td>
-                        <td><code>{}</code> Изменения, произошедшие в конкретной сущности. Если метод <code>delete</code>, то достаточно одного параметра <code>id</code>, если <code>add</code> или <code>update</code>, то должна быть передана вся сущность словаря. Подробности о полях сущности см. <a href="/tux/api.htm#js-href-dict-index">в соответствующем разделе словарей</a></td>
-                    </tr>
-                    </tbody>
-                </table>
+                <!--<h4 class="anchored">Обновление словарей</h4>-->
+                <!--<p><b>Request</b></p>-->
+                <!--<p><code>GET /api/v1/dictionaries/:currentVersionId/difference </code></p>-->
+                <!--<p><b>Response</b></p>-->
+                <!--<table class="table table-bordered table-striped">-->
+                    <!--<tbody>-->
+                    <!--<tr>-->
+                        <!--<td><code>version</code></td>-->
+                        <!--<td><code>int</code> Текущая версия словарей, необходима для получения обновлений словарей</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td><code>dictionaries</code></td>-->
+                        <!--<td><code>[]</code> Список словарей, в которых произошли изменения</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td><code>dictionaries[].code</code></td>-->
+                        <!--<td><code>string</code> Код изменяемого словаря (например, <code>areas</code>)</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td><code>dictionaries[].differences</code></td>-->
+                        <!--<td><code>[]</code> Изменения, произошедшие в словаре</td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td><code>dictionaries[].differences[].method</code></td>-->
+                        <!--<td><code>string</code> Метод изменения, доступные значения: <code>update</code>, <code>delete</code>, <code>add</code></td>-->
+                    <!--</tr>-->
+                    <!--<tr>-->
+                        <!--<td><code>dictionaries[].differences[].item</code></td>-->
+                        <!--<td><code>{}</code> Изменения, произошедшие в конкретной сущности. Если метод <code>delete</code>, то достаточно одного параметра <code>id</code>, если <code>add</code> или <code>update</code>, то должна быть передана вся сущность словаря. Подробности о полях сущности см. <a href="/tux/api.htm#js-href-dict-index">в соответствующем разделе словарей</a></td>-->
+                    <!--</tr>-->
+                    <!--</tbody>-->
+                <!--</table>-->
 
-                <code>HTTP/1.1 200 OK</code>
-<pre class="code">
-include "api/dictionaries-diff.json"
-</pre>
+                <!--<code>HTTP/1.1 200 OK</code>-->
+<!--<pre class="code">-->
+<!--include "api/dictionaries-diff.json"-->
+<!--</pre>-->
 
 
 
@@ -818,7 +822,7 @@ include "api/dictionaries-diff.json"
                     <li><a href="#js-href-dict-vehicle-class">Класс ТС</a></li>
                     <li><a href="#js-href-dict-color">Цвета</a></li>
                     <li><a href="#js-href-dict-alert-type">Способы оповещения</a></li>
-                    <li><a href="#js-href-dict-order-cancel-type.json">Причины отмены заказа</a></li>
+                    <li><a href="#js-href-dict-ride-cancel-type.json">Причины отмены поездки</a></li>
                     <li><a href="#js-href-dict-message-cancel-type.json">Причины отказа для ответа на сообщения</a></li>
                 </ul>
 
@@ -896,6 +900,15 @@ include "api/dicts/area.json"
                         <td><code>calculateCost</code></td>
                         <td><code>bool</code> Рассчитывать ли стоимость поездки</td>
                     </tr>
+
+                    <tr>
+                        <td><code>messageLifetime</code></td>
+                        <td><code>int</code> Время в секундах, после которого сообщение пересылается другому прользователю</td>
+                    </tr>
+                    <tr>
+                        <td><code>shiftLifetime</code></td>
+                        <td><code>int</code> Время в секундах, после которого заявка на открытие смены пересылается другому прользователю</td>
+                    </tr>
                     <tr>
                         <td><code>minPreOrderInterval</code></td>
                         <td><code>int</code> Минимальное время предзаказа, секунды</td>
@@ -940,10 +953,6 @@ include "api/dicts/district.json"
                         <td><code>int</code> Идентификатор</td>
                     </tr>
                     <tr>
-                        <td><code>districtId</code></td>
-                        <td><code>int</code> Идентификатор района, к которому привязана улица</td>
-                    </tr>
-                    <tr>
                         <td><code>name</code></td>
                         <td><code>string</code> Название улицы</td>
                     </tr>
@@ -975,10 +984,27 @@ include "api/dicts/color.json"
 <pre class="code">
 include "api/dicts/alert-type.json"
 </pre>
-                <h5 class="anchored" id="js-href-dict-order-cancel-type.json"><b>Причины отмены заказа</b></h5>
+                <h5 class="anchored" id="js-href-dict-ride-cancel-type.json"><b>Причины отмены поездки</b></h5>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> Идентификатор</td>
+                    </tr>
+                    <tr>
+                        <td><code>withText</code></td>
+                        <td><code>boolean</code> Если <code>true</code>, то оператор может добавить текст-комментарий к причине отмены</td>
+                    </tr>
+                    <tr>
+                        <td><code>name</code></td>
+                        <td><code>string</code> Название улицы</td>
+                    </tr>
+                    </tbody>
+                </table>
 <pre class="code">
-include "api/dicts/order-cancel-type.json"
+include "api/dicts/ride-cancel-type.json"
 </pre>
+
                 <h5 class="anchored" id="js-href-dict-message-cancel-type.json"><b>Причины отказа для ответа на сообщение</b></h5>
 <pre class="code">
 include "api/dicts/message-cancel-type.json"
@@ -1054,6 +1080,22 @@ include "api/vehicle-options.json"
                 </table>
 <pre class="code">
 include "api/time.json"
+</pre>
+
+                <h4 class="anchored">Синхронизация словарей</h4>
+                <p><b>Request</b></p>
+                <p><code>GET /sync/dictionaries</code></p>
+                <p><b>Response</b></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>version</code></td>
+                        <td><code>int</code> Текущая версия словарей на сервере (для проверки, изменилась или нет, если изменилась, то запрашиваем новые словари и заменяем ими текущие)</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+include "api/dict-version.json"
 </pre>
 
                 <h2 class="anchored" id="js-href-search">Поиск</h2>
@@ -1266,27 +1308,27 @@ include "api/break-post.json"
                         <td><code>string</code> Название улицы</td>
                     </tr>
                     <tr>
-                        <td><code>street.district</code></td>
+                        <td><code>district</code></td>
                         <td><code>{}</code> Район</td>
                     </tr>
                     <tr>
-                        <td><code>street.district.id</code></td>
+                        <td><code>district.id</code></td>
                         <td><code>int</code> Идентификатор района</td>
                     </tr>
                     <tr>
-                        <td><code>street.district.name</code></td>
+                        <td><code>district.name</code></td>
                         <td><code>string</code> Название района</td>
                     </tr>
                     <tr>
-                        <td><code>street.district.city</code></td>
+                        <td><code>district.city</code></td>
                         <td><code>{}</code> Город</td>
                     </tr>
                     <tr>
-                        <td><code>street.district.city.id</code></td>
+                        <td><code>district.city.id</code></td>
                         <td><code>int</code> Идентификатор города</td>
                     </tr>
                     <tr>
-                        <td><code>street.district.city.name</code></td>
+                        <td><code>district.city.name</code></td>
                         <td><code>string</code> Название города</td>
                     </tr>
                     <tr>

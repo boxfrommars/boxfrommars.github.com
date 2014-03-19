@@ -205,25 +205,39 @@ include "api/message-post.json"
                     <code>422 Unprocessable Entity</code></p>
 
                 <h2 class="anchored" id="js-href-process-dictionaries">5. Обновление словарей</h2>
-                <p>При обновлении словарей на сервере (добавилась новая улица, тип автомобиля и т.д.) сервер уведомляет
-                    об этом приложение<code></code></p>
-<pre class="code">
-include "websocket-api/update-dictionary.json"
-</pre>
-                <p class="alert alert-warning">Приложение запрашивает изменения, произошедшие в словарях с момента получения текущей (используемой
-                    приложением) версии словарей, для этого в запрос включается идентификатор текущей версии словарей
-                    <code>currentVersionId</code>.</p>
+                <p>Операторское приложение может запросить текущую версию словарей на сервере</p>
+                <p><code>GET /sync/dictionaries</code></p>
 
-                <p><code>GET /dictionaries/:currentVersionId/difference</code></p>
                 <div class="collapse-wrap">
-                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-dictionaries-diff" class="pseudo-link"><b>Пример ответа от сервера</b></a></p>
-                    <div id="js-collapse-dictionaries-diff" class="collapse">
+                    <p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-process-sync-dictionaries" class="pseudo-link"><b>Пример ответа от сервера</b></a></p>
+                    <div id="js-collapse-process-sync-dictionaries" class="collapse">
 <pre class="code">
-include "api/dictionaries-diff.json"
-<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-dictionaries-diff" class="pseudo-link">Свернуть</a>
+include "api/dict-version.json"
+<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-process-sync-dictionaries" class="pseudo-link">Свернуть</a>
 </pre>
                     </div>
                 </div>
+                <p>Если версия отличается от текущей версии словарей оператора, то приложение запрашивает все словари от сервера стандартным образом и подменяет ими устаревшие</p>
+
+                <!--<p>При обновлении словарей на сервере (добавилась новая улица, тип автомобиля и т.д.) сервер уведомляет-->
+                    <!--об этом приложение<code></code></p>-->
+<!--<pre class="code">-->
+<!--include "websocket-api/update-dictionary.json"-->
+<!--</pre>-->
+                <!--<p class="alert alert-warning">Приложение запрашивает изменения, произошедшие в словарях с момента получения текущей (используемой-->
+                    <!--приложением) версии словарей, для этого в запрос включается идентификатор текущей версии словарей-->
+                    <!--<code>currentVersionId</code>.</p>-->
+
+                <!--<p><code>GET /dictionaries/:currentVersionId/difference</code></p>-->
+                <!--<div class="collapse-wrap">-->
+                    <!--<p><a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-dictionaries-diff" class="pseudo-link"><b>Пример ответа от сервера</b></a></p>-->
+                    <!--<div id="js-collapse-dictionaries-diff" class="collapse">-->
+<!--<pre class="code">-->
+<!--include "api/dictionaries-diff.json"-->
+<!--<a data-toggle="collapse" data-parent=".collapse-wrap" href="#js-collapse-dictionaries-diff" class="pseudo-link">Свернуть</a>-->
+<!--</pre>-->
+                    <!--</div>-->
+                <!--</div>-->
 
                 <h2 class="anchored" id="js-href-process-sync">5. Синхронизация данных</h2>
                 <p>Приложение на основе <a href="/tux/api.htm#js-href-settings">настроек синхронизации</a> каждый <code>interval</code> отправляет на сервер запросы вида</p>
