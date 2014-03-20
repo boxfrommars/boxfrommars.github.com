@@ -8,6 +8,17 @@
         },
         "time": {
             "interval": 3600
+        },
+        "dictionaries": {
+            "interval": 3600
         }
+    },
+    "sip": {
+        "credentials": {
+            "uid": "001",
+            "password": "somePassword"
+        },
+        "ip": "00.00.00.00",
+        "port": "5060"
     }
 }
