@@ -1011,6 +1011,7 @@ include "api/dicts/message-cancel-type.json"
 </pre>
 
                 <h2 class="anchored" id="js-href-auth">Аутентификация</h2>
+                <h4 class="anchored" id="js-href-auth-token">Получить токен</h4>
                 <p><b>Request</b></p>
                 <p><code>POST /auth</code></p>
 
@@ -1034,7 +1035,7 @@ include "api/auth-post.json"
                     <tbody>
                     <tr>
                         <td><code>token</code></td>
-                        <td><code>string</code> Токен аутентификации</td>
+                        <td><code>string</code> Токен для авторизации</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1042,8 +1043,11 @@ include "api/auth-post.json"
 include "api/auth-response.json"
 </pre>
 
-
-
+                <h4 class="anchored" id="js-href-auth-logout">Выход</h4>
+                <p><b>Request</b></p>
+                <p><code>POST /auth/logout</code></p>
+                <p><b>Response</b></p>
+                <p>Любой ответ с кодом <code>200</code>, если удачно, <code>4**</code> в другом случае</p>
 
 
                 <h2 class="anchored" id="js-href-settings">Настройки</h2>
