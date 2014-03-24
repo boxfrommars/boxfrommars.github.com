@@ -1178,6 +1178,27 @@ include "api/dict-version.json"
                 <p><b>Response</b></p>
                 <p>Любой ответ с кодом <code>200</code>, если удачно, <code>4**</code> в другом случае</p>
 
+                <h4 class="anchored" id="js-href-sip-redirect">Перенаправить звонок</h4>
+                <p><b>Request</b></p>
+                <p><code>POST /sip/redirect</code></p>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>calleeType</code></td>
+                        <td><code>string</code> Кому перенаправляем, водителю или клиенту, возможные значения: <code>driver</code> (водитель) или <code>client</code> (клиент)</td>
+                    </tr>
+                    <tr>
+                        <td><code>calleeId</code></td>
+                        <td><code>string</code> Идентификатор того, кому перенаправляем вызов. номер телефона в случае клиента, позывной, в случае водителя</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+include "api/call-redirect.json"
+</pre>
+
+                <p><b>Response</b></p>
+                <p>Любой ответ с кодом <code>200</code>, если удачно, <code>4**</code> в другом случае</p>
 
                 <h2 class="anchored" id="js-href-search">Поиск</h2>
                 <p><b>Request</b></p>
