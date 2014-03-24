@@ -148,60 +148,28 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="page-header">
-                    <h1 class="anchored" id="js-href-changelog">Changelog</h1>
+                    <h1>Тесты API</h1>
                 </div>
-                <p><code>18 Mar 2014 21:28:16</code> API авторизации</p>
-                <p><code>18 Mar 2014 21:28:16</code> В заявки на смену добавлены приоритеты</p>
-                <p><code>18 Mar 2014 21:20:06</code> Частичное изменение словарей заменено на полную продмену</p>
-                <p><code>18 Mar 2014 21:08:31</code> Время на ответ для сообщений и смен вынесено из сообщений и смен в настройки города</p>
-                <p><code>18 Mar 2014 20:36:01</code> Добавлено описание причины отмены поездки</p>
-                <p><code>18 Mar 2014 20:36:01</code> Убрана привязка районов к улице, теперь к районы привязаны напрямую к адресам</p>
-                <p><code>18 Mar 2014 17:37:03</code> Добавлен тип отображения заказа</p>
-                <p><code>16 Mar 2014 17:30:28</code> Добавлены методы API и Websocket API для работы с перерывами</p>
-                <p><code>05 Mar 2014 19:36:45</code> Добавлено описание процесса синхронизации</p>
-                <p><code>05 Mar 2014 17:08:51</code> Добавлено описание настроек</p>
-                <p><code>05 Mar 2014 16:29:04</code> Добавлен словарь районов, косметические изменения</p>
-                <p><code>05 Mar 2014 15:55:47</code> Добавлены процессы взаимодействия: сообщение, обновление словарей</p>
-                <p><code>05 Mar 2014 06:18:31</code> Добавлены процессы взаимодействия: заказ, аутентификация, смены</p>
-                <p><code>05 Mar 2014 03:27:22</code> Добавлено websocket api</p>
-                <p><code>04 Mar 2014 20:56:55</code> Расшифровать order и ride в сообщениях от водителя</p>
-                <p><code>04 Mar 2014 18:40:10</code> В адресах добавился флаг <code>isPublic</code> -- является ли адрес публичным местом</p>
-                <p><code>04 Mar 2014 17:03:20</code> В городах добавился флаг <code>isSuburb</code> -- является ли город пригородом</p>
-                <p><code>04 Mar 2014 15:42:24</code> Добавить язык клиента и, может быть, примечание</p>
-                <p><code>04 Mar 2014 14:25:32</code> Добавить словарь цветов</p>
-                <p><code>04 Mar 2014 12:28:49</code> Добавлены классы автомобиля для типа автомобиля</p>
-                <p><code>12 Feb 2014 17:39:01</code> Переработан адрес</p>
-                <p><code>12 Feb 2014 13:44:56</code> Добавлено время меток в путь поездки</p>
 
-                <h2 class="anchored" id="js-href-todo">ToDo</h2>
-                <h3>v0.0.2</h3>
-                <p>Отделить публичные места</p>
-                <p>Разобраться с новыми адресами для улиц с одинаковым названием</p>
-                <p>Разобраться с требованиями</p>
-                <h3>v0.0.1</h3>
-                <p><s>Добавить классы автомобиля для типа автомобиля</s></p>
-                <p>Добавить (или нет) примечание для автомобиля</p>
-                <p><s>Добавить словарь цветов</s></p>
-                <p><s>Разобраться с публичными местами</s></p>
-                <p><s>Разобраться с пригородом</s></p>
-                <p><s>Добавить язык клиента и, может быть, примечание</s></p>
-                <p><s>Расшифровать order и ride в сообщениях от водителя</s></p>
+                <table class="table table-striped" id="test-results">
+                    <thead>
+                        <tr>
+                            <th>Запрос</th>
+                            <th>Группа</th>
+                            <th>Название</th>
+                            <th>Схема</th>
+                            <th></th>
+                            <th>Результат</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-                <div id="disqus_thread"></div>
-                <script type="text/javascript">
-                    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-                    var disqus_shortname = 'boxfrommars'; // required: replace example with your forum shortname
+                    </tbody>
 
-                    /* * * DON'T EDIT BELOW THIS LINE * * */
-                    (function() {
-                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-                    })();
-                </script>
-                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+                </table>
 
+
+                <!--cinclude "parts/disqus.htm"-->
             </div>
 
             <div class="col-md-3 hidden-xs hidden-sm sidebar-column">
@@ -210,8 +178,8 @@
                         <li class="">
                             <a href="#">Ссылки</a>
                             <ul class="nav">
-                                <li><a href="#js-href-changelog">Changelog</a></li>
-                                <li><a href="#js-href-todo">ToDo</a></li>
+                                <li><a href="#js-href-http_codes">Something</a></li>
+                                <li><a href="#js-href-http_errors">Nevermore</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -242,6 +210,68 @@
         $('pre.code').each(function(i, e) {hljs.highlightBlock(e)});
         $("a[href*='" + location.pathname + "']").parent('li').addClass('active');
     });
+</script>
+
+<script type="text/html" id="test-row-template">
+    <tr data-testname="<%= name %>">
+        <td><code><%= request %></code></td>
+        <td><%= group %></td>
+        <td><%= title %></td>
+        <td><% _.each(schemas, function(item){ %>
+                <a href="<%= item %>"><%= _.last(item.split('/')) %></a>
+            <% }); %></td>
+        <td><a href="#" class="js-test-run" data-testname-run="<%= name %>"><span class="glyphicon glyphicon-play"></span> Run</a></td>
+        <td>
+            <!--<span class="label label-default">Не запускался</span>-->
+            <!--<span class="label label-danger">Не пройден</span>-->
+            <span class="label label-success">Пройден</span>
+        </td>
+    </tr>
+</script>
+
+<script>
+    var tests = [
+        {
+            "name": "order-get",
+            "request": "GET /order/:orderId",
+            "group": "Заказы",
+            "title": "Получение по id",
+            "schemas": ["/tux/src/schemas/order-schema.json"],
+            "sources": {
+                "route": "/orders/:orderId",
+                "tests": [{
+                    "uriParams": {
+                        ":orderId": 1
+                    }
+                }, {
+                    "uriParams": {
+                        ":orderId": 1
+                    }
+                }]
+            }
+        }
+    ];
+
+
+
+    var i = 1;
+    var $testResult = $('#test-results tbody');
+    _.each(tests, function(test){
+        var template = $('#test-row-template').html();
+        var $testRow = _.template(template, test);
+        $testResult.append($testRow);
+
+
+    });
+
+    $('#test-results').on('click', '.js-test-run', function(e){
+        var testName = $(this).attr('data-testname-run');
+        var testRow = jQuery( "[data-testname='" + testName + "']" );
+        console.log(testName);
+        console.log(testRow);
+        e.preventDefault();
+    })
+
 </script>
 
 </body>
