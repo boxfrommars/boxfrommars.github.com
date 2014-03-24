@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+include "parts/head.htm"
+
+<body>
+
+<!-- Wrap all page content here -->
+<div id="wrap">
+
+    <!-- Fixed navbar -->
+    include "parts/navbar.htm"
+
+    <!-- Begin page content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="page-header">
+                    <h1>Тесты API</h1>
+                </div>
+
+                <table class="table table-striped" id="test-results">
+                    <thead>
+                        <tr>
+                            <th>Запрос</th>
+                            <th>Группа</th>
+                            <th>Название</th>
+                            <th>Схема</th>
+                            <th></th>
+                            <th>Результат</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+
+                </table>
+
+
+                <!--cinclude "parts/disqus.htm"-->
+            </div>
+
+            <div class="col-md-3 hidden-xs hidden-sm sidebar-column">
+                <div data-spy="affix" data-offset-top="40" data-offset-bottom="200" class="sidebar-affix">
+                    <ul class="nav bs-sidenav">
+                        <li class="">
+                            <a href="#">Ссылки</a>
+                            <ul class="nav">
+                                <li><a href="#js-href-http_codes">Something</a></li>
+                                <li><a href="#js-href-http_errors">Nevermore</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="push"></div>
+</div>
+
+include "parts/footer.htm"
+
+<script type="text/html" id="test-row-template">
+    <tr data-testname="<%= name %>">
+        <td><code><%= request %></code></td>
+        <td><%= group %></td>
+        <td><%= title %></td>
+        <td><% _.each(schemas, function(item){ %>
+                <a href="<%= item %>"><%= _.last(item.split('/')) %></a>
+            <% }); %></td>
+        <td><a href="#" class="js-test-run" data-testname-run="<%= name %>"><span class="glyphicon glyphicon-play"></span> Run</a></td>
+        <td>
+            <!--<span class="label label-default">Не запускался</span>-->
+            <!--<span class="label label-danger">Не пройден</span>-->
+            <span class="label label-success">Пройден</span>
+        </td>
+    </tr>
+</script>
+
+<script>
+    var tests = [
+        {
+            "name": "order-get",
+            "request": "GET /order/:orderId",
+            "group": "Заказы",
+            "title": "Получение по id",
+            "schemas": ["/tux/src/schemas/order-schema.json"],
+            "sources": {
+                "route": "/orders/:orderId",
+                "tests": [{
+                    "uriParams": {
+                        ":orderId": 1
+                    }
+                }, {
+                    "uriParams": {
+                        ":orderId": 1
+                    }
+                }]
+            }
+        }
+    ];
+
+
+
+    var i = 1;
+    var $testResult = $('#test-results tbody');
+    _.each(tests, function(test){
+        var template = $('#test-row-template').html();
+        var $testRow = _.template(template, test);
+        $testResult.append($testRow);
+
+
+    });
+
+    $('#test-results').on('click', '.js-test-run', function(e){
+        var testName = $(this).attr('data-testname-run');
+        var testRow = jQuery( "[data-testname='" + testName + "']" );
+        console.log(testName);
+        console.log(testRow);
+        e.preventDefault();
+    })
+
+</script>
+
+</body>
+</html>
