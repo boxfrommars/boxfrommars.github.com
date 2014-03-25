@@ -1,7 +1,24 @@
 module.exports = function(grunt) {
+    var vendorJsFiles = [
+        'public/assets/vendor/jquery/jquery.js',
+    ];
+
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        bower: {
+            install: {
+                options: {
+                    targetDir: './assets/vendor',
+                        layout: 'byType',
+                        install: true,
+                        verbose: false,
+                        cleanTargetDir: true,
+                        cleanBowerDir: false,
+                        bowerOptions: {}
+                }
+            }
+        },
         includes: {
             build: {
                 cwd: 'src',
@@ -24,8 +41,9 @@ module.exports = function(grunt) {
         }
     });
 
+    grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-includes');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('default', ['includes']);
+    grunt.registerTask('default', ['includes', 'bower']);
 };

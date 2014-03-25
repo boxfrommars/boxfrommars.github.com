@@ -70,14 +70,18 @@ include "parts/footer.htm"
             <% }); %></td>
         <td><a href="#" class="js-test-run" data-testname-run="<%= name %>"><span class="glyphicon glyphicon-play"></span> Run</a></td>
         <td>
-            <!--<span class="label label-default">Не запускался</span>-->
-            <!--<span class="label label-danger">Не пройден</span>-->
-            <span class="label label-success">Пройден</span>
+            <span class="label label-default">Не запускался</span>
+            <span class="label label-danger hide">Не пройден</span>
+            <span class="label label-success hide">Пройден</span>
+            <span class="label label-info hide">Выполняется</span>
         </td>
     </tr>
 </script>
-
+<script src="assets/vendor/tv4/tv4.js"></script>
 <script>
+
+    var baseUrl = 'http://localhost:8888';
+
     var tests = [
         {
             "name": "order-get",
@@ -86,21 +90,65 @@ include "parts/footer.htm"
             "title": "Получение по id",
             "schemas": ["/tux/src/schemas/order-schema.json"],
             "sources": {
-                "route": "/orders/:orderId",
+                "route": "/order/:orderId",
                 "tests": [{
                     "uriParams": {
                         ":orderId": 1
                     }
                 }, {
                     "uriParams": {
-                        ":orderId": 1
+                        ":orderId": 2
                     }
                 }]
             }
         }
     ];
 
+    var schema = {
+        "title": "Order Schema",
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "integer"
+            },
+            "lastName": {
+                "type": "integer"
+            }
+        },
+        "required": ["id", "lastName"]
+    };
 
+    var runTest = function(testName){
+        var testRow = jQuery( "[data-testname='" + testName + "']" );
+        var testOptions = _.findWhere(tests, {"name": testName});
+        console.log(testOptions);
+
+        _.each(testOptions.sources.tests, function(test){
+
+            var url = testOptions.sources.route;
+            _.each(test.uriParams, function(value, key){
+                url = url.replace(key, value);
+            });
+
+            url = baseUrl + url;
+
+            console.log(url);
+
+            $.ajax({
+                url: url,
+                success: function(data){
+                    var result = tv4.validateMultiple(data, schema);
+                    console.log(result.valid);
+                    if (!result.valid) {
+                        console.log(result);
+                    }
+                }
+            });
+        });
+
+
+        var data = '';
+    }
 
     var i = 1;
     var $testResult = $('#test-results tbody');
@@ -108,17 +156,13 @@ include "parts/footer.htm"
         var template = $('#test-row-template').html();
         var $testRow = _.template(template, test);
         $testResult.append($testRow);
-
-
     });
 
     $('#test-results').on('click', '.js-test-run', function(e){
         var testName = $(this).attr('data-testname-run');
-        var testRow = jQuery( "[data-testname='" + testName + "']" );
-        console.log(testName);
-        console.log(testRow);
+        runTest(testName);
         e.preventDefault();
-    })
+    });
 
 </script>
 

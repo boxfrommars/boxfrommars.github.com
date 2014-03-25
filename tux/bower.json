@@ -1,0 +1,23 @@
+{
+  "name": "Tux",
+  "version": "0.1.0",
+  "homepage": "http://boxfrommars.github.com/tux",
+  "authors": [
+    "Dmitry Groza <boxfrommars@gmail.com>"
+  ],
+  "description": "tux api",
+  "main": "?",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "tv4": "~1.0.15"
+  },
+  "devDependencies": {}
+}
