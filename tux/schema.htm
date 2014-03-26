@@ -150,9 +150,192 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="page-header">
-                    <h1>Заголовок</h1>
+                    <h1>Схемы API</h1>
                 </div>
+                <h4 class="anchored">Заказ</h4>
+<pre class="code">
+{
+    "id": "/order",
+    "title": "Order Schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "customer": {
+            "$ref": "/customer"
+        },
+        "areaId": {
+            "type": "integer"
+        },
+        "rides": {
+            "type": "array",
+            "items": {
+                "$ref": "/ride"
+            }
+        }
+    },
+    "required": ["id", "customer", "areaId", "rides"]
+}
+</pre>
+                <h4 class="anchored">Клиент</h4>
+<pre class="code">
+{
+    "id": "/customer",
+    "title": "Customer Schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "name": {
+            "type": "string"
+        },
+        "language": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2
+        },
+        "rank": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+        },
+        "phone": {
+            "type": "string",
+            "pattern": "\\d+"
+        },
+        "discountCard": {
+            "type": "string"
+        },
+        "frequentAddresses": {
+            "type": "array",
+            "items": {
+                "$ref": "/address"
+            }
 
+        }
+    },
+    "required": ["id", "name", "language", "phone"]
+}
+</pre>
+                <h4 class="anchored">Адрес</h4>
+<pre class="code">
+{
+    "id": "/address",
+    "title": "Address Schema",
+    "type": "object"
+}
+</pre>
+                <h4 class="anchored">Поездка</h4>
+<pre class="code">
+{
+    "id": "/ride",
+    "title": "Ride Schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "orderType": {
+            "type": "string",
+            "enum": ["emergency", "normal", "preorder"]
+        },
+        "preOrderTime": {
+            "oneOf": [{"type": "null"}, {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"}]
+        },
+        "alertTypeId": {
+            "type": "integer"
+        },
+        "orderedProperties": {
+            "type": "object",
+            "properties": {
+                "options": {
+                    "type": "array",
+                    "items": {
+                        "type": "integer"
+                    }
+                },
+                "type": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "integer"
+                        },
+                        "classId": {
+                            "oneOf": [{"type": "null"}, {"type": "integer"}]
+                        }
+                    },
+                    "required": ["id"]
+                }
+            }
+        },
+        "phone": {
+            "type": "string",
+            "pattern": "\\d+"
+        },
+        "description": {
+            "type": "string"
+        },
+        "departureAddress": {
+            "$ref": "/address"
+        },
+        "destinationAddress": {
+            "$ref": "/address"
+        },
+        "vehicle": {
+            "$ref": "/vehicle"
+        },
+        "timeline": {
+            "$ref": "/timeline"
+        },
+        "path": {
+            "type": "array",
+            "items": {
+                "$ref": "/geopoint"
+            }
+        },
+        "costDetails": {
+            "type": "object"
+        }
+    },
+
+    "required": ["id", "orderType", "preOrderTime", "alertTypeId", "orderedProperties", "phone", "description", "departureAddress", "destinationAddress", "vehicle", "timeline", "path", "costDetails"]
+}
+</pre>
+                <h4 class="anchored">Таймлайн</h4>
+<pre class="code">
+{
+    "id": "/timeline",
+    "title": "Timeline Schema",
+    "type": "array"
+}
+</pre>
+                <h4 class="anchored">Транспортное средство</h4>
+<pre class="code">
+{
+    "id": "/vehicle",
+    "title": "Vehicle Schema",
+    "type": "object"
+}
+</pre>
+                <h4 class="anchored">Географическая координата</h4>
+<pre class="code">
+{
+    "id": "/geopoint",
+    "title": "Geo Point Schema",
+    "type": "object",
+    "properties": {
+        "lt": {
+            "type": "numeric"
+        },
+        "ln": {
+            "type": "numeric"
+        }
+    },
+    "required": ["lt", "ln"]
+}
+</pre>
                 <div id="disqus_thread"></div>
                 <script type="text/javascript">
                     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */

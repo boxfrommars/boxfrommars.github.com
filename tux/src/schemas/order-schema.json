@@ -1,18 +1,23 @@
 {
+    "id": "/order",
     "title": "Order Schema",
     "type": "object",
     "properties": {
-        "firstName": {
-            "type": "string"
+        "id": {
+            "type": "integer"
         },
-        "lastName": {
-            "type": "string"
+        "customer": {
+            "$ref": "/customer"
         },
-        "age": {
-            "description": "Age in years",
-            "type": "integer",
-            "minimum": 0
+        "areaId": {
+            "type": "integer"
+        },
+        "rides": {
+            "type": "array",
+            "items": {
+                "$ref": "/ride"
+            }
         }
     },
-    "required": ["firstName", "lastName"]
+    "required": ["id", "customer", "areaId", "rides"]
 }

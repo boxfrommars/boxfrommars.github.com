@@ -1,0 +1,14 @@
+{
+    "id": "/geopoint",
+    "title": "Geo Point Schema",
+    "type": "object",
+    "properties": {
+        "lt": {
+            "type": "numeric"
+        },
+        "ln": {
+            "type": "numeric"
+        }
+    },
+    "required": ["lt", "ln"]
+}

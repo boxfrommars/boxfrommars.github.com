@@ -1,0 +1,38 @@
+{
+    "id": "/customer",
+    "title": "Customer Schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "name": {
+            "type": "string"
+        },
+        "language": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 2
+        },
+        "rank": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5
+        },
+        "phone": {
+            "type": "string",
+            "pattern": "\\d+"
+        },
+        "discountCard": {
+            "type": "string"
+        },
+        "frequentAddresses": {
+            "type": "array",
+            "items": {
+                "$ref": "/address"
+            }
+
+        }
+    },
+    "required": ["id", "name", "language", "phone"]
+}

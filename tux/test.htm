@@ -136,7 +136,9 @@
                     <li><a href="/tux/index.htm">Общие сведения</a></li>
                     <li><a href="/tux/api.htm">API</a></li>
                     <li><a href="/tux/api-websocket.htm">WebSocket API</a></li>
+                    <li><a href="/tux/schema.htm">Схемы API</a></li>
                     <li><a href="/tux/processes.htm">Процессы взаимодействия</a></li>
+                    <li><a href="/tux/test.htm">Тест API</a></li>
                     <li><a href="/tux/changelog.htm">Changelog</a></li>
                 </ul>
             </div><!--/.nav-collapse -->
@@ -172,19 +174,19 @@
                 <!--cinclude "parts/disqus.htm"-->
             </div>
 
-            <div class="col-md-3 hidden-xs hidden-sm sidebar-column">
-                <div data-spy="affix" data-offset-top="40" data-offset-bottom="200" class="sidebar-affix">
-                    <ul class="nav bs-sidenav">
-                        <li class="">
-                            <a href="#">Ссылки</a>
-                            <ul class="nav">
-                                <li><a href="#js-href-http_codes">Something</a></li>
-                                <li><a href="#js-href-http_errors">Nevermore</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <!--<div class="col-md-3 hidden-xs hidden-sm sidebar-column">-->
+                <!--<div data-spy="affix" data-offset-top="40" data-offset-bottom="200" class="sidebar-affix">-->
+                    <!--<ul class="nav bs-sidenav">-->
+                        <!--<li class="">-->
+                            <!--<a href="#">Ссылки</a>-->
+                            <!--<ul class="nav">-->
+                                <!--<li><a href="#js-href-http_codes">Something</a></li>-->
+                                <!--<li><a href="#js-href-http_errors">Nevermore</a></li>-->
+                            <!--</ul>-->
+                        <!--</li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            <!--</div>-->
         </div>
     </div>
     <div id="push"></div>
@@ -217,22 +219,42 @@
         <td><code><%= request %></code></td>
         <td><%= group %></td>
         <td><%= title %></td>
-        <td><% _.each(schemas, function(item){ %>
-                <a href="<%= item %>"><%= _.last(item.split('/')) %></a>
-            <% }); %></td>
+        <td><a href="<%= schema %>"><%= _.last(schema.split('/')) %></a></td>
         <td><a href="#" class="js-test-run" data-testname-run="<%= name %>"><span class="glyphicon glyphicon-play"></span> Run</a></td>
         <td>
-            <span class="label label-default">Не запускался</span>
-            <span class="label label-danger hide">Не пройден</span>
-            <span class="label label-success hide">Пройден</span>
-            <span class="label label-info hide">Выполняется</span>
+            <span class="label label-default js-result-label">Не запускался</span>
+            <span class="label label-danger js-result-label hide">Не пройден</span>
+            <span class="label label-success js-result-label hide">Пройден</span>
+            <span class="label label-info js-result-label hide">Выполняется</span>
         </td>
     </tr>
 </script>
 <script src="assets/vendor/tv4/tv4.js"></script>
 <script>
 
-    var baseUrl = 'http://localhost:8888';
+    var apiBaseUrl = 'http://localhost:8888';
+    var schemaBaseUrl = 'src/schemas/';
+
+    var schemas = [
+        'geopoint-schema.json',
+        'vehicle-schema.json',
+        'timeline-schema.json',
+        'order-schema.json',
+        'ride-schema.json',
+        'customer-schema.json',
+        'address-schema.json',
+        'order-schema.json'
+    ];
+    _.each(schemas, function(schemaName){
+        $.ajax({
+            url: schemaBaseUrl + schemaName,
+            dataType: 'json',
+            success: function (schema) {
+                tv4.addSchema(schema);
+            }
+        });
+    });
+
 
     var tests = [
         {
@@ -240,7 +262,7 @@
             "request": "GET /order/:orderId",
             "group": "Заказы",
             "title": "Получение по id",
-            "schemas": ["/tux/src/schemas/order-schema.json"],
+            "schema": "/tux/src/schemas/order-schema.json",
             "sources": {
                 "route": "/order/:orderId",
                 "tests": [{
@@ -256,25 +278,15 @@
         }
     ];
 
-    var schema = {
-        "title": "Order Schema",
-        "type": "object",
-        "properties": {
-            "id": {
-                "type": "integer"
-            },
-            "lastName": {
-                "type": "integer"
-            }
-        },
-        "required": ["id", "lastName"]
-    };
-
     var runTest = function(testName){
-        var testRow = jQuery( "[data-testname='" + testName + "']" );
-        var testOptions = _.findWhere(tests, {"name": testName});
-        console.log(testOptions);
 
+        var $testRow = $( "[data-testname='" + testName + "']" );
+        $testRow.find('.js-result-label').addClass('hide');
+        $testRow.find('.label-info').removeClass('hide');
+        var success = true;
+
+        var testOptions = _.findWhere(tests, {"name": testName});
+        var dfrs = [];
         _.each(testOptions.sources.tests, function(test){
 
             var url = testOptions.sources.route;
@@ -282,35 +294,44 @@
                 url = url.replace(key, value);
             });
 
-            url = baseUrl + url;
-
-            console.log(url);
-
-            $.ajax({
-                url: url,
-                success: function(data){
-                    var result = tv4.validateMultiple(data, schema);
-                    console.log(result.valid);
-                    if (!result.valid) {
-                        console.log(result);
-                    }
-                }
-            });
+            dfrs.push($.ajax({url: apiBaseUrl + url}));
         });
 
+        var defer = $.when.apply($, dfrs);
 
-        var data = '';
-    }
 
-    var i = 1;
-    var $testResult = $('#test-results tbody');
+        defer.done(function(){
+            _.each(arguments, function(response){
+                var data = response[0];
+                var result = tv4.validateMultiple(data, '/order', false, false);
+//                console.log(result);
+                if(!result.valid) {
+                    success = false;
+                }
+                if (!result.valid) {
+                    console.log(result);
+                }
+            });
+
+            if (success) {
+                $testRow.find('.js-result-label').addClass('hide');
+                $testRow.find('.label-success').removeClass('hide');
+            } else {
+                $testRow.find('.js-result-label').addClass('hide');
+                $testRow.find('.label-danger').removeClass('hide');
+            }
+        });
+    };
+
+    var $testResult = $('#test-results');
+
     _.each(tests, function(test){
         var template = $('#test-row-template').html();
         var $testRow = _.template(template, test);
-        $testResult.append($testRow);
+        $testResult.find('tbody').append($testRow);
     });
 
-    $('#test-results').on('click', '.js-test-run', function(e){
+    $testResult.on('click', '.js-test-run', function(e){
         var testName = $(this).attr('data-testname-run');
         runTest(testName);
         e.preventDefault();
