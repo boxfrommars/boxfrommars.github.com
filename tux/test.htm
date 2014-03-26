@@ -152,6 +152,14 @@
                 <div class="page-header">
                     <h1>Тесты API</h1>
                 </div>
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="api-base-url" class="col-sm-2 control-label">API base url</label>
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" placeholder="API base url" id="api-base-url" name="api-base-url" value="http://localhost:8888">
+                        </div>
+                    </div>
+                </form>
 
                 <table class="table table-striped" id="test-results">
                     <thead>
@@ -232,7 +240,7 @@
 <script src="assets/vendor/tv4/tv4.js"></script>
 <script>
 
-    var apiBaseUrl = 'http://localhost:8888';
+
     var schemaBaseUrl = 'src/schemas/';
 
     var schemas = [
@@ -279,7 +287,7 @@
     ];
 
     var runTest = function(testName){
-
+        var apiBaseUrl = 'http://localhost:8888';
         var $testRow = $( "[data-testname='" + testName + "']" );
         $testRow.find('.js-result-label').addClass('hide');
         $testRow.find('.label-info').removeClass('hide');
