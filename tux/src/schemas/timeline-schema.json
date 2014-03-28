@@ -3,8 +3,24 @@
     "title": "Timeline Schema",
     "type": "array",
     "items": {
-        "oneOf": [
-
-        ]
+        "type": "object",
+        "properties": {
+            "type": {
+                "type": "string",
+                "enum": [
+                    "ride_order", "vehicle_assign", "ride_change", "vehicle_arrive", "customer_not_go",
+                    "ride_cancel", "ride_start", "ride_end", "call", "message"]
+            },
+            "time": {
+                "$ref": "/time"
+            },
+            "message": {
+                "type": "string"
+            },
+            "data": {
+                "type": "object"
+            }
+        },
+        "required": ["type", "time", "message"]
     }
 }

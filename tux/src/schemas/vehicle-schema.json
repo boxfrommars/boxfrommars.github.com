@@ -1,5 +1,41 @@
 {
     "id": "/vehicle",
     "title": "Vehicle Schema",
-    "type": "object"
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "callSign": {
+            "type": "string"
+        },
+        "number": {
+            "type": "string"
+        },
+        "brand": {
+            "type": "string"
+        },
+        "colorId": {
+            "type": "integer"
+        },
+        "type": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "classId": {
+                    "type": "integer"
+                }
+            },
+            "required": ["id"]
+        },
+        "options": {
+            "type": "array",
+            "items": {
+                "type": "integer"
+            }
+        }
+    },
+    "required": ["id", "callSign", "number", "brand", "colorId", "type", "options"]
 }

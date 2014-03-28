@@ -244,6 +244,7 @@
     var schemaBaseUrl = 'src/schemas/';
 
     var schemas = [
+        'time-schema.json',
         'geopoint-schema.json',
         'vehicle-schema.json',
         'timeline-schema.json',
@@ -311,8 +312,7 @@
         defer.done(function(){
             _.each(arguments, function(response){
                 var data = response[0];
-                var result = tv4.validateMultiple(data, '/order', false, false);
-//                console.log(result);
+                var result = tv4.validateMultiple(data, '/order', false, true);
                 if(!result.valid) {
                     success = false;
                 }
@@ -328,6 +328,10 @@
                 $testRow.find('.js-result-label').addClass('hide');
                 $testRow.find('.label-danger').removeClass('hide');
             }
+        });
+        defer.fail(function(){
+            $testRow.find('.js-result-label').addClass('hide');
+            $testRow.find('.label-danger').removeClass('hide');
         });
     };
 

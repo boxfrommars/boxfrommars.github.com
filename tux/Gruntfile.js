@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         },
         watch: {
             html: {
-                files: ['src/api/**.json', 'src/**.htm', 'src/parts/**.htm', 'src/api/dicts/**.json', 'src/api/parts/**.json', 'src/websocket-api/**.json'],
+                files: ['src/api/**.json', 'src/**.htm', 'src/parts/**.htm', 'src/api/dicts/**.json', 'src/api/parts/**.json', 'src/websocket-api/**.json', 'src/schemas/**.json'],
                 tasks: ['includes']
             },
             options: {
