@@ -1,5 +1,10 @@
 {
     "id": "/timeline",
     "title": "Timeline Schema",
-    "type": "array"
+    "type": "array",
+    "items": {
+        "oneOf": [
+
+        ]
+    }
 }
