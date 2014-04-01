@@ -353,7 +353,34 @@
             }
         },
         "costDetails": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "callCost": {
+                    "type": "numeric",
+                    "minimum": 0
+                },
+                "distance": {
+                    "type": "numeric",
+                    "minimum": 0
+                },
+                "waitingTime": {
+                    "type": "numeric",
+                    "minimum": 0
+                },
+                "pathCost": {
+                    "type": "numeric",
+                    "minimum": 0
+                },
+                "waitingCost": {
+                    "type": "numeric",
+                    "minimum": 0
+                },
+                "cost": {
+                    "type": "numeric",
+                    "minimum": 0
+                }
+            },
+            "required": []
         }
     },
 
