@@ -18,6 +18,7 @@ include "parts/head.htm"
                 <div class="page-header">
                     <h1>Схемы API</h1>
                 </div>
+                <p>Схемы для ответов на GET запросы, написаны в формате <a href="http://json-schema.org/documentation.html">json-schema draft v4</a></p>
                 <h4 class="anchored" id="js-href-order-schema">Заказ</h4>
 <pre class="code">
 include "schemas/order-schema.json"
@@ -83,6 +84,10 @@ include "schemas/sync-vehicle-options-schema.json"
 <pre class="code">
 include "schemas/sync-dictionaries-schema.json"
 </pre>
+                <h4 class="anchored" id="js-href-sync-break">Перерывы</h4>
+<pre class="code">
+include "schemas/break-schema.json"
+</pre>
                 include "parts/disqus.htm"
             </div>
 
@@ -103,6 +108,7 @@ include "schemas/sync-dictionaries-schema.json"
                         <li><a href="#js-href-dictionaries-schema">Словари</a></li>
                         <li><a href="#js-href-options-schema">Настройки</a></li>
                         <li><a href="#js-href-sync-schema">Синхронизация</a></li>
+                        <li><a href="#js-href-sync-break">Перерывы</a></li>
                     </ul>
                 </div>
             </div>

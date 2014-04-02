@@ -152,6 +152,7 @@
                 <div class="page-header">
                     <h1>Схемы API</h1>
                 </div>
+                <p>Схемы для ответов на GET запросы, написаны в формате <a href="http://json-schema.org/documentation.html">json-schema draft v4</a></p>
                 <h4 class="anchored" id="js-href-order-schema">Заказ</h4>
 <pre class="code">
 {
@@ -834,6 +835,34 @@
     "required": ["version"]
 }
 </pre>
+                <h4 class="anchored" id="js-href-sync-break">Перерывы</h4>
+<pre class="code">
+{
+    "id": "/break",
+    "title": "Break Schema",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "enum": ["smoking", "lunch", "restroom"]
+        },
+        "queue": {
+            "type": "integer"
+        },
+        "position": {
+            "oneOf": [{
+                "type": "null"
+            }, {
+                "type": "integer"
+            }]
+        },
+        "estimatedStartTime": {
+            "type": "integer"
+        }
+    },
+    "required": ["type", "queue", "position", "estimatedStartTime"]
+}
+</pre>
                 <div id="disqus_thread"></div>
                 <script type="text/javascript">
                     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -867,6 +896,7 @@
                         <li><a href="#js-href-dictionaries-schema">Словари</a></li>
                         <li><a href="#js-href-options-schema">Настройки</a></li>
                         <li><a href="#js-href-sync-schema">Синхронизация</a></li>
+                        <li><a href="#js-href-sync-break">Перерывы</a></li>
                     </ul>
                 </div>
             </div>
