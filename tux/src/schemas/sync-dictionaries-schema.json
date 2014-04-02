@@ -1,0 +1,11 @@
+{
+    "id": "/sync-dictionaries",
+    "title": "Sync Dictionaries Schema",
+    "type": "object",
+    "properties": {
+        "version": {
+            "type": "integer"
+        }
+    },
+    "required": ["version"]
+}

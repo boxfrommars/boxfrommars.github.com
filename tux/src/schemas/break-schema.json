@@ -1,0 +1,25 @@
+{
+    "id": "/break",
+    "title": "Break Schema",
+    "type": "object",
+    "properties": {
+        "type": {
+            "type": "string",
+            "enum": ["smoking", "lunch", "restroom"]
+        },
+        "queue": {
+            "type": "integer"
+        },
+        "position": {
+            "oneOf": [{
+                "type": "null"
+            }, {
+                "type": "integer"
+            }]
+        },
+        "estimatedStartTime": {
+            "type": "integer"
+        }
+    },
+    "required": ["type", "queue", "position", "estimatedStartTime"]
+}

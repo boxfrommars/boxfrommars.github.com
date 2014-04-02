@@ -1,0 +1,14 @@
+{
+    "id": "/template",
+    "title": "Template Schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "": {
+            "type": "string"
+        }
+    },
+    "required": ["id", ""]
+}

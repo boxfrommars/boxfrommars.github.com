@@ -707,6 +707,133 @@
     "required": ["version", "dictionaries"]
 }
 </pre>
+                <h4 class="anchored" id="js-href-options-schema">Настройки</h4>
+<pre class="code">
+{
+    "id": "/options",
+    "title": "Options Schema",
+    "type": "object",
+    "properties": {
+        "mapService": {
+            "type": "string",
+            "enum": ["osm"]
+        },
+        "imageBaseUrl": {
+            "type": "string",
+            "pattern": "^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$"
+        },
+        "language": {
+            "type": "string",
+            "enum": ["ru", "en"]
+        },
+        "sync": {
+            "type": "object",
+            "properties": {
+                "vehicleOptions": {
+                    "type": "object",
+                    "properties": {
+                        "interval": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["interval"]
+                },
+                "time": {
+                    "type": "object",
+                    "properties": {
+                        "interval": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["interval"]
+                },
+                "dictionaries": {
+                    "type": "object",
+                    "properties": {
+                        "interval": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["interval"]
+                }
+            },
+            "required": ["vehicleOptions", "time", "dictionaries"]
+        },
+        "sip": {
+            "type": "object",
+            "properties": {
+                "credentials": {
+                    "type": "object",
+                    "properties": {
+                        "uid": {
+                            "type": "string"
+                        },
+                        "password": {
+                            "type": "string"
+                        }
+                    },
+                    "required": ["uid", "password"]
+                },
+                "ip": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "string"
+                }
+            },
+            "required": ["credentials", "ip", "port"]
+        }
+    },
+    "required": ["mapService", "imageBaseUrl", "language", "sync", "sip"]
+}
+</pre>
+                <h4 class="anchored" id="js-href-sync-schema">Синхронизация</h4>
+                <h5><b>Синхронизация времени</b></h5>
+<pre class="code">
+{
+    "id": "/sync-time",
+    "title": "Sync Time Schema",
+    "type": "object",
+    "properties": {
+        "time": {
+            "$ref": "/time"
+        }
+    },
+    "required": ["time"]
+}
+</pre>
+                <h5><b>Синхронизация доступных свойств автомобиля</b></h5>
+<pre class="code">
+{
+    "id": "/sync-vehicle-options",
+    "title": "Sync Vehicle Options Schema",
+    "type": "object",
+    "properties": {
+        "vehicleOptions": {
+            "type": "array",
+            "items": {
+                "type": "array",
+                "items": "integer"
+            }
+        }
+    },
+    "required": ["vehicleOptions"]
+}
+</pre>
+                <h5><b>Синхронизация словарей</b></h5>
+<pre class="code">
+{
+    "id": "/sync-dictionaries",
+    "title": "Sync Dictionaries Schema",
+    "type": "object",
+    "properties": {
+        "version": {
+            "type": "integer"
+        }
+    },
+    "required": ["version"]
+}
+</pre>
                 <div id="disqus_thread"></div>
                 <script type="text/javascript">
                     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
@@ -738,6 +865,8 @@
                         <li><a href="#js-href-shift-schema">Заявка на открытие смены</a></li>
                         <li><a href="#js-href-shift-requirement-schema">Требование в заявке на открытие смены</a></li>
                         <li><a href="#js-href-dictionaries-schema">Словари</a></li>
+                        <li><a href="#js-href-options-schema">Настройки</a></li>
+                        <li><a href="#js-href-sync-schema">Синхронизация</a></li>
                     </ul>
                 </div>
             </div>

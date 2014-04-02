@@ -1,0 +1,77 @@
+{
+    "id": "/options",
+    "title": "Options Schema",
+    "type": "object",
+    "properties": {
+        "mapService": {
+            "type": "string",
+            "enum": ["osm"]
+        },
+        "imageBaseUrl": {
+            "type": "string",
+            "pattern": "^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$"
+        },
+        "language": {
+            "type": "string",
+            "enum": ["ru", "en"]
+        },
+        "sync": {
+            "type": "object",
+            "properties": {
+                "vehicleOptions": {
+                    "type": "object",
+                    "properties": {
+                        "interval": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["interval"]
+                },
+                "time": {
+                    "type": "object",
+                    "properties": {
+                        "interval": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["interval"]
+                },
+                "dictionaries": {
+                    "type": "object",
+                    "properties": {
+                        "interval": {
+                            "type": "integer"
+                        }
+                    },
+                    "required": ["interval"]
+                }
+            },
+            "required": ["vehicleOptions", "time", "dictionaries"]
+        },
+        "sip": {
+            "type": "object",
+            "properties": {
+                "credentials": {
+                    "type": "object",
+                    "properties": {
+                        "uid": {
+                            "type": "string"
+                        },
+                        "password": {
+                            "type": "string"
+                        }
+                    },
+                    "required": ["uid", "password"]
+                },
+                "ip": {
+                    "type": "string"
+                },
+                "port": {
+                    "type": "string"
+                }
+            },
+            "required": ["credentials", "ip", "port"]
+        }
+    },
+    "required": ["mapService", "imageBaseUrl", "language", "sync", "sip"]
+}

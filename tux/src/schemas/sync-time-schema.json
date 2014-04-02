@@ -1,0 +1,11 @@
+{
+    "id": "/sync-time",
+    "title": "Sync Time Schema",
+    "type": "object",
+    "properties": {
+        "time": {
+            "$ref": "/time"
+        }
+    },
+    "required": ["time"]
+}

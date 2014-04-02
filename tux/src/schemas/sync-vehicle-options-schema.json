@@ -1,0 +1,15 @@
+{
+    "id": "/sync-vehicle-options",
+    "title": "Sync Vehicle Options Schema",
+    "type": "object",
+    "properties": {
+        "vehicleOptions": {
+            "type": "array",
+            "items": {
+                "type": "array",
+                "items": "integer"
+            }
+        }
+    },
+    "required": ["vehicleOptions"]
+}
