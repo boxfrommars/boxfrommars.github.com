@@ -1,0 +1,17 @@
+{
+    "id": "/shift-requirement",
+    "title": "Shift Requirement Schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "name": {
+            "type": "string"
+        },
+        "important": {
+            "type": "boolean"
+        }
+    },
+    "required": ["id", "name", "important"]
+}

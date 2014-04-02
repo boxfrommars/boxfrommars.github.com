@@ -43,7 +43,8 @@
                                         }
                                     }
                                 }
-                            }
+                            },
+                            "required": ["type", "info", "status"]
                         }, {
                             "type": "object",
                             "properties": {
@@ -60,18 +61,21 @@
                                         "name": {
                                             "type": "string"
                                         }
-                                    }
+                                    },
+                                    "required": ["id", "name"]
                                 },
                                 "status": {
                                     "type": "object",
                                     "properties": {}
                                 }
-                            }
+                            },
+                            "required": ["type", "info", "status"]
                         }]
                     }
-                }
+                },
+                "required": ["id", "message", "time", "sender"]
             }
         }
     },
-    "required": ["id"]
+    "required": ["id", "messages"]
 }

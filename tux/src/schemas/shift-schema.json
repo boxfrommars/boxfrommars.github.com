@@ -1,0 +1,54 @@
+{
+    "id": "/shift",
+    "title": "Shift Schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "photo": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "time": {
+            "$ref": "/time"
+        },
+        "lifetime": {
+            "type": "integer"
+        },
+        "attemptCount": {
+            "type": "integer"
+        },
+        "comment": {
+            "type": "string"
+        },
+        "requirements": {
+            "type": "object",
+            "properties": {
+                "vehicle": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "/shift-requirement"
+                    }
+                },
+                "priorities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "/shift-requirement"
+                    }
+                },
+                "request": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "/shift-requirement"
+                    }
+                }
+            },
+            "required": ["id"]
+        }
+    },
+    "required": ["id", "photo", "time", "lifetime", "attemptCount", "comment", "requirements"]
+}

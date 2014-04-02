@@ -506,6 +506,167 @@
     "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$"
 }
 </pre>
+                <h4 class="anchored">Сообщения</h4>
+<pre class="code">
+{
+    "id": "/thread",
+    "title": "Thread Schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "messages": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "time": {
+                        "$ref": "/time"
+                    },
+                    "sender": {
+                        "type": "object",
+                        "oneOf": [{
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "enum": ["vehicle"]
+                                },
+                                "info": {
+                                    "$ref": "/vehicle"
+                                },
+                                "status": {
+                                    "type": "object",
+                                    "properties": {
+                                        "order": {
+                                            "$ref": "/order"
+                                        },
+                                        "ride": {
+                                            "$ref": "/ride"
+                                        }
+                                    }
+                                }
+                            },
+                            "required": ["type", "info", "status"]
+                        }, {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "enum": ["operator"]
+                                },
+                                "info": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": ["id", "name"]
+                                },
+                                "status": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            },
+                            "required": ["type", "info", "status"]
+                        }]
+                    }
+                },
+                "required": ["id", "message", "time", "sender"]
+            }
+        }
+    },
+    "required": ["id", "messages"]
+}
+</pre>
+                <h4 class="anchored">Заявка на открытие смены</h4>
+<pre class="code">
+{
+    "id": "/shift",
+    "title": "Shift Schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "photo": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            },
+            "minItems": 1
+        },
+        "time": {
+            "$ref": "/time"
+        },
+        "lifetime": {
+            "type": "integer"
+        },
+        "attemptCount": {
+            "type": "integer"
+        },
+        "comment": {
+            "type": "string"
+        },
+        "requirements": {
+            "type": "object",
+            "properties": {
+                "vehicle": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "/shift-requirement"
+                    }
+                },
+                "priorities": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "/shift-requirement"
+                    }
+                },
+                "request": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "/shift-requirement"
+                    }
+                }
+            },
+            "required": ["id"]
+        }
+    },
+    "required": ["id", "photo", "time", "lifetime", "attemptCount", "comment", "requirements"]
+}
+</pre>
+                <h4 class="anchored">Требование в заявке на открытие смены</h4>
+<pre class="code">
+{
+    "id": "/shift-requirement",
+    "title": "Shift Requirement Schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "name": {
+            "type": "string"
+        },
+        "important": {
+            "type": "boolean"
+        }
+    },
+    "required": ["id", "name", "important"]
+}
+</pre>
                 <div id="disqus_thread"></div>
                 <script type="text/javascript">
                     /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
