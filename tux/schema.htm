@@ -272,7 +272,18 @@
             "type": "string"
         },
         "entrance": {
-            "type": "object"
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "location": {
+                    "$ref": "/geopoint"
+                }
+            }
         },
         "description": {
             "type": "string"
@@ -281,7 +292,7 @@
             "$ref": "/geopoint"
         }
     },
-    "required": ["id", "isPublic", "street", "district", "house", "entrance", "description", "location"]
+    "required": ["id", "isPublic", "street", "district", "house", "entrance", "description"]
 }
 </pre>
                 <h4 class="anchored">Поездка</h4>
