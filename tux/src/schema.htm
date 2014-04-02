@@ -3,7 +3,7 @@
 
 include "parts/head.htm"
 
-<body>
+<body data-spy="scroll" data-target=".sidebar-affix">
 
 <!-- Wrap all page content here -->
 <div id="wrap">
@@ -18,49 +18,53 @@ include "parts/head.htm"
                 <div class="page-header">
                     <h1>Схемы API</h1>
                 </div>
-                <h4 class="anchored">Заказ</h4>
+                <h4 class="anchored" id="js-href-order-schema">Заказ</h4>
 <pre class="code">
 include "schemas/order-schema.json"
 </pre>
-                <h4 class="anchored">Клиент</h4>
+                <h4 class="anchored" id="js-href-customer-schema">Клиент</h4>
 <pre class="code">
 include "schemas/customer-schema.json"
 </pre>
-                <h4 class="anchored">Адрес</h4>
+                <h4 class="anchored" id="js-href-address-schema">Адрес</h4>
 <pre class="code">
 include "schemas/address-schema.json"
 </pre>
-                <h4 class="anchored">Поездка</h4>
+                <h4 class="anchored" id="js-href-ride-schema">Поездка</h4>
 <pre class="code">
 include "schemas/ride-schema.json"
 </pre>
-                <h4 class="anchored">Таймлайн</h4>
+                <h4 class="anchored" id="js-href-timeline-schema">Таймлайн</h4>
 <pre class="code">
 include "schemas/timeline-schema.json"
 </pre>
-                <h4 class="anchored">Транспортное средство</h4>
+                <h4 class="anchored" id="js-href-vehicle-schema">Транспортное средство</h4>
 <pre class="code">
 include "schemas/vehicle-schema.json"
 </pre>
-                <h4 class="anchored">Географическая координата</h4>
+                <h4 class="anchored" id="js-href-geopoint-schema">Географическая координата</h4>
 <pre class="code">
 include "schemas/geopoint-schema.json"
 </pre>
-                <h4 class="anchored">Время</h4>
+                <h4 class="anchored" id="js-href-time-schema">Время</h4>
 <pre class="code">
 include "schemas/time-schema.json"
 </pre>
-                <h4 class="anchored">Сообщения</h4>
+                <h4 class="anchored" id="js-href-thread-schema">Сообщения</h4>
 <pre class="code">
 include "schemas/thread-schema.json"
 </pre>
-                <h4 class="anchored">Заявка на открытие смены</h4>
+                <h4 class="anchored" id="js-href-shift-schema">Заявка на открытие смены</h4>
 <pre class="code">
 include "schemas/shift-schema.json"
 </pre>
-                <h4 class="anchored">Требование в заявке на открытие смены</h4>
+                <h4 class="anchored" id="js-href-shift-requirement-schema">Требование в заявке на открытие смены</h4>
 <pre class="code">
 include "schemas/shift-requirement-schema.json"
+</pre>
+                <h4 class="anchored" id="js-href-dictionaries-schema">Словари</h4>
+<pre class="code">
+include "schemas/dictionaries-schema.json"
 </pre>
                 include "parts/disqus.htm"
             </div>
@@ -68,13 +72,18 @@ include "schemas/shift-requirement-schema.json"
             <div class="col-md-3 hidden-xs hidden-sm sidebar-column">
                 <div data-spy="affix" data-offset-top="40" data-offset-bottom="200" class="sidebar-affix">
                     <ul class="nav bs-sidenav">
-                        <li class="">
-                            <a href="#">Ссылки</a>
-                            <ul class="nav">
-                                <li><a href="#js-href-http_codes">Something</a></li>
-                                <li><a href="#js-href-http_errors">Nevermore</a></li>
-                            </ul>
-                        </li>
+                        <li><a href="#js-href-order-schema">Заказ</a></li>
+                        <li><a href="#js-href-customer-schema">Клиент</a></li>
+                        <li><a href="#js-href-address-schema">Адрес</a></li>
+                        <li><a href="#js-href-ride-schema">Поездка</a></li>
+                        <li><a href="#js-href-timeline-schema">Таймлайн</a></li>
+                        <li><a href="#js-href-vehicle-schema">Транспортное средство</a></li>
+                        <li><a href="#js-href-geopoint-schema">Географическая координата</a></li>
+                        <li><a href="#js-href-time-schema">Время</a></li>
+                        <li><a href="#js-href-thread-schema">Сообщения</a></li>
+                        <li><a href="#js-href-shift-schema">Заявка на открытие смены</a></li>
+                        <li><a href="#js-href-shift-requirement-schema">Требование в заявке на открытие смены</a></li>
+                        <li><a href="#js-href-dictionaries-schema">Словари</a></li>
                     </ul>
                 </div>
             </div>
