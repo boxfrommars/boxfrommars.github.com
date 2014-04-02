@@ -69,5 +69,5 @@
             "$ref": "/geopoint"
         }
     },
-    "required": ["id", "isPublic", "street", "district", "house", "entrance", "description"]
+    "required": ["id", "isPublic", "street", "district", "house", "description"]
 }

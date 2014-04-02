@@ -976,12 +976,16 @@
                         <td><code>string</code> Тип отправителя сообщения. На данный момент <code>operator</code> — оператор или <code>vehicle</code> — такси</td>
                     </tr>
                     <tr>
-                        <td><code>messages[].sender.data</code></td>
-                        <td><code>{}</code> Данные отправителя (разнородные: для оператора свои, для водителя — свои). Подробнее — см. ниже</td>
+                        <td><code>messages[].sender.info</code></td>
+                        <td><code>{}</code> Данные отправителя (разнородные: для оператора: идентификатор и имя, для водителя — ТС). Подробнее — см. ниже</td>
+                    </tr>
+                    <tr>
+                        <td><code>messages[].sender.status</code></td>
+                        <td><code>{}</code> Текущий статус отправителя (разнородные: для оператора пустой объект, для водителя — текущие заказ и поездка). Подробнее — см. ниже</td>
                     </tr>
                     </tbody>
                 </table>
-                <h5>Данные оператора в сообщении:</h5>
+                <h5><b>Данные оператора в сообщении</b> <code>info</code></h5>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
@@ -994,52 +998,22 @@
                     </tr>
                     </tbody>
                 </table>
-                <h5>Данные таксиста (ТС) в сообщении:</h5>
+                <h5><b>Данные таксиста (ТС) в сообщении</b> <code>info</code></h5>
+                <p>ТС таксиста, см <a href="#js-href-parts-vehicle">Транспортное средство</a></p>
+
+                <h5><b>Текущие данные оператора</b> <code>status</code></h5>
+                <p>Пустой объект</p>
+
+                <h5><b>Текущие данные таксиста</b> <code>status</code></h5>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
-                        <td><code>id</code></td>
-                        <td><code>int</code> Идентификатор</td>
-                    </tr>
-                    <tr>
-                        <td><code>callSign</code></td>
-                        <td><code>string</code> Позывной</td>
-                    </tr>
-                    <tr>
-                        <td><code>number</code></td>
-                        <td><code>string</code> Номер ТС</td>
-                    </tr>
-                    <tr>
-                        <td><code>brand</code></td>
-                        <td><code>string</code> Марка ТС</td>
-                    </tr>
-                    <tr>
-                        <td><code>colorId</code></td>
-                        <td><code>int</code> Цвет, см. <a href="#js-href-dict-color">словарь цветов</a></td>
-                    </tr>
-                    <tr>
-                        <td><code>type</code></td>
-                        <td><code>{}</code> Тип автомобиля</td>
-                    </tr>
-                    <tr>
-                        <td><code>type.id</code></td>
-                        <td><code>int</code> Тип автомобиля, словарь <a href="#js-href-dict-vehicle-type">типов ТС</a></td>
-                    </tr>
-                    <tr>
-                        <td><code>type.classId</code></td>
-                        <td><code>int</code> Класс автомобиля, если есть. Например, у типа легковой автомобиль есть класс. Словарь <a href="#js-href-dict-vehicle-class">классов ТС</a></td>
-                    </tr>
-                    <tr>
-                        <td><code>options</code></td>
-                        <td><code>[int]</code> Список идентификаторов <a href="#js-href-dict-vehicle-option">опций ТС</a></td>
-                    </tr>
-                    <tr>
                         <td><code>order</code></td>
-                        <td><code>order</code> Текущий <a href="#js-href-order-get">заказ</a></td>
+                        <td><code>order</code> Текущий заказ таксиста</td>
                     </tr>
                     <tr>
                         <td><code>ride</code></td>
-                        <td><code>ride</code> Текущая <a href="#js-href-ride-get">поездка</a></td>
+                        <td><code>ride</code> Текущий поездка таксиста</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1055,7 +1029,7 @@
             "time": "2014-01-28T13:21:60Z", // время отправки сообщения
             "sender": {
                 "type": "vehicle",
-                "data": {
+                "info": {
                     "id": 234,
                     "callSign": "5CC1-4", // позывной
                     "number": "KK345O", // номер автомобиля
@@ -1064,7 +1038,9 @@
                     "type": { // тип автомобиля (грузовой, легковой, мотоцикл)
                         "id": 4,
                         "classId": 12 // класс автомобиля, если есть
-                    },
+                    }
+                },
+                "status": {
                     "order": {}, // заказ. так как текущая поездка водителя может быть в нескольких заказах, то показываем заказ который привязан к номеру для связи
                     "ride": {} // поездка, нужно получать поездку, а не только заказ, так как в заказе не сколько поездок и нет жёсткого правила, что две поездки не могут принадлежать одному водителю
                 }
@@ -1075,10 +1051,11 @@
             "time": "2014-01-28T13:21:60Z", // время отправки сообщения
             "sender": {
                 "type": "operator",
-                "data": {
+                "info": {
                     "id": 783,
                     "name": "Дмитрий Гроза"
-                }
+                },
+                "status": {}
             }
         } // ...
     ]

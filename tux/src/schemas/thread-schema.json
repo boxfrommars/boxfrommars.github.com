@@ -1,0 +1,77 @@
+{
+    "id": "/thread",
+    "title": "Thread Schema",
+    "type": "object",
+    "properties": {
+        "id": {
+            "type": "integer"
+        },
+        "messages": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "time": {
+                        "$ref": "/time"
+                    },
+                    "sender": {
+                        "type": "object",
+                        "oneOf": [{
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "enum": ["vehicle"]
+                                },
+                                "info": {
+                                    "$ref": "/vehicle"
+                                },
+                                "status": {
+                                    "type": "object",
+                                    "properties": {
+                                        "order": {
+                                            "$ref": "/order"
+                                        },
+                                        "ride": {
+                                            "$ref": "/ride"
+                                        }
+                                    }
+                                }
+                            }
+                        }, {
+                            "type": "object",
+                            "properties": {
+                                "type": {
+                                    "type": "string",
+                                    "enum": ["operator"]
+                                },
+                                "info": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "name": {
+                                            "type": "string"
+                                        }
+                                    }
+                                },
+                                "status": {
+                                    "type": "object",
+                                    "properties": {}
+                                }
+                            }
+                        }]
+                    }
+                }
+            }
+        }
+    },
+    "required": ["id"]
+}
