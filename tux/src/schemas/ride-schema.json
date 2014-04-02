@@ -61,7 +61,16 @@
         "path": {
             "type": "array",
             "items": {
-                "$ref": "/geopoint"
+                "type": "object",
+                "properties": {
+                    "point": {
+                        "$ref": "/geopoint"
+                    },
+                    "time": {
+                        "$ref": "/time"
+                    }
+                },
+                "required": ["point", "time"]
             }
         },
         "costDetails": {
@@ -96,5 +105,5 @@
         }
     },
 
-    "required": ["id", "orderType", "preOrderTime", "alertTypeId", "orderedProperties", "phone", "description", "departureAddress", "destinationAddress", "vehicle", "timeline", "path", "costDetails"]
+    "required": ["id", "orderType", "preOrderTime", "phone", "timeline"]
 }

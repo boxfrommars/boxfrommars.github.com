@@ -134,7 +134,9 @@ include "parts/footer.htm"
     ];
 
     var runTest = function(testName){
-        var apiBaseUrl = 'http://localhost:8888';
+
+        var apiBaseUrl = $('#api-base-url').val() || 'http://localhost:8888';
+        console.log(apiBaseUrl);
         var $testRow = $( "[data-testname='" + testName + "']" );
         $testRow.find('.js-result-label').addClass('hide');
         $testRow.find('.label-info').removeClass('hide');

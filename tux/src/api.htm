@@ -98,7 +98,7 @@ include "api/order.json"
                     <tbody>
                     <tr>
                         <td><code>id</code></td>
-                        <td>Идентификатор заказа</td>
+                        <td>Идентификатор поездки</td>
                     </tr>
                     <tr>
                         <td><code>orderType</code></td>
@@ -161,11 +161,15 @@ include "api/order.json"
                         <td><code>[]</code> Путь транспортного средства, список точек на карте</td>
                     </tr>
                     <tr>
-                        <td><code>path[].lt</code></td>
+                        <td><code>path[].point</code></td>
+                        <td><code>{}</code> Координаты точки</td>
+                    </tr>
+                    <tr>
+                        <td><code>path[].point.lt</code></td>
                         <td><code>WGS 84</code> Широта точки</td>
                     </tr>
                     <tr>
-                        <td><code>path[].ln</code></td>
+                        <td><code>path[].point.ln</code></td>
                         <td><code>WGS 84</code> Долгота точки</td>
                     </tr>
                     <tr>
