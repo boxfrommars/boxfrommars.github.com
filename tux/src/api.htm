@@ -806,10 +806,11 @@ include "api/dictionaries.json"
                     <li><a href="#js-href-dict-vehicle-option">Опции ТС</a></li>
                     <li><a href="#js-href-dict-vehicle-type">Тип ТС</a></li>
                     <li><a href="#js-href-dict-vehicle-class">Класс ТС</a></li>
+                    <li><a href="#js-href-dict-vehicle-brand">Марки ТС</a></li>
                     <li><a href="#js-href-dict-color">Цвета</a></li>
                     <li><a href="#js-href-dict-alert-type">Способы оповещения</a></li>
-                    <li><a href="#js-href-dict-ride-cancel-type.json">Причины отмены поездки</a></li>
-                    <li><a href="#js-href-dict-message-cancel-type.json">Причины отказа для ответа на сообщения</a></li>
+                    <li><a href="#js-href-dict-ride-cancel-type">Причины отмены поездки</a></li>
+                    <li><a href="#js-href-dict-message-cancel-type">Причины отказа для ответа на сообщения</a></li>
                 </ul>
 
                 <h5 class="anchored" id="js-href-dict-area"><b>Группы городов</b></h5>
@@ -962,6 +963,10 @@ include "api/dicts/vehicle-type.json"
 <pre class="code">
 include "api/dicts/vehicle-class.json"
 </pre>
+                <h5 class="anchored" id="js-href-dict-vehicle-brand"><b>Марки ТС</b></h5>
+<pre class="code">
+include "api/dicts/vehicle-brand.json"
+</pre>
                 <h5 class="anchored" id="js-href-dict-color"><b>Цвета</b></h5>
 <pre class="code">
 include "api/dicts/color.json"
@@ -970,7 +975,7 @@ include "api/dicts/color.json"
 <pre class="code">
 include "api/dicts/alert-type.json"
 </pre>
-                <h5 class="anchored" id="js-href-dict-ride-cancel-type.json"><b>Причины отмены поездки</b></h5>
+                <h5 class="anchored" id="js-href-dict-ride-cancel-type"><b>Причины отмены поездки</b></h5>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
@@ -991,7 +996,7 @@ include "api/dicts/alert-type.json"
 include "api/dicts/ride-cancel-type.json"
 </pre>
 
-                <h5 class="anchored" id="js-href-dict-message-cancel-type.json"><b>Причины отказа для ответа на сообщение</b></h5>
+                <h5 class="anchored" id="js-href-dict-message-cancel-type"><b>Причины отказа для ответа на сообщение</b></h5>
 <pre class="code">
 include "api/dicts/message-cancel-type.json"
 </pre>
@@ -1233,8 +1238,8 @@ include "api/call-redirect.json"
                         <td><code>string</code> Позывной</td>
                     </tr>
                     <tr>
-                        <td><code>vehicle.brand</code></td>
-                        <td><code>string</code> Марка ТС</td>
+                        <td><code>vehicle.brandId</code></td>
+                        <td><code>string</code> Идентификатор <a href="#js-href-dict-vehicle-brand">марки ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>vehicle.colorId</code></td>
@@ -1520,8 +1525,8 @@ include "api/parts/customer.json"
                         <td><code>string</code> Номер ТС</td>
                     </tr>
                     <tr>
-                        <td><code>brand</code></td>
-                        <td><code>string</code> Марка ТС</td>
+                        <td><code>brandId</code></td>
+                        <td><code>int</code> Идентификатор <a href="#js-href-dict-vehicle-brand">марки ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>colorId</code></td>

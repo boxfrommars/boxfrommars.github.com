@@ -265,7 +265,7 @@
         "vehicle": {
             "id": 234,
             "callSign": "5CC1-4", // позывной
-            "brand": "Volvo", // марка машины
+            "brandId": 12, // марка машины
             "colorId": 1, // цвет
             "type": { // тип автомобиля (грузовой, легковой, мотоцикл)
                 "id": 4,
@@ -535,7 +535,7 @@
     "vehicle": {
         "id": 234,
         "callSign": "5CC1-4", // позывной
-        "brand": "Volvo", // марка машины
+        "brandId": 12, // марка машины
         "colorId": 1, // цвет
         "type": { // тип автомобиля (грузовой, легковой, мотоцикл)
             "id": 4,
@@ -1038,7 +1038,7 @@
                 "id": 234,
                 "callSign": "5CC1-4", // позывной
                 "number": "KK345O", // номер автомобиля
-                "brand": "Volvo", // марка машины
+                "brandId": 12, // марка машины
                 "colorId": 1, // цвет
                 "type": { // тип автомобиля (грузовой, легковой, мотоцикл)
                     "id": 4,
@@ -1403,10 +1403,11 @@
                     <li><a href="#js-href-dict-vehicle-option">Опции ТС</a></li>
                     <li><a href="#js-href-dict-vehicle-type">Тип ТС</a></li>
                     <li><a href="#js-href-dict-vehicle-class">Класс ТС</a></li>
+                    <li><a href="#js-href-dict-vehicle-brand">Марки ТС</a></li>
                     <li><a href="#js-href-dict-color">Цвета</a></li>
                     <li><a href="#js-href-dict-alert-type">Способы оповещения</a></li>
-                    <li><a href="#js-href-dict-ride-cancel-type.json">Причины отмены поездки</a></li>
-                    <li><a href="#js-href-dict-message-cancel-type.json">Причины отказа для ответа на сообщения</a></li>
+                    <li><a href="#js-href-dict-ride-cancel-type">Причины отмены поездки</a></li>
+                    <li><a href="#js-href-dict-message-cancel-type">Причины отказа для ответа на сообщения</a></li>
                 </ul>
 
                 <h5 class="anchored" id="js-href-dict-area"><b>Группы городов</b></h5>
@@ -1645,6 +1646,20 @@
     ]
 }
 </pre>
+                <h5 class="anchored" id="js-href-dict-vehicle-brand"><b>Марки ТС</b></h5>
+<pre class="code">
+{
+    "code": "brands",
+    "name": "Марки автомобиля",
+    "data": [
+        {
+            "id": 1,
+            "name": "Volvo"
+        }
+        // ...
+    ]
+}
+</pre>
                 <h5 class="anchored" id="js-href-dict-color"><b>Цвета</b></h5>
 <pre class="code">
 {
@@ -1672,7 +1687,7 @@
     ]
 }
 </pre>
-                <h5 class="anchored" id="js-href-dict-ride-cancel-type.json"><b>Причины отмены поездки</b></h5>
+                <h5 class="anchored" id="js-href-dict-ride-cancel-type"><b>Причины отмены поездки</b></h5>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
@@ -1703,7 +1718,7 @@
 }
 </pre>
 
-                <h5 class="anchored" id="js-href-dict-message-cancel-type.json"><b>Причины отказа для ответа на сообщение</b></h5>
+                <h5 class="anchored" id="js-href-dict-message-cancel-type"><b>Причины отказа для ответа на сообщение</b></h5>
 <pre class="code">
 {
     "code": "message_cancel_types",
@@ -1995,8 +2010,8 @@
                         <td><code>string</code> Позывной</td>
                     </tr>
                     <tr>
-                        <td><code>vehicle.brand</code></td>
-                        <td><code>string</code> Марка ТС</td>
+                        <td><code>vehicle.brandId</code></td>
+                        <td><code>string</code> Идентификатор <a href="#js-href-dict-vehicle-brand">марки ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>vehicle.colorId</code></td>
@@ -2030,7 +2045,7 @@
     "endTimeRange": [1386759220, 1386769220],
     "vehicle": {
         "callSign": "5CC1-4", // позывной
-        "brand": "Volvo", // марка машины
+        "brandId": 12, // марка машины
         "colorId": 1, // цвет
         "type": { // тип автомобиля (грузовой, легковой, мотоцикл)
             "id": 4,
@@ -2351,8 +2366,8 @@
                         <td><code>string</code> Номер ТС</td>
                     </tr>
                     <tr>
-                        <td><code>brand</code></td>
-                        <td><code>string</code> Марка ТС</td>
+                        <td><code>brandId</code></td>
+                        <td><code>int</code> Идентификатор <a href="#js-href-dict-vehicle-brand">марки ТС</a></td>
                     </tr>
                     <tr>
                         <td><code>colorId</code></td>
@@ -2381,7 +2396,7 @@
     "id": 234,
     "callSign": "5CC1-4", // позывной
     "number": "KK345O", // номер автомобиля
-    "brand": "Volvo", // марка машины
+    "brandId": 12, // марка машины
     "colorId": 1, // цвет
     "type": { // тип автомобиля (грузовой, легковой, мотоцикл)
         "id": 4,
