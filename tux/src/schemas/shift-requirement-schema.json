@@ -11,7 +11,10 @@
         },
         "important": {
             "type": "boolean"
+        },
+        "isMatch": {
+            "type": "boolean"
         }
     },
-    "required": ["id", "name", "important"]
+    "required": ["id", "name", "important", "isMatch"]
 }
