@@ -940,6 +940,10 @@ include "api/dicts/district.json"
                         <td><code>int</code> Идентификатор</td>
                     </tr>
                     <tr>
+                        <td><code>cityId</code></td>
+                        <td><code>int</code> Идентификатор города, к которому привязанf улица</td>
+                    </tr>
+                    <tr>
                         <td><code>name</code></td>
                         <td><code>string</code> Название улицы</td>
                     </tr>
@@ -1157,15 +1161,15 @@ include "api/time.json"
 include "api/dict-version.json"
 </pre>
                 <h2 class="anchored" id="js-href-sip">Работа со звонками</h2>
-                <h4 class="anchored" id="js-href-sip-start">Поставить работу со звонками на паузу</h4>
+                <h4 class="anchored" id="js-href-sip-stop">Поставить работу со звонками на паузу</h4>
                 <p><b>Request</b></p>
-                <p><code>POST /sip/start</code></p>
+                <p><code>POST /sip/stop</code></p>
                 <p><b>Response</b></p>
                 <p>Любой ответ с кодом <code>200</code>, если удачно, <code>4**</code> в другом случае</p>
 
-                <h4 class="anchored" id="js-href-sip-stop">Продолжить/начать работу со звонками</h4>
+                <h4 class="anchored" id="js-href-sip-start">Продолжить/начать работу со звонками</h4>
                 <p><b>Request</b></p>
-                <p><code>POST /sip/stop</code></p>
+                <p><code>POST /sip/start</code></p>
                 <p><b>Response</b></p>
                 <p>Любой ответ с кодом <code>200</code>, если удачно, <code>4**</code> в другом случае</p>
 
