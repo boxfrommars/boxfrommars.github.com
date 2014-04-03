@@ -16,9 +16,6 @@
         "time": {
             "$ref": "/time"
         },
-        "lifetime": {
-            "type": "integer"
-        },
         "attemptCount": {
             "type": "integer"
         },
@@ -50,5 +47,5 @@
             "required": ["id"]
         }
     },
-    "required": ["id", "photo", "time", "lifetime", "attemptCount", "comment", "requirements"]
+    "required": ["id", "photo", "time", "attemptCount", "comment", "requirements"]
 }

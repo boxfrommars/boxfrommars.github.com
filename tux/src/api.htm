@@ -475,6 +475,26 @@ include "api/address.json"
                         <td>Идентификатор треда сообщений</td>
                     </tr>
                     <tr>
+                        <td><code>members</code></td>
+                        <td><code>[]</code> Список участников треда</td>
+                    </tr>
+                    <tr>
+                        <td><code>members[].id</code></td>
+                        <td><code>string</code> Идентификатор участника треда (уникальный среди всех участников, например <code>:type-:id</code>)</td>
+                    </tr>
+                    <tr>
+                        <td><code>members[].type</code></td>
+                        <td><code>string</code> Тип отправителя сообщения. На данный момент <code>operator</code> — оператор или <code>vehicle</code> — такси</td>
+                    </tr>
+                    <tr>
+                        <td><code>members[].info</code></td>
+                        <td><code>{}</code> Данные отправителя (разнородные: для оператора: идентификатор и имя, для водителя — ТС). Подробнее — см. ниже</td>
+                    </tr>
+                    <tr>
+                        <td><code>members[].status</code></td>
+                        <td><code>{}</code> Текущий статус отправителя (разнородные: для оператора пустой объект, для водителя — текущие заказ и поездка). Подробнее — см. ниже</td>
+                    </tr>
+                    <tr>
                         <td><code>messages</code></td>
                         <td><code>[]</code> Список сообщений в треде</td>
                     </tr>
@@ -487,20 +507,8 @@ include "api/address.json"
                         <td><code>ISO 8601</code> Время отправки сообщения</td>
                     </tr>
                     <tr>
-                        <td><code>messages[].sender</code></td>
-                        <td><code>{}</code> Отправитель сообщения</td>
-                    </tr>
-                    <tr>
-                        <td><code>messages[].sender.type</code></td>
-                        <td><code>string</code> Тип отправителя сообщения. На данный момент <code>operator</code> — оператор или <code>vehicle</code> — такси</td>
-                    </tr>
-                    <tr>
-                        <td><code>messages[].sender.info</code></td>
-                        <td><code>{}</code> Данные отправителя (разнородные: для оператора: идентификатор и имя, для водителя — ТС). Подробнее — см. ниже</td>
-                    </tr>
-                    <tr>
-                        <td><code>messages[].sender.status</code></td>
-                        <td><code>{}</code> Текущий статус отправителя (разнородные: для оператора пустой объект, для водителя — текущие заказ и поездка). Подробнее — см. ниже</td>
+                        <td><code>messages[].member</code></td>
+                        <td><code>string</code> Отправитель сообщения, id участника треда из <code>members</code></td>
                     </tr>
                     </tbody>
                 </table>
