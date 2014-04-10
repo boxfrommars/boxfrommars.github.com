@@ -347,7 +347,7 @@
             "type": "string"
         },
         "departureAddress": {
-            "$ref": "/address"
+            "oneOf": [{"type": "null"}, {"$ref": "/address"}]
         },
         "destinationAddress": {
             "$ref": "/address"

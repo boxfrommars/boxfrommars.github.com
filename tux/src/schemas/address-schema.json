@@ -43,13 +43,13 @@
                     "required": ["id", "name"]
                 }
             },
-            "required": ["id", "name", "city"]
+            "required": ["id", "name"]
         },
         "house": {
             "type": "string"
         },
         "entrance": {
-            "type": "object",
+            "type": ["object", "null"],
             "properties": {
                 "id": {
                     "type": "integer"

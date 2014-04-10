@@ -4,10 +4,10 @@
     "type": "object",
     "properties": {
         "lt": {
-            "type": "numeric"
+            "type": "number"
         },
         "ln": {
-            "type": "numeric"
+            "type": "number"
         }
     },
     "required": ["lt", "ln"]
