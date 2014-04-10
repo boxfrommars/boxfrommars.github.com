@@ -31,7 +31,7 @@
                     "type": "string"
                 },
                 "city": {
-                    "type": "object",
+                    "type": ["object", "null"],
                     "properties": {
                         "id": {
                             "type": "integer"
@@ -43,7 +43,7 @@
                     "required": ["id", "name"]
                 }
             },
-            "required": ["id", "name"]
+            "required": ["id", "name", "city"]
         },
         "house": {
             "type": "string"

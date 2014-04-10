@@ -267,13 +267,13 @@
                     "required": ["id", "name"]
                 }
             },
-            "required": ["id", "name", "city"]
+            "required": ["id", "name"]
         },
         "house": {
             "type": "string"
         },
         "entrance": {
-            "type": "object",
+            "type": ["object", "null"],
             "properties": {
                 "id": {
                     "type": "integer"
@@ -347,7 +347,7 @@
             "type": "string"
         },
         "departureAddress": {
-            "oneOf": [{"type": "null"}, {"$ref": "/address"}]
+            "$ref": "/address"
         },
         "destinationAddress": {
             "$ref": "/address"
@@ -466,7 +466,7 @@
                     "type": "integer"
                 },
                 "classId": {
-                    "type": "integer"
+                    "type": ["integer", "null"]
                 }
             },
             "required": ["id"]
@@ -489,10 +489,10 @@
     "type": "object",
     "properties": {
         "lt": {
-            "type": "numeric"
+            "type": "number"
         },
         "ln": {
-            "type": "numeric"
+            "type": "number"
         }
     },
     "required": ["lt", "ln"]
