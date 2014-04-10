@@ -18,7 +18,12 @@
                 "type": "string"
             },
             "data": {
-                "type": "object"
+                "type": "object",
+                "properties": {
+                    "cancelType": {
+                        "type": "string"
+                    }
+                }
             }
         },
         "required": ["type", "time", "message"]
