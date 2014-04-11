@@ -2452,16 +2452,16 @@
                         <td>прибытие автомобиля</td>
                     </tr>
                     <tr>
-                        <td><code>client_does_not_come_out</code></td>
+                        <td><code>customer_does_not_come_out</code></td>
                         <td>клиент не выходит</td>
                     </tr>
                     <tr>
-                        <td><code>client_does_not_come_out_again</code></td>
+                        <td><code>customer_does_not_come_out_again</code></td>
                         <td>клиент не выходит</td>
                     </tr>
                     <tr>
                         <td><code>ride_cancel</code></td>
-                        <td>отмена поездки</td>
+                        <td>отмена поездки, обязательный параметр: <code>cancelType</code></td>
                     </tr>
                     <tr>
                         <td><code>ride_start</code></td>
@@ -2483,7 +2483,7 @@
                 </table>
 <pre class="code">
 {
-    "type": "arrive", // тип события, такие как:  звонок клиента (является ли это событием для лога?), назначение автомобиля (assign), автомобиль приехал, дозвон не удался, сообщение от пассажира и т.д.
+    "type": "vehicle_arrive", // тип события, такие как:  звонок клиента (является ли это событием для лога?), назначение автомобиля (assign), автомобиль приехал, дозвон не удался, сообщение от пассажира и т.д.
     "time": "2014-01-28T13:21:60Z", // unix timestamp события
     "message": "какое-то сообщения", // сообщение
     "data": {} // какая-то доп. информация
