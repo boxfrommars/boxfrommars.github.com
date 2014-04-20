@@ -13,8 +13,9 @@
         "preOrderTime": {
             "oneOf": [{"type": "null"}, {"$ref": "/time"}]
         },
-        "alertTypeId": {
-            "type": "integer"
+        "alertType": {
+            "type": "string",
+            "enum": ["sms", "call"]
         },
         "orderedProperties": {
             "type": "object",
