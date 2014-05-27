@@ -329,15 +329,12 @@ include "api/ride-cancel.json"
                 <p><b>Response</b></p>
                 <p>Любой ответ с кодом <code>200 OK</code></p>
 
-
                 <h2 class="anchored" id="js-href-address">Адреса</h2>
                 <h4>Получение адресов по улице или району</h4>
                 <p><b>Request</b></p>
                 <p><code>GET /address?streetId=:streetId</code></p>
                 <p><code>GET /address?cityId=:cityId</code></p>
                 <p><code>GET /address?districtId=:districtId</code></p>
-                <p><code>GET /address?cityId=:cityId&isPublic=1</code></p>
-                <p><code>GET /address?districtId=:districtId&isPublic=1</code></p>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
@@ -352,10 +349,6 @@ include "api/ride-cancel.json"
                         <td><code>districtId</code></td>
                         <td><code>int</code> Идентификатор района</td>
                     </tr>
-                    <tr>
-                        <td><code>isPublic</code></td>
-                        <td><code>int, 1</code> Только публичные</td>
-                    </tr>
                     </tbody>
                 </table>
 
@@ -366,10 +359,6 @@ include "api/ride-cancel.json"
                     <tr>
                         <td><code>id</code></td>
                         <td><code>int</code> id адреса, если адрес есть в базе</td>
-                    </tr>
-                    <tr>
-                        <td><code>isPublic</code></td>
-                        <td><code>bool</code> Публичное ли место</td>
                     </tr>
                     <tr>
                         <td><code>street</code></td>
