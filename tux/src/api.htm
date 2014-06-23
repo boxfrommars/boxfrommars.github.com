@@ -329,15 +329,12 @@ include "api/ride-cancel.json"
                 <p><b>Response</b></p>
                 <p>Любой ответ с кодом <code>200 OK</code></p>
 
-
                 <h2 class="anchored" id="js-href-address">Адреса</h2>
                 <h4>Получение адресов по улице или району</h4>
                 <p><b>Request</b></p>
                 <p><code>GET /address?streetId=:streetId</code></p>
                 <p><code>GET /address?cityId=:cityId</code></p>
                 <p><code>GET /address?districtId=:districtId</code></p>
-                <p><code>GET /address?cityId=:cityId&isPublic=1</code></p>
-                <p><code>GET /address?districtId=:districtId&isPublic=1</code></p>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
@@ -352,10 +349,6 @@ include "api/ride-cancel.json"
                         <td><code>districtId</code></td>
                         <td><code>int</code> Идентификатор района</td>
                     </tr>
-                    <tr>
-                        <td><code>isPublic</code></td>
-                        <td><code>int, 1</code> Только публичные</td>
-                    </tr>
                     </tbody>
                 </table>
 
@@ -366,10 +359,6 @@ include "api/ride-cancel.json"
                     <tr>
                         <td><code>id</code></td>
                         <td><code>int</code> id адреса, если адрес есть в базе</td>
-                    </tr>
-                    <tr>
-                        <td><code>isPublic</code></td>
-                        <td><code>bool</code> Публичное ли место</td>
                     </tr>
                     <tr>
                         <td><code>street</code></td>
@@ -457,12 +446,12 @@ include "api/address.json"
                 <h2 class="anchored" id="js-href-message">Сообщения</h2>
                 <h4 class="anchored">Получение сообщений</h4>
                 <p><b>Request</b></p>
-                <p><code>GET /thread/:threadId</code></p>
+                <p><code>GET /message/:messageId</code></p>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
-                        <td><code>threadId</code></td>
-                        <td>Идентификатор треда сообщений</td>
+                        <td><code>messageId</code></td>
+                        <td>Идентификатор сообщения</td>
                     </tr>
                     </tbody>
                 </table>
@@ -472,75 +461,39 @@ include "api/address.json"
                     <tbody>
                     <tr>
                         <td><code>id</code></td>
-                        <td>Идентификатор треда сообщений</td>
+                        <td>Идентификатор сообщения</td>
                     </tr>
                     <tr>
-                        <td><code>members</code></td>
-                        <td><code>[]</code> Список участников треда</td>
+                        <td>message</td>
+                        <td><code>string</code> Сообщение</td>
                     </tr>
                     <tr>
-                        <td><code>members[].id</code></td>
-                        <td><code>string</code> Идентификатор участника треда (уникальный среди всех участников, например <code>:type-:id</code>)</td>
-                    </tr>
-                    <tr>
-                        <td><code>members[].type</code></td>
-                        <td><code>string</code> Тип отправителя сообщения. На данный момент <code>operator</code> — оператор или <code>vehicle</code> — такси</td>
-                    </tr>
-                    <tr>
-                        <td><code>members[].info</code></td>
-                        <td><code>{}</code> Данные отправителя (разнородные: для оператора: идентификатор и имя, для водителя — ТС). Подробнее — см. ниже</td>
-                    </tr>
-                    <tr>
-                        <td><code>members[].status</code></td>
-                        <td><code>{}</code> Текущий статус отправителя (разнородные: для оператора пустой объект, для водителя — текущие заказ и поездка). Подробнее — см. ниже</td>
-                    </tr>
-                    <tr>
-                        <td><code>messages</code></td>
-                        <td><code>[]</code> Список сообщений в треде</td>
-                    </tr>
-                    <tr>
-                        <td><code>messages[].id</code></td>
-                        <td><code>int</code> Идентификатор сообщения</td>
-                    </tr>
-                    <tr>
-                        <td><code>messages[].time</code></td>
+                        <td><code>time</code></td>
                         <td><code>ISO 8601</code> Время отправки сообщения</td>
                     </tr>
                     <tr>
-                        <td><code>messages[].member</code></td>
-                        <td><code>string</code> Отправитель сообщения, id участника треда из <code>members</code></td>
-                    </tr>
-                    </tbody>
-                </table>
-                <h5><b>Данные оператора в сообщении</b> <code>info</code></h5>
-                <table class="table table-bordered table-striped">
-                    <tbody>
-                    <tr>
-                        <td><code>id</code></td>
-                        <td><code>int</code> Идентификатор оператора</td>
+                        <td><code>orderId</code></td>
+                        <td><code>int</code> id заказа, если отправляет водитель во время поездки</td>
                     </tr>
                     <tr>
-                        <td><code>name</code></td>
-                        <td><code>string</code> Имя оператора</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <h5><b>Данные таксиста (ТС) в сообщении</b> <code>info</code></h5>
-                <p>ТС таксиста, см <a href="#js-href-parts-vehicle">Транспортное средство</a></p>
-
-                <h5><b>Текущие данные оператора</b> <code>status</code></h5>
-                <p>Пустой объект</p>
-
-                <h5><b>Текущие данные таксиста</b> <code>status</code></h5>
-                <table class="table table-bordered table-striped">
-                    <tbody>
-                    <tr>
-                        <td><code>order</code></td>
-                        <td><code>order</code> Текущий заказ таксиста</td>
+                        <td><code>rideId</code></td>
+                        <td><code>int</code> id поездки, если отправляет водитель во время поездки</td>
                     </tr>
                     <tr>
-                        <td><code>ride</code></td>
-                        <td><code>ride</code> Текущий поездка таксиста</td>
+                        <td><code>sender</code></td>
+                        <td><code>{}</code> Отправитель</td>
+                    </tr>
+                    <tr>
+                        <td><code>sender.type</code></td>
+                        <td><code>string</code> Тип отправителя сообщения. На данный момент <code>operator</code> — оператор или <code>vehicle</code> — такси</td>
+                    </tr>
+                    <tr>
+                        <td><code>sender.name</code></td>
+                        <td><code>string</code> Имя отправителя сообщения (в случае таксиста -- позывной)</td>
+                    </tr>
+                    <tr>
+                        <td><code>sender.id</code></td>
+                        <td><code>string</code> id отправителя</td>
                     </tr>
                     </tbody>
                 </table>
@@ -553,12 +506,12 @@ include "api/thread.json"
 
                 <h4 class="anchored">Отправление сообщений</h4>
                 <p><b>Request</b></p>
-                <p><code>POST /thread/:threadId/message</code></p>
+                <p><code>POST /message/:messageId/answer</code></p>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
-                        <td><code>threadId</code></td>
-                        <td>Идентификатор треда сообщений</td>
+                        <td><code>messageId</code></td>
+                        <td>Идентификатор сообщения</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1384,17 +1337,13 @@ include "api/break-post.json"
 
                 <h2 class="anchored" id="js-href-parts">Части</h2>
 
-                <h5 class="anchored" id="js-href-parts-address"><b>Адрес и публичное место</b></h5>
+                <h5 class="anchored" id="js-href-parts-address"><b>Адрес</b></h5>
                 <p>Используется в <a href="#js-href-ride">поездках</a></p>
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
                         <td><code>id</code></td>
                         <td><code>int</code> <code>id</code> адреса, если адрес есть в базе</td>
-                    </tr>
-                    <tr>
-                        <td><code>isPublic</code></td>
-                        <td><code>bool</code> Публичное ли место</td>
                     </tr>
                     <tr>
                         <td><code>street</code></td>
@@ -1477,6 +1426,47 @@ include "api/break-post.json"
                 <p class="alert alert-warning">Поля *.id и *.name при запросе на сервер необязательны, достаточно только одного из них: id, если улица/город/группа существует в словаре, name — если нет. В ответах сервера оба поля обязательны</p>
 <pre class="code">
 include "api/parts/address.json"
+</pre>
+
+                <h5 class="anchored" id="js-href-parts-publicplace"><b>Публичное место</b></h5>
+                <table class="table table-bordered table-striped">
+                    <tbody>
+                    <tr>
+                        <td><code>id</code></td>
+                        <td><code>int</code> <code>id</code> публичного места</td>
+                    </tr>
+                    <tr>
+                        <td><code>address</code></td>
+                        <td><code>address</code> адрес публичного места</td>
+                    </tr>
+                    <tr>
+                        <td><code>name</code></td>
+                        <td><code>string</code> Название публичного места</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance</code></td>
+                        <td><code>{}</code> Подъезд</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance.id</code></td>
+                        <td><code>int</code> Идентификатор подъезда</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance.name</code></td>
+                        <td><code>string</code> Название (описание) подъезда</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance.location</code></td>
+                        <td><code>{}</code> Координаты подъезда</td>
+                    </tr>
+                    <tr>
+                        <td><code>entrance.location.lt</code><br /><code>entrance.location.ln</code></td>
+                        <td><code>WGS 84</code> Координаты подъезда (широта и долгота)</td>
+                    </tr>
+                    </tbody>
+                </table>
+<pre class="code">
+include "api/parts/public-place.json"
 </pre>
 
                 <h5 class="anchored" id="js-href-parts-customer"><b>Клиент</b></h5>
@@ -1677,7 +1667,8 @@ include "parts/disqus.htm"
                         <li>
                             <a href="#js-href-parts">Части</a>
                             <ul class="nav">
-                                <li><a href="#js-href-parts-address">Адрес и публичное место</a></li>
+                                <li><a href="#js-href-parts-address">Адрес</a></li>
+                                <li><a href="#js-href-parts-publicplace">Публичное место</a></li>
                                 <li><a href="#js-href-parts-customer">Клиент</a></li>
                                 <li><a href="#js-href-parts-vehicle">Транспортное средство</a></li>
                                 <li><a href="#js-href-parts-timeline">Таймлайн</a></li>
