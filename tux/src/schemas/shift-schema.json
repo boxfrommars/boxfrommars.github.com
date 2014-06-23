@@ -6,6 +6,9 @@
         "id": {
             "type": "integer"
         },
+        "vehicle": {
+            "$ref": "/vehicle"
+        },
         "photo": {
             "type": "array",
             "items": {
@@ -21,6 +24,12 @@
         },
         "attemptCount": {
             "type": "integer"
+        },
+        "isNew": {
+            "type": "boolean"
+        },
+        "isReport": {
+            "type": "boolean"
         },
         "comment": {
             "type": "string"

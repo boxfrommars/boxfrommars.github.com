@@ -12,6 +12,9 @@
         "areaId": {
             "type": "integer"
         },
+        "cityId": {
+            "type": "integer"
+        },
         "rides": {
             "type": "array",
             "items": {
@@ -19,5 +22,5 @@
             }
         }
     },
-    "required": ["id", "customer", "areaId", "rides"]
+    "required": ["id", "customer", "areaId", "cityId", "rides"]
 }

@@ -177,6 +177,10 @@
                         <td><code>int</code> Идентификатор группы городов. На основе данной группы берутся настройки заказа, применительные к данной группе, включая часовой пояс</td>
                     </tr>
                     <tr>
+                        <td><code>cityId</code></td>
+                        <td><code>int</code> Идентификатор города</td>
+                    </tr>
+                    <tr>
                         <td><code>rides</code></td>
                         <td><code>[ride]</code> Список <a href="#js-href-ride">поездок</a></td>
                     </tr>
@@ -196,6 +200,7 @@
         "frequentAddresses": []         // частые адреса (такой же формат, как и address, за исключением, может быть, комментария)
     },
     "areaId": 2,     // группа городов (группа городов нужна ещё и в заказе, чтобы определять часовой пояс)
+    "cityId": 2,
     "rides": [{ // поездки. @TODO придумать нормальное название
         "id": 754309, // id поездки
         "orderType": "preorder", // тип заказа "emergence", "preorder", "normal"
@@ -325,6 +330,10 @@
                     <tr>
                         <td><code>areaId</code></td>
                         <td><code>int</code> Идентификатор группы городов. На основе данной группы берутся настройки заказа, применительные к данной группе, включая часовой пояс</td>
+                    </tr>
+                    <tr>
+                        <td><code>cityId</code></td>
+                        <td><code>int</code> Идентификатор города</td>
                     </tr>
                     <tr>
                         <td><code>rides</code></td>
@@ -1041,6 +1050,18 @@
                     <tr>
                         <td><code>id</code></td>
                         <td>Идентификатор заявки на открытие смены</td>
+                    </tr>
+                    <tr>
+                        <td><code>vehicle</code></td>
+                        <td><code>vehicle</code> см. <a href="#js-href-parts-vehicle">ТС</a></td>
+                    </tr>
+                    <tr>
+                        <td><code>isNew</code></td>
+                        <td><code>bool</code> Новый ли водитель</td>
+                    </tr>
+                    <tr>
+                        <td><code>isReport</code></td>
+                        <td><code>bool</code> Пожаловаться на заявку</td>
                     </tr>
                     <tr>
                         <td><code>photo</code></td>

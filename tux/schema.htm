@@ -169,6 +169,9 @@
         "areaId": {
             "type": "integer"
         },
+        "cityId": {
+            "type": "integer"
+        },
         "rides": {
             "type": "array",
             "items": {
@@ -176,7 +179,7 @@
             }
         }
     },
-    "required": ["id", "customer", "areaId", "rides"]
+    "required": ["id", "customer", "areaId", "cityId", "rides"]
 }
 </pre>
                 <h4 class="anchored" id="js-href-customer-schema">Клиент</h4>
@@ -619,6 +622,9 @@
         "id": {
             "type": "integer"
         },
+        "vehicle": {
+            "$ref": "/vehicle"
+        },
         "photo": {
             "type": "array",
             "items": {
@@ -634,6 +640,12 @@
         },
         "attemptCount": {
             "type": "integer"
+        },
+        "isNew": {
+            "type": "boolean"
+        },
+        "isReport": {
+            "type": "boolean"
         },
         "comment": {
             "type": "string"
