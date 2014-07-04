@@ -1,6 +1,4 @@
 {
-    "type": "smoking",
-    "queue": 17,
-    "position": null,
-    "estimatedStartTime": 600
+    "type": "unplanned",
+    "startTime": "2014-01-28T13:21:60Z"
 }

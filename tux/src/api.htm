@@ -571,7 +571,7 @@ include "api/message-post.json"
                     </tr>
                     <tr>
                         <td><code>photo</code></td>
-                        <td><code>[string]</code> Список файлов изображений вида <code>["9b8wxcf8.jpg", "4f3pzp.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imageBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
+                        <td><code>string</code> Изображение в Base64 формате</td>
                     </tr>
                     <tr>
                         <td><code>isMatchAllAvailable</code></td>
@@ -881,6 +881,22 @@ include "api/dicts/area.json"
                         <td><code>maxPreOrderInterval</code></td>
                         <td><code>int</code> Максимальное время предзаказа, секунды</td>
                     </tr>
+                    <tr>
+                        <td><code>tarif</code></td>
+                        <td><code>{}</code> Тариф для данного города</td>
+                    </tr>
+                    <tr>
+                        <td><code>tarif.land</code></td>
+                        <td><code>decimal</code> Стоимость посадки</td>
+                    </tr>
+                    <tr>
+                        <td><code>tarif.km</code></td>
+                        <td><code>decimal</code> Стоимость километра</td>
+                    </tr>
+                    <tr>
+                        <td><code>tarif.min</code></td>
+                        <td><code>decimal</code> Стоимость минуты</td>
+                    </tr>
                     </tbody>
                 </table>
 <pre class="code">
@@ -1030,10 +1046,6 @@ include "api/auth-response.json"
                     <tr>
                         <td><code>mapService</code></td>
                         <td><code>string</code> Используемый сервис карт. Пока только <code>osm</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>imagesBaseUrl</code></td>
-                        <td><code>string (url)</code> Базовый путь к изображениям (например, для изображений в <a href="#js-href-shift">заявках на открытие смены</a>)</td>
                     </tr>
                     <tr>
                         <td><code>language</code></td>
@@ -1273,7 +1285,7 @@ include "api/search-response.json"
                     <tbody>
                     <tr>
                         <td><code>breakType</code></td>
-                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>unplanned</code>, <code>lunch</code> или <code>rest</code></td>
                     </tr>
                     </tbody>
                 </table>
@@ -1282,19 +1294,11 @@ include "api/search-response.json"
                     <tbody>
                     <tr>
                         <td><code>type</code></td>
-                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>unplanned</code>, <code>lunch</code> или <code>rest</code></td>
                     </tr>
                     <tr>
-                        <td><code>queue</code></td>
-                        <td><code>int</code> Всего операторов в очереди</td>
-                    </tr>
-                    <tr>
-                        <td><code>position</code></td>
-                        <td><code>int</code> Позиция в очереди (начиная с единицы, если никого нет перед оператором, то значение&nbsp;—&nbsp;<code>1</code>, если оператор не участвует в очереди, то&nbsp;<code>null</code>)</td>
-                    </tr>
-                    <tr>
-                        <td><code>estimatedStartTime</code></td>
-                        <td><code>int</code> Секунды, ожидаемое время начала перерыва</td>
+                        <td><code>startTime</code></td>
+                        <td><code>ISO 8601</code> Ожидаемое время начала перерыва</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1309,7 +1313,7 @@ include "api/break-get.json"
                     <tbody>
                     <tr>
                         <td><code>breakType</code></td>
-                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>unplanned</code>, <code>lunch</code> или <code>rest</code></td>
                     </tr>
                     </tbody>
                 </table>
@@ -1319,19 +1323,11 @@ include "api/break-get.json"
                     <tbody>
                     <tr>
                         <td><code>type</code></td>
-                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>unplanned</code>, <code>lunch</code> или <code>rest</code></td>
                     </tr>
                     <tr>
-                        <td><code>queue</code></td>
-                        <td><code>int</code> Всего операторов в очереди</td>
-                    </tr>
-                    <tr>
-                        <td><code>position</code></td>
-                        <td><code>int</code> Позиция в очереди (начиная с единицы, если никого нет перед оператором, то значение&nbsp;—&nbsp;<code>1</code>)</td>
-                    </tr>
-                    <tr>
-                        <td><code>estimatedStartTime</code></td>
-                        <td><code>int</code> Секунды, ожидаемое время начала перерыва</td>
+                        <td><code>startTime</code></td>
+                        <td><code>ISO 8601</code> Ожидаемое время начала перерыва</td>
                     </tr>
                     </tbody>
                 </table>
@@ -1346,7 +1342,7 @@ include "api/break-post.json"
                     <tbody>
                     <tr>
                         <td><code>breakType</code></td>
-                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>unplanned</code>, <code>lunch</code> или <code>rest</code></td>
                     </tr>
                     </tbody>
                 </table>

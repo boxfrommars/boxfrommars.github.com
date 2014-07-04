@@ -622,15 +622,17 @@
         "id": {
             "type": "integer"
         },
+        "isNew": {
+            "type": "boolean"
+        },
+        "isReport": {
+            "type": "boolean"
+        },
         "vehicle": {
             "$ref": "/vehicle"
         },
         "photo": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "minItems": 1
+            "type": "string"
         },
         "isMatchAllAvailable": {
             "type": "boolean"
@@ -640,12 +642,6 @@
         },
         "attemptCount": {
             "type": "integer"
-        },
-        "isNew": {
-            "type": "boolean"
-        },
-        "isReport": {
-            "type": "boolean"
         },
         "comment": {
             "type": "string"
@@ -675,7 +671,7 @@
             "required": ["id"]
         }
     },
-    "required": ["id", "photo", "time", "attemptCount", "comment", "requirements"]
+    "required": ["id", "photo", "time", "vehicle", "attemptCount", "comment", "requirements"]
 }
 </pre>
                 <h4 class="anchored" id="js-href-shift-requirement-schema">Требование в заявке на открытие смены</h4>
@@ -751,10 +747,6 @@
         "mapService": {
             "type": "string",
             "enum": ["osm"]
-        },
-        "imageBaseUrl": {
-            "type": "string",
-            "pattern": "^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$"
         },
         "language": {
             "type": "string",
@@ -877,23 +869,13 @@
     "properties": {
         "type": {
             "type": "string",
-            "enum": ["smoking", "lunch", "restroom"]
+            "enum": ["rest", "unplanned", "lunch"]
         },
-        "queue": {
-            "type": "integer"
-        },
-        "position": {
-            "oneOf": [{
-                "type": "null"
-            }, {
-                "type": "integer"
-            }]
-        },
-        "estimatedStartTime": {
+        "startTime": {
             "type": "integer"
         }
     },
-    "required": ["type", "queue", "position", "estimatedStartTime"]
+    "required": ["type", "startTime"]
 }
 </pre>
                 <div id="disqus_thread"></div>

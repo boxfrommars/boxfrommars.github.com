@@ -127,19 +127,11 @@ include "websocket-api/shift.json"
                     <tbody>
                     <tr>
                         <td><code>type</code></td>
-                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>unplanned</code>, <code>lunch</code> или <code>rest</code></td>
                     </tr>
                     <tr>
-                        <td><code>queue</code></td>
-                        <td><code>int</code> Всего операторов в очереди</td>
-                    </tr>
-                    <tr>
-                        <td><code>position</code></td>
-                        <td><code>int</code> Позиция в очереди (начиная с единицы, если никого нет перед оператором, то значение&nbsp;—&nbsp;<code>1</code>)</td>
-                    </tr>
-                    <tr>
-                        <td><code>estimatedStartTime</code></td>
-                        <td><code>int</code> Секунды, ожидаемое время начала перерыва</td>
+                        <td><code>startTime</code></td>
+                        <td><code>ISO 8601</code> Ожидаемое время начала перерыва</td>
                     </tr>
                     </tbody>
                 </table>

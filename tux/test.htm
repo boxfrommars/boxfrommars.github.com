@@ -276,11 +276,7 @@
                 "route": "/order/:orderId",
                 "tests": [{
                     "uriParams": {
-                        ":orderId": 1
-                    }
-                }, {
-                    "uriParams": {
-                        ":orderId": 2
+                        ":orderId": 1002
                     }
                 }]
             }
@@ -351,6 +347,48 @@
         e.preventDefault();
     });
 
+</script>
+
+
+<script>
+    var data = {
+        id: 1002,
+        customer: {
+            id: 60,
+            name: "Зина",
+            language: "ru",
+            rank: null,
+            phone: 79384032693,
+            discountCard: null,
+            frequentAddresses: [
+                {
+                    id: 5252,
+                    isPublic: false,
+                    street: {
+                        id: 1308,
+                        name: "КРАЕВАЯ (КАРАСУНСКИЙ)"
+                    },
+                    district: {
+                        id: 88,
+                        name: "Катюша",
+                        city: {
+                            id: 67,
+                            name: "Краснодар"
+                        }
+                    },
+                    house: 3,
+                    description: null,
+                    location: {
+                        lt: "45,017",
+                        ln: "39,073"
+                    }
+                }
+            ]
+        },
+        areaId: 67
+    };
+    var result = tv4.validateMultiple(data, '/order', false, true);
+    console.log(result);
 </script>
 
 </body>

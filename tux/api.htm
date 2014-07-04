@@ -1065,7 +1065,7 @@
                     </tr>
                     <tr>
                         <td><code>photo</code></td>
-                        <td><code>[string]</code> Список файлов изображений вида <code>["9b8wxcf8.jpg", "4f3pzp.jpg"]</code>, полный путь к изображению составляется из имени файла из этого списка и параметра <code>imageBaseUrl</code> из <a href="#js-href-settings">настроек</a></td>
+                        <td><code>string</code> Изображение в Base64 формате</td>
                     </tr>
                     <tr>
                         <td><code>isMatchAllAvailable</code></td>
@@ -1123,6 +1123,8 @@
 <pre class="code">
 {
     "id": 65408,
+    "isNew": true,
+    "isReport": false,
     "photo": ["9b8wxcf8p80au9b.jpg", "4f3pzpeqywm2gei.jpg"],
     "time": "2014-01-28T13:21:60Z", // время подачи заявки на открытие смены
     "attemptCount": 3, // предыдущих попыток
@@ -1457,6 +1459,22 @@
                         <td><code>maxPreOrderInterval</code></td>
                         <td><code>int</code> Максимальное время предзаказа, секунды</td>
                     </tr>
+                    <tr>
+                        <td><code>tarif</code></td>
+                        <td><code>{}</code> Тариф для данного города</td>
+                    </tr>
+                    <tr>
+                        <td><code>tarif.land</code></td>
+                        <td><code>decimal</code> Стоимость посадки</td>
+                    </tr>
+                    <tr>
+                        <td><code>tarif.km</code></td>
+                        <td><code>decimal</code> Стоимость километра</td>
+                    </tr>
+                    <tr>
+                        <td><code>tarif.min</code></td>
+                        <td><code>decimal</code> Стоимость минуты</td>
+                    </tr>
                     </tbody>
                 </table>
 <pre class="code">
@@ -1480,7 +1498,12 @@
             "messageLifetime": 60, // время в секундах, после которого сообщение пересылается другому оператору
             "shiftLifetime": 60, // время в секундах, после которого смена пересылается другому оператору
             "minPreOrderInterval": 1800, // сек, минимальное время предзаказа (не раньше чем через 30 минут)
-            "maxPreOrderInterval": 172800 // сек, максимальное время предзаказа (не позже чем через 2 дня)
+            "maxPreOrderInterval": 172800, // сек, максимальное время предзаказа (не позже чем через 2 дня)
+            "tarif": {
+                "land": 50.50,
+                "km": 14.50,
+                "min": 12.50
+            }
         }
     ]
 }
@@ -1734,10 +1757,6 @@
                     <tr>
                         <td><code>mapService</code></td>
                         <td><code>string</code> Используемый сервис карт. Пока только <code>osm</code></td>
-                    </tr>
-                    <tr>
-                        <td><code>imagesBaseUrl</code></td>
-                        <td><code>string (url)</code> Базовый путь к изображениям (например, для изображений в <a href="#js-href-shift">заявках на открытие смены</a>)</td>
                     </tr>
                     <tr>
                         <td><code>language</code></td>
@@ -2034,7 +2053,7 @@
                     <tbody>
                     <tr>
                         <td><code>breakType</code></td>
-                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>unplanned</code>, <code>lunch</code> или <code>rest</code></td>
                     </tr>
                     </tbody>
                 </table>
@@ -2043,29 +2062,19 @@
                     <tbody>
                     <tr>
                         <td><code>type</code></td>
-                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>unplanned</code>, <code>lunch</code> или <code>rest</code></td>
                     </tr>
                     <tr>
-                        <td><code>queue</code></td>
-                        <td><code>int</code> Всего операторов в очереди</td>
-                    </tr>
-                    <tr>
-                        <td><code>position</code></td>
-                        <td><code>int</code> Позиция в очереди (начиная с единицы, если никого нет перед оператором, то значение&nbsp;—&nbsp;<code>1</code>, если оператор не участвует в очереди, то&nbsp;<code>null</code>)</td>
-                    </tr>
-                    <tr>
-                        <td><code>estimatedStartTime</code></td>
-                        <td><code>int</code> Секунды, ожидаемое время начала перерыва</td>
+                        <td><code>startTime</code></td>
+                        <td><code>ISO 8601</code> Ожидаемое время начала перерыва</td>
                     </tr>
                     </tbody>
                 </table>
 <code>HTTP/1.1 200 OK</code>
 <pre class="code">
 {
-    "type": "smoking",
-    "queue": 17,
-    "position": null,
-    "estimatedStartTime": 600
+    "type": "unplanned",
+    "startTime": "2014-01-28T13:21:60Z"
 }
 </pre>
                 <h4 class="anchored">Встать в очередь на перерыв</h4>
@@ -2075,7 +2084,7 @@
                     <tbody>
                     <tr>
                         <td><code>breakType</code></td>
-                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>unplanned</code>, <code>lunch</code> или <code>rest</code></td>
                     </tr>
                     </tbody>
                 </table>
@@ -2085,29 +2094,19 @@
                     <tbody>
                     <tr>
                         <td><code>type</code></td>
-                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>unplanned</code>, <code>lunch</code> или <code>rest</code></td>
                     </tr>
                     <tr>
-                        <td><code>queue</code></td>
-                        <td><code>int</code> Всего операторов в очереди</td>
-                    </tr>
-                    <tr>
-                        <td><code>position</code></td>
-                        <td><code>int</code> Позиция в очереди (начиная с единицы, если никого нет перед оператором, то значение&nbsp;—&nbsp;<code>1</code>)</td>
-                    </tr>
-                    <tr>
-                        <td><code>estimatedStartTime</code></td>
-                        <td><code>int</code> Секунды, ожидаемое время начала перерыва</td>
+                        <td><code>startTime</code></td>
+                        <td><code>ISO 8601</code> Ожидаемое время начала перерыва</td>
                     </tr>
                     </tbody>
                 </table>
                 <code>HTTP/1.1 200 OK</code>
 <pre class="code">
 {
-    "type": "smoking",
-    "queue": 17,
-    "position": 15,
-    "estimatedStartTime": 600
+    "type": "rest",
+    "startTime": "2014-01-28T13:21:60Z"
 }
 </pre>
                 <h4 class="anchored">Выйти из очереди на перерыв</h4>
@@ -2117,7 +2116,7 @@
                     <tbody>
                     <tr>
                         <td><code>breakType</code></td>
-                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>unplanned</code>, <code>lunch</code> или <code>rest</code></td>
                     </tr>
                     </tbody>
                 </table>

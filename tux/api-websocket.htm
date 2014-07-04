@@ -275,7 +275,7 @@
 {
     "type": "shift",
     "data": {
-        "id": 65408 // id смены
+        "id": 65408
     }
 }
 </pre>
@@ -286,30 +286,20 @@
                     <tbody>
                     <tr>
                         <td><code>type</code></td>
-                        <td><code>string</code> Тип перерыва, один из: <code>smoking</code>, <code>lunch</code> или <code>restroom</code></td>
+                        <td><code>string</code> Тип перерыва, один из: <code>unplanned</code>, <code>lunch</code> или <code>rest</code></td>
                     </tr>
                     <tr>
-                        <td><code>queue</code></td>
-                        <td><code>int</code> Всего операторов в очереди</td>
-                    </tr>
-                    <tr>
-                        <td><code>position</code></td>
-                        <td><code>int</code> Позиция в очереди (начиная с единицы, если никого нет перед оператором, то значение&nbsp;—&nbsp;<code>1</code>)</td>
-                    </tr>
-                    <tr>
-                        <td><code>estimatedStartTime</code></td>
-                        <td><code>int</code> Секунды, ожидаемое время начала перерыва</td>
+                        <td><code>startTime</code></td>
+                        <td><code>ISO 8601</code> Ожидаемое время начала перерыва</td>
                     </tr>
                     </tbody>
                 </table>
 <pre class="code">
 {
-    "type": "message",
+    "type": "break",
     "data": {
-        "type": "smoking",
-        "queue": 17,
-        "position": 15,
-        "estimatedStartTime": 600
+        "type": "rest",
+        "estimatedStartTime": "2014-01-28T13:21:60Z"
     }
 }
 </pre>

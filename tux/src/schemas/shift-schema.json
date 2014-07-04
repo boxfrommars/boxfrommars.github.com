@@ -6,15 +6,17 @@
         "id": {
             "type": "integer"
         },
+        "isNew": {
+            "type": "boolean"
+        },
+        "isReport": {
+            "type": "boolean"
+        },
         "vehicle": {
             "$ref": "/vehicle"
         },
         "photo": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            },
-            "minItems": 1
+            "type": "string"
         },
         "isMatchAllAvailable": {
             "type": "boolean"
@@ -24,12 +26,6 @@
         },
         "attemptCount": {
             "type": "integer"
-        },
-        "isNew": {
-            "type": "boolean"
-        },
-        "isReport": {
-            "type": "boolean"
         },
         "comment": {
             "type": "string"
@@ -59,5 +55,5 @@
             "required": ["id"]
         }
     },
-    "required": ["id", "photo", "time", "attemptCount", "comment", "requirements"]
+    "required": ["id", "photo", "time", "vehicle", "attemptCount", "comment", "requirements"]
 }

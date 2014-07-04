@@ -1,6 +1,4 @@
 {
-    "type": "smoking",
-    "queue": 17,
-    "position": 15,
-    "estimatedStartTime": 600
+    "type": "rest",
+    "startTime": "2014-01-28T13:21:60Z"
 }

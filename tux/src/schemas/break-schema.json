@@ -5,21 +5,11 @@
     "properties": {
         "type": {
             "type": "string",
-            "enum": ["smoking", "lunch", "restroom"]
+            "enum": ["rest", "unplanned", "lunch"]
         },
-        "queue": {
-            "type": "integer"
-        },
-        "position": {
-            "oneOf": [{
-                "type": "null"
-            }, {
-                "type": "integer"
-            }]
-        },
-        "estimatedStartTime": {
+        "startTime": {
             "type": "integer"
         }
     },
-    "required": ["type", "queue", "position", "estimatedStartTime"]
+    "required": ["type", "startTime"]
 }

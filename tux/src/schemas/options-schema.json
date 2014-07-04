@@ -7,10 +7,6 @@
             "type": "string",
             "enum": ["osm"]
         },
-        "imageBaseUrl": {
-            "type": "string",
-            "pattern": "^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?$"
-        },
         "language": {
             "type": "string",
             "enum": ["ru", "en"]
