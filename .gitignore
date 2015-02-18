@@ -1,5 +1,5 @@
 /nbproject
-/.idea
+.idea
 node_modules
 bower_components
 .DS_Store

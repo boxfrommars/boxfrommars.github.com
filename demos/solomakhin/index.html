@@ -1,0 +1,57 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <style>
+            * {
+                padding: 0;
+                margin: 0;
+            }
+
+            .browserupgrade {
+                padding: 1em;
+                background: #ffb5ae;
+            }
+
+            html, body {
+                height: 100%;
+
+                background-attachment: fixed;
+                background-repeat: no-repeat;
+                background-position: center center;
+
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+
+            html {
+                background-image: url(img/bg.jpg);
+            }
+
+            body {
+                background-image: url(img/soon.png);
+            }
+
+            @media all and (orientation: portrait) {
+                body {
+                    background-image: url(img/soon-mobile.png);
+                    background-position: center 0;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <!--[if lt IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="soon"></div>
+    </body>
+</html>
