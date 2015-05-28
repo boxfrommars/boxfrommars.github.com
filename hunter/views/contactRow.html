@@ -1,0 +1,3 @@
+<div class="row"> <div class="col-sm-2 col-xs-2 col-md-2 vcenter"> <span class="label label-success" ng-class="{'label-danger': contact.response_count > 3, 'label-warining': contact.response_count > 2 }">{{ contact.response_count }}</span> </div><!--
+   --><div class="col-sm-5 col-xs-5 col-md-5 vcenter"> <small>{{ contact.date | momentTime }}</small><br> <strong>{{ contact.lp }}</strong> </div><!--
+   --><div class="col-sm-5 col-xs-5 col-md-5 vcenter" style="text-align: right"> <span><small><i class="fa fa-comment-o"></i>&nbsp;&nbsp;{{ contact.name }}</small></span><br> <span ng-class="'priority-' + contact.response.priority"><b>{{ contact.response.name }}</b></span> </div> </div>
