@@ -55,11 +55,13 @@ var generateDays = function (year, month) {
   var startDay = moment().year(year).month(month).startOf('month').startOf('week');
   var endDay = moment().year(year).month(month).endOf('month').endOf('week');
   var days = [];
+  var today = moment();
 
   moment().range(startDay, endDay).by('days', function (day) {
     days.push({
       title: day.format('D'),
       isCurrentMonth: day.month() === month,
+      //isToday:
       range: moment.range(day.clone().startOf('day'), day.clone().endOf('day'))
     });
   });
@@ -69,7 +71,7 @@ var generateDays = function (year, month) {
 
 new Vue({
   el: '#calendar',
-  rangeable: ['quarter', 'month', 'week', 'day'],
+  rangeable: ['quarter', 'month',/* 'week',*/ 'day'],
 
   data: function () {
     return {
@@ -125,6 +127,11 @@ new Vue({
 
     selectQuarter: function (quarter) {
       this.setRange(quarter.range, 'quarter');
+    },
+
+    selectYear: function (year) {
+      var momentYear = moment(year, 'YYYY');
+      this.setRange(moment.range(momentYear.clone().startOf('year'), momentYear.clone().endOf('year')), 'year');
     },
 
     setRange: function (range, rangeType) {

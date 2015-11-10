@@ -32,6 +32,14 @@
       border-radius: 0;
     }
 
+    .rk-range-calendar .nav-pills li.partially-active a {
+      background-color: rgba(51, 122, 183, 0.18);
+    }
+
+    .rk-range-calendar .nav-pills li.active.partially-active a {
+      background-color: #337ab7;
+    }
+
     .rk-range-calendar .rk-calendar .panel-heading {
       text-align: center;
     }
@@ -77,9 +85,14 @@
     {
       margin-left: 0;
     }
+    .rk-range-calendar .rk-months >li {
+      width: 30%;
+      text-align: center;
+    }
 
     .rk-range-calendar .rk-day.active {
-      background-color: #d9edf7;
+      background-color: #337ab7;
+      color: #fff;
     }
 
     .rk-range-calendar .disable-text-select {
@@ -87,6 +100,10 @@
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
+    }
+
+    .rk-range-calendar .today {
+      color: red;
     }
   </style>
 </head>
@@ -103,7 +120,7 @@
       <!--Year-->
       <div class="btn-group" role="group" aria-label="...">
         <a class="btn btn-default" @click="setYear(year - 1)"><i class="fa fa-chevron-left"></i></a>
-        <button type="button" class="btn btn-default">{{ year }}</button>
+        <button type="button" class="btn btn-default" @click="selectYear(year)">{{ year }}</button>
         <a class="btn btn-default" @click="setYear(year + 1)"><i class="fa fa-chevron-right"></i></a>
       </div>
     </div>
@@ -114,7 +131,7 @@
         <!--Quarters-->
         <div class="col-md-2">
           <ul class="nav nav-pills rk-quarters">
-            <li v-for="quarter in quarters" :class="{active: isRangeSelected(quarter.range)}">
+            <li v-for="quarter in quarters" :class="{active: isRangeSelected(quarter.range), 'partially-active': isRangePartiallySelected(quarter.range)}">
               <a @click="selectQuarter(quarter)">{{ quarter.title }}</a>
             </li>
           </ul>
@@ -123,7 +140,9 @@
         <!--Months-->
         <div class="col-md-5">
           <ul class="nav nav-pills rk-months">
-            <li v-for="month in months" style="width: 30%; text-align: center" :class="{active: isRangeSelected(month.range)}"><a @click="selectMonth(month)">{{ month.title }}</a></li>
+            <li v-for="month in months" :class="{active: isRangeSelected(month.range), 'partially-active': isRangePartiallySelected(month.range)}">
+              <a @click="selectMonth(month)">{{ month.title }}</a>
+            </li>
           </ul>
         </div>
 
@@ -140,14 +159,14 @@
               <div class="row">
                 <div class="col-md-2">
                   <a v-for="week in weeks" class="rk-week" @click="selectWeek(week)">
-                    <i class="fa fa-check-square-o" :class="{hidden: !isRangeSelected(week.range)}"></i>
-                    <i class="fa fa-square-o" :class="{hidden: isRangeSelected(week.range) || isRangePartiallySelected(week.range)}"></i>
-                    <i class="fa fa-minus-square-o" :class="{hidden: isRangeSelected(week.range) || !isRangePartiallySelected(week.range)}"></i>
+                    <i class="fa fa-circle" :class="{hidden: !isRangeSelected(week.range)}"></i>
+                    <i class="fa fa-circle-o" :class="{hidden: isRangeSelected(week.range) || isRangePartiallySelected(week.range)}"></i>
+                    <i class="fa fa-dot-circle-o" :class="{hidden: isRangeSelected(week.range) || !isRangePartiallySelected(week.range)}"></i>
                   </a>
                 </div>
                 <div class="col-md-10">
                   <div class="rk-days">
-                    <a v-for="day in days" @click="selectDay(day)" class="rk-day" :class="{active: isRangeSelected(day.range), 'rk-day-muted': !day.isCurrentMonth}">{{ day.title }}</a>
+                    <a v-for="day in days" @click="selectDay(day)" class="rk-day" :class="{active: isRangeSelected(day.range), 'rk-day-muted': !day.isCurrentMonth, today: day.isToday}">{{ day.title }}</a>
                   </div>
                 </div>
               </div>
