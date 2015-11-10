@@ -20,6 +20,10 @@
       margin: 50px auto;
     }
 
+    .rk-range-calendar > .panel-body {
+      height: 300px;
+    }
+
     .rk-range-calendar .panel-heading {
       text-align: center;
     }
@@ -30,6 +34,11 @@
 
     .rk-range-calendar .nav-pills li a {
       border-radius: 0;
+      border: 1px solid #fff;
+    }
+
+    .rk-range-calendar .nav-pills li.today a {
+      border-color: orange;
     }
 
     .rk-range-calendar .nav-pills li.partially-active a {
@@ -46,7 +55,6 @@
 
     .rk-range-calendar .rk-days {
       border: 1px solid #eee;
-      border-width: 0 0 1px 1px;
     }
 
     .rk-range-calendar .rk-day {
@@ -54,7 +62,7 @@
       height: 30px;
       line-height: 30px;
       border: 1px solid #eee;
-      border-width: 1px 1px 0 0;
+      /*border-width: 1px 1px 0 0;*/
       display: inline-block;
       width: 14%;
       text-align: center;
@@ -103,7 +111,7 @@
     }
 
     .rk-range-calendar .today {
-      color: red;
+      border-color: orange;
     }
   </style>
 </head>
@@ -140,7 +148,8 @@
         <!--Months-->
         <div class="col-md-5">
           <ul class="nav nav-pills rk-months">
-            <li v-for="month in months" :class="{active: isRangeSelected(month.range), 'partially-active': isRangePartiallySelected(month.range)}">
+            <li v-for="month in months"
+                :class="{active: isRangeSelected(month.range), 'partially-active': isRangePartiallySelected(month.range), today: month.isToday}">
               <a @click="selectMonth(month)">{{ month.title }}</a>
             </li>
           </ul>
@@ -166,7 +175,10 @@
                 </div>
                 <div class="col-md-10">
                   <div class="rk-days">
-                    <a v-for="day in days" @click="selectDay(day)" class="rk-day" :class="{active: isRangeSelected(day.range), 'rk-day-muted': !day.isCurrentMonth, today: day.isToday}">{{ day.title }}</a>
+                    <a v-for="day in days"
+                       @click="selectDay(day)"
+                       :class="{active: isRangeSelected(day.range), 'rk-day-muted': !day.isCurrentMonth, today: day.isToday}"
+                       class="rk-day">{{ day.title }}</a>
                   </div>
                 </div>
               </div>

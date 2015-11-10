@@ -30,6 +30,7 @@ var generateMonths = function (year) {
 
     return {
       title: month.format('MMMM'),
+      isToday: month.format('YYYY-MM') === moment().format('YYYY-MM'),
       range: moment.range(month.clone().startOf('month'), month.clone().endOf('month'))
     };
   });
@@ -40,7 +41,6 @@ var generateWeeks = function (year, month) {
   var endDay = moment().year(year).month(month).endOf('month').endOf('week');
 
   var weeks = [];
-
   moment().range(startDay, endDay).by('weeks', function (week) {
     weeks.push({
       title: week.format('w'),
@@ -54,14 +54,13 @@ var generateWeeks = function (year, month) {
 var generateDays = function (year, month) {
   var startDay = moment().year(year).month(month).startOf('month').startOf('week');
   var endDay = moment().year(year).month(month).endOf('month').endOf('week');
-  var days = [];
-  var today = moment();
 
+  var days = [];
   moment().range(startDay, endDay).by('days', function (day) {
     days.push({
       title: day.format('D'),
       isCurrentMonth: day.month() === month,
-      //isToday:
+      isToday: day.format('YYYY-MM-DD') === moment().format('YYYY-MM-DD'),
       range: moment.range(day.clone().startOf('day'), day.clone().endOf('day'))
     });
   });
@@ -71,7 +70,7 @@ var generateDays = function (year, month) {
 
 new Vue({
   el: '#calendar',
-  rangeable: ['quarter', 'month',/* 'week',*/ 'day'],
+  rangeable: ['quarter', 'month'/*, 'week', 'day' */],
 
   data: function () {
     return {
