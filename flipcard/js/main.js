@@ -52,10 +52,8 @@ var app = new Vue({
     )[0];
 
     $('.carousel.carousel-slider').carousel({
-      fullWidth: true,
+      // fullWidth: true,
       indicators: false,
-      dist: 0,
-      duration: 400,
       onCycleTo: function() {
         vm.showNextSlide();
       }
