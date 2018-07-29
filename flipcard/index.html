@@ -1,0 +1,85 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css" integrity="sha256-zvFVp826siCUuxc2KZRdlkALzLZWNb7FaJm9K1mRxW0=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+  <div id="app">
+
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Cards</a>
+        <a href="#" data-target="slide-out" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+      </div>
+    </nav>
+
+    <ul id="slide-out" class="sidenav">
+      <li v-for="dict in dictionaries" v-bind:class="{active: dict.source == currentDictionary.source}">
+        <a v-bind:href="'#!/' + dict.code" v-on:click="loadDictionary(dict)">{{ dict.name }}</a>
+      </li>
+      <li>
+        <div class="divider"></div>
+      </li>
+      <li>
+        <div class="switch">
+          <label>
+            Term <input type="checkbox" v-model="isDefaultFlipped" /><span class="lever"></span> Definition
+          </label>
+        </div>
+      </li>
+    </ul>
+
+    <div class="carousel carousel-slider">
+      <div v-for="fakeSlide in [0, 1]" class="carousel-item">
+        <div class="row">
+          <div class="col s12 m5 flip-container" v-bind:class="{hover: card.flipped}">
+            <div class="flipper" v-on:click="flipCard">
+
+              <div class="card medium front">
+                <div class="card-content center">
+                  <p style="font-size: 2em;">{{ card.term }}</p>
+                </div>
+              </div>
+
+              <div class="card medium back">
+                <div class="card-content">
+                  <p v-for="def in card.definition">{{ def }}</p>
+
+                  <div class="examples" v-if="card.examples && card.examples.length">
+                    <p v-for="example in card.examples">‘{{ example }}’</p>
+                  </div>
+                  <p style="text-align: right">[<a v-on:click.stop="" v-bind:href="'https://en.oxforddictionaries.com/definition/' + card.term">Oxford dictionary</a>]</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js" integrity="sha256-T6iGJTr91LvmSE0OD+GJ79ArVNS0JClRUKJuTPDr0ac=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js" integrity="sha256-CMMTrj5gGwOAXBeFi7kNokqowkzbeL8ydAJy39ewjkQ=" crossorigin="anonymous"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+  </script>
+</body>
+
+</html>

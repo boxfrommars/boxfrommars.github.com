@@ -1,0 +1,64 @@
+/* ==========================================================================
+   Main
+   ========================================================================== */
+
+/* flip the pane when hovered */
+
+.flip-container.hover .flipper {
+  transform: rotateY(180deg);
+}
+
+/* flip speed */
+
+.flipper {
+  transition: 0.8s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+
+/* hide back of pane during swap */
+
+.flipper .card {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fcfcfc;
+  border: 1px solid #ddd;
+  width: 100%;
+}
+
+.flipper .card-action {
+  text-align: center;
+}
+
+/* front pane, placed above back */
+
+.front {
+  z-index: 2;
+  transform: rotateY(0deg);
+}
+
+/* back, initially hidden pane */
+
+.back {
+  transform: rotateY(180deg);
+}
+
+.carousel.carousel-slider .carousel-item {
+  min-height: 420px;
+}
+
+.card .card-content p {
+  margin-bottom: 0.5em;
+}
+
+.card .card-content .examples {
+  padding-top: .5em;
+  border-top: 1px solid #ccc;
+  font-style: italic;
+}
+
+.sidenav .switch {
+  padding: 0 32px;
+}

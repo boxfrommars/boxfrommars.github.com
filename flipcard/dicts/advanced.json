@@ -1,0 +1,46 @@
+[{
+  "term": "Abeyance",
+  "definition": ["A state of temporary disuse or suspension."],
+  "flipped": false
+}, {
+  "term": "Abrogate",
+  "definition": ["Repeal or do away with (a law, right, or formal agreement)",
+    "Evade (a responsibility or duty)."
+  ],
+  "flipped": false
+}, {
+  "term": "Repeal",
+  "definition": [
+    "Revoke or annul (a law or act of parliament)",
+    "The action of revoking or annulling a law or act of parliament."
+  ],
+  "flipped": false
+}, {
+  "term": "Reveal",
+  "definition": [
+    "Make (previously unknown or secret information) known to others.",
+    "(in a film or television programme) a final revelation of information that has previously been kept from the characters or viewers."
+  ],
+  "examples": [
+    "Brenda was forced to reveal Robbie's whereabouts",
+    "the big reveal at the end of the movie answers all questions"
+  ],
+  "flipped": false
+}, {
+  "term": "Revoke",
+  "definition": [
+    "Officially cancel (a decree, decision, or promise)",
+    "(in bridge, whist, and other card games) fail to follow suit despite being able to do so."
+  ],
+  "flipped": false
+}, {
+  "term": "Despite",
+  "definition": ["Without being affected by; in spite of."],
+  "examples": ["he remains a great leader despite age and infirmity"],
+  "flipped": false
+}, {
+  "term": "Evade",
+  "definition": ["Escape or avoid (someone or something), especially by guile or trickery."],
+  "examples": ["friends helped him to evade capture for a time"],
+  "flipped": false
+}]
