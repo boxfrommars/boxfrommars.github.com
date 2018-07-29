@@ -8,6 +8,13 @@
   transform: rotateY(180deg);
 }
 
+.carousel {
+  height: 440px;
+}
+.carousel-item>.row {
+  margin-top: 5px;
+}
+
 /* flip speed */
 
 .flipper {
