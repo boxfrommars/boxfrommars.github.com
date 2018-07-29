@@ -1,6 +1,7 @@
 {
-  "name": "FlipCards App 2",
+  "name": "FlipCards App 3",
   "description": "This app helps you learn english.",
+  "display": "standalone",
   "icons": [{
     "src": "favicon-256.png",
     "sizes": "256x256"
