@@ -8,9 +8,6 @@
   transform: rotateY(180deg);
 }
 
-.carousel {
-  height: 440px;
-}
 .carousel-item>.row {
   margin-top: 5px;
 }
@@ -52,8 +49,16 @@
   transform: rotateY(180deg);
 }
 
+.flipper .card.medium {
+  height: 450px;
+}
+
+.carousel {
+  height: 490px;
+}
+
 .carousel.carousel-slider .carousel-item {
-  min-height: 420px;
+  min-height: 470px;
 }
 
 .card .card-content p {

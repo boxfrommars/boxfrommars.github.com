@@ -14,6 +14,10 @@ var app = new Vue({
       name: "Main Words",
       source: "main.json",
       code: "main"
+    }, {
+      name: "From Peak App",
+      source: "peak.json",
+      code: "peak"
     }]
   },
   methods: {

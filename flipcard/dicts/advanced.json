@@ -43,4 +43,32 @@
   "definition": ["Escape or avoid (someone or something), especially by guile or trickery."],
   "examples": ["friends helped him to evade capture for a time"],
   "flipped": false
+}, {
+  "term": "Struggle",
+  "definition": [
+    "Make forceful or violent efforts to get free of restraint or constriction.",
+    "Engage in conflict.",
+    "A conflict or contest."
+  ],
+  "examples": [
+    "before she could struggle, he lifted her up",
+    "there were signs of a struggle and there was a lot of blood around",
+    "a power struggle for the leadership"
+  ],
+  "flipped": false
+}, {
+  "term": "Divine",
+  "definition": [
+    "Of or like God or a god.",
+    "Devoted to God; sacred.",
+    "Very pleasing; delightful.",
+    "A cleric or theologian.",
+    "(the D***) Providence or God."
+  ],
+  "examples": [
+    "heroes with divine powers",
+    "paintings of shipwrecks being prevented by divine intervention",
+    "he had the most divine smile"
+  ],
+  "flipped": false
 }]

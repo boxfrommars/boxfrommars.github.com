@@ -52,6 +52,10 @@
               <div class="card medium front">
                 <div class="card-content center">
                   <p style="font-size: 2em;">{{ card.term }}</p>
+
+                  <div class="examples" v-show="isDefaultFlipped && card.examples && card.examples.length">
+                    <p v-for="example in card.examples">‘{{ example }}’</p>
+                  </div>
                 </div>
               </div>
 
@@ -59,7 +63,7 @@
                 <div class="card-content">
                   <p v-for="def in card.definition">{{ def }}</p>
 
-                  <div class="examples" v-show="card.examples && card.examples.length">
+                  <div class="examples" v-show="!isDefaultFlipped && card.examples && card.examples.length">
                     <p v-for="example in card.examples">‘{{ example }}’</p>
                   </div>
                   <p style="text-align: right">[<a v-on:click.stop="" v-bind:href="'https://en.oxforddictionaries.com/definition/' + card.term">Oxford dictionary</a>]</p>
