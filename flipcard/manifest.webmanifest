@@ -1,0 +1,8 @@
+{
+  "name": "FlipCards App",
+  "description": "This app helps you learn english.",
+  "icons": [{
+    "src": "favicon.ico",
+    "sizes": "48x48"
+  }]
+}
