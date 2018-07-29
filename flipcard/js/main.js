@@ -37,7 +37,7 @@ var app = new Vue({
 
     loadDictionary: function(dict) {
       this.currentDictionary = dict;
-      return $.getJSON('dicts/' + dict.source).done(function(result) {
+      return $.getJSON('dicts/' + dict.source + '?v=2').done(function(result) {
         this.cards = shuffle(result);
         this.current = -1;
         this.showNextSlide();
