@@ -55,6 +55,7 @@ var app = new Vue({
       fullWidth: true,
       indicators: false,
       dist: 0,
+      duration: 400,
       onCycleTo: function() {
         vm.showNextSlide();
       }
