@@ -55,7 +55,7 @@ var app = new Vue({
       fullWidth: true,
       indicators: false,
       onCycleTo: function() {
-        vm.showNextSlide();
+        // vm.showNextSlide();
       }
     });
   },
