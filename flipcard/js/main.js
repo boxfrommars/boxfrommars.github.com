@@ -54,8 +54,9 @@ var app = new Vue({
     $('.carousel.carousel-slider').carousel({
       fullWidth: true,
       indicators: false,
+      dist: 0,
       onCycleTo: function() {
-        // vm.showNextSlide();
+        vm.showNextSlide();
       }
     });
   },
