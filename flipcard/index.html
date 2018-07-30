@@ -5,22 +5,22 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>FlipCards</title>
-  <link rel="manifest" href="manifest.json?v=2">
+  <link rel="manifest" href="manifest.json?v=4">
+  <link rel="shortcut icon" href="/flipcard/favicon.ico">
 
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css" integrity="sha256-zvFVp826siCUuxc2KZRdlkALzLZWNb7FaJm9K1mRxW0=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="css/main.css?ver=3">
+  <link rel="stylesheet" href="css/main.css?ver=4">
 </head>
 
 <body>
 
   <div id="app">
 
-    <nav>
+    <nav class="teal lighten-1">
       <div class="nav-wrapper">
         <a href="#!" class="brand-logo">FlipCards</a>
         <a href="#" data-target="slide-out" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
@@ -30,6 +30,9 @@
     <ul id="slide-out" class="sidenav">
       <li v-for="dict in dictionaries" v-bind:class="{active: dict.source == currentDictionary.source}">
         <a v-bind:href="'#!/' + dict.code" v-on:click="loadDictionary(dict)">{{ dict.name }}</a>
+      </li>
+      <li>
+        <a class="waves-effect waves-light btn-small teal lighten-1" v-on:click="shuffle()">Shuffle</a>
       </li>
       <li>
         <div class="divider"></div>
@@ -76,16 +79,12 @@
 
       </div>
     </div>
-
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js" integrity="sha256-T6iGJTr91LvmSE0OD+GJ79ArVNS0JClRUKJuTPDr0ac=" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js" integrity="sha256-CMMTrj5gGwOAXBeFi7kNokqowkzbeL8ydAJy39ewjkQ=" crossorigin="anonymous"></script>
-  <script src="js/main.js?ver=3"></script>
-
-  <script>
-  </script>
+  <script src="js/main.js?ver=4"></script>
 </body>
 
 </html>

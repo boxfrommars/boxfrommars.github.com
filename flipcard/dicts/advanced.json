@@ -1,20 +1,17 @@
 [{
   "term": "Abeyance",
-  "definition": ["A state of temporary disuse or suspension."],
-  "flipped": false
+  "definition": ["A state of temporary disuse or suspension."]
 }, {
   "term": "Abrogate",
   "definition": ["Repeal or do away with (a law, right, or formal agreement)",
     "Evade (a responsibility or duty)."
-  ],
-  "flipped": false
+  ]
 }, {
   "term": "Repeal",
   "definition": [
     "Revoke or annul (a law or act of parliament)",
     "The action of revoking or annulling a law or act of parliament."
-  ],
-  "flipped": false
+  ]
 }, {
   "term": "Reveal",
   "definition": [
@@ -24,25 +21,21 @@
   "examples": [
     "Brenda was forced to reveal Robbie's whereabouts",
     "the big reveal at the end of the movie answers all questions"
-  ],
-  "flipped": false
+  ]
 }, {
   "term": "Revoke",
   "definition": [
     "Officially cancel (a decree, decision, or promise)",
     "(in bridge, whist, and other card games) fail to follow suit despite being able to do so."
-  ],
-  "flipped": false
+  ]
 }, {
   "term": "Despite",
   "definition": ["Without being affected by; in spite of."],
-  "examples": ["he remains a great leader despite age and infirmity"],
-  "flipped": false
+  "examples": ["he remains a great leader despite age and infirmity"]
 }, {
   "term": "Evade",
   "definition": ["Escape or avoid (someone or something), especially by guile or trickery."],
-  "examples": ["friends helped him to evade capture for a time"],
-  "flipped": false
+  "examples": ["friends helped him to evade capture for a time"]
 }, {
   "term": "Struggle",
   "definition": [
@@ -54,8 +47,7 @@
     "before she could struggle, he lifted her up",
     "there were signs of a struggle and there was a lot of blood around",
     "a power struggle for the leadership"
-  ],
-  "flipped": false
+  ]
 }, {
   "term": "Divine",
   "definition": [
@@ -69,6 +61,14 @@
     "heroes with divine powers",
     "paintings of shipwrecks being prevented by divine intervention",
     "he had the most divine smile"
+  ]
+}, {
+  "term": "Cope",
+  "definition": [
+    "(of a person) deal effectively with something difficult."
   ],
-  "flipped": false
+  "examples": [
+    "his ability to cope with stress",
+    "the roads are barely adequate to cope with the present traffic"
+  ]
 }]

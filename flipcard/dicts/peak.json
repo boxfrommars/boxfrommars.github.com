@@ -8,8 +8,7 @@
     "lamb stew",
     "beef stewed in wine",
     "stew in one's own juice"
-  ],
-  "flipped": false
+  ]
 }, {
   "term": "Peck",
   "definition": [
@@ -17,13 +16,11 @@
   ],
   "examples": [
     "two geese were pecking at some grain"
-  ],
-  "flipped": false
+  ]
 }, {
   "term": "Slurp",
   "definition": ["Drink or eat (something) with a loud sucking noise."],
-  "examples": ["she slurped her coffee"],
-  "flipped": false
+  "examples": ["she slurped her coffee"]
 }, {
   "term": "Snarl",
   "definition": [
@@ -35,8 +32,7 @@
     "the dog snarled at the boy",
     "the trailing lead got snarled up in a bramble bush",
     "snarls of wild raspberry plants"
-  ],
-  "flipped": false
+  ]
 }, {
   "term": "Tangle",
   "definition": [
@@ -46,8 +42,7 @@
   "examples": [
     "the broom somehow got tangled up in my long skirt",
     "they usually come a cropper when they tangle with the heavy mobs"
-  ],
-  "flipped": false
+  ]
 }, {
   "term": "Poke",
   "definition": [
@@ -58,8 +53,7 @@
     "they sniffed, felt, and poked at everything they bought",
     "I poked my head around the door to see what was going on",
     "his mother comes into his room sometimes and has a poke round"
-  ],
-  "flipped": false
+  ]
 }, {
   "term": "Wage",
   "definition": [
@@ -69,8 +63,7 @@
   "examples": [
     "we were struggling to get better wages",
     "it is necessary to destroy their capacity to wage war"
-  ],
-  "flipped": false
+  ]
 }, {
   "term": "Toil",
   "definition": [
@@ -81,8 +74,7 @@
   "examples": [
     "Richard toiled to build his editorial team",
     "she began to toil up the cliff path"
-  ],
-  "flipped": false
+  ]
 }, {
   "term": "Labour/Labor",
   "definition": [
@@ -93,8 +85,7 @@
   "examples": [
     "they laboured from dawn to dusk",
     "a labour of Hercules"
-  ],
-  "flipped": false
+  ]
 }, {
   "term": "Mop",
   "definition": [
@@ -106,8 +97,7 @@
   "examples": [
     "the kitchen needed a quick mop",
     "she mopped the floor and cleaned out two cupboards"
-  ],
-  "flipped": false
+  ]
 }, {
   "term": "Slip",
   "definition": [
@@ -121,6 +111,5 @@
     "the envelope slipped through Luke's fingers",
     "we slipped out by a back door",
     "many people feel standards have slipped"
-  ],
-  "flipped": false
+  ]
 }]
