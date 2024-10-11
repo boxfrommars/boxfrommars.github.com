@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Hello, world!</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="" />
+  <link href="https://cdn.jsdelivr.net/npm/modern-normalize@v3.0.1/modern-normalize.min.css" rel="stylesheet">
+  <style>
+    html {
+        height: 100%;
+        background-image: url(output/bg/output.jpg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        text-align: center;
+    }
+    .step {
+        width: 10%;
+        height: 100px;
+        float: left;
+        opacity: 0.9;
+    }
+    .walk {
+        background-color: #FFE620;
+    }
+    .run {
+        background-color: #05DF71;
+    }
+    .warmup {
+        background-color: #FF3B2F;
+    }
+    .cooldown {
+        background-color: #2094FB;
+    }
+    .timer {
+        font-size: 5em;
+        color: #fff;
+        opacity: 0.8;
+    }
+    footer {
+        position: absolute;
+        bottom: 0%;
+        left: 0;
+        width: 100%;
+    }
+
+    .action i {
+        color: white;
+        /* left: 50%; */
+        font-size: 6em;
+        opacity: 0.8;
+    }
+
+    .hidden {
+        display: none;
+    }
+    .training-info {
+        padding: 10px;
+        text-align: left;
+        color: antiquewhite;
+        background-color: black;
+        opacity: 0.8;
+        margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <main id="app"></main>
+  <div class="timer"></div>
+  <footer>
+    <a href="#" class="start-run action"><i class="fa-regular fa-circle-play"></i></a>
+    <a href="#" class="hidden stop-run action"><i class="fa-regular fa-circle-pause"></i></a>
+    <div class="training-info">
+        Неделя 3 День 1
+        <i class="fa-solid fa-bars" style="float: right;"></i>
+    </div>
+  </footer>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/8b95ba2bda.js" crossorigin="anonymous"></script>
+
+  <script>
+    // Shorthand for $( document ).ready()
+    let schedule = {
+        "name": "week-3-day-1",
+        "sequence": [
+            ["warmup", 5],
+            ["run", 1.5], ["walk", 1.5],
+            ["run", 2.5], ["walk", 2.5],
+            ["run", 2.5], ["walk", 2.5],
+            ["run", 1.5], ["walk", 1.5],
+            ["cooldown", 5]
+        ]
+    }
+
+    function secondsToMinutesSeconds(totalSeconds) {
+        // Вычисляем минуты и секунды
+        const minutes = Math.floor(totalSeconds / 60);
+        const seconds = totalSeconds % 60;
+
+        // Форматируем каждую часть с помощью padStart
+        const formattedMinutes = String(minutes).padStart(2, '0');
+        const formattedSeconds = String(seconds).padStart(2, '0');
+
+        // Возвращаем отформатированную строку
+        return `${formattedMinutes}:${formattedSeconds}`;
+    }
+
+    // Constructor function for creating a ResumableInterval object
+    function ResumableInterval(callback, delay) {
+        // Private variables to store the interval ID and pause state
+        let intervalId;
+        let paused = false;
+
+        // Private function to start the interval
+        const start = () => {
+            // Check if the interval is not paused
+            if (!paused) {
+                // Set the interval to execute the callback function with the specified delay
+                intervalId = setInterval(callback, delay);
+            }
+        };
+
+        // Private function to pause the interval
+        const pause = () => {
+            // Clear the interval to stop further executions
+            clearInterval(intervalId);
+            // Update the pause state
+            paused = true;
+        };
+
+        // Private function to resume the interval
+        const resume = () => {
+            // Check if the interval is paused
+            if (paused) {
+                // Set the interval to resume execution with the specified delay
+                intervalId = setInterval(callback, delay);
+                // Update the pause state
+                paused = false;
+            }
+        };
+
+        // Private function to stop the interval
+        const stop = () => {
+            // Clear the interval to stop further executions
+            clearInterval(intervalId);
+        };
+
+        const is_paused = () => {
+            return paused
+        }
+
+        // Return an object with public methods
+        return { start, pause, resume, stop, is_paused };
+    }
+
+
+    function initTraining(sequence) {
+        let total_time = 0
+        sequence.forEach(el => {
+            total_time += el[1];
+        });
+        console.log(total_time);
+
+        for (let i = 0; i < sequence.length; i++) {
+            const step = sequence[i];
+            // console.log(step)
+            const step_elm = $('<div/>', {
+                "class": step[0] + ' step',
+                width: (100 * step[1] / total_time) + '%'
+            });
+            $('#app').append(step_elm);
+        };
+
+        let time_to_end = total_time * 60;
+
+        const exampleInterval = new ResumableInterval(() => {
+            time_to_end -= 1;
+            $('.timer').text(secondsToMinutesSeconds(time_to_end));
+
+            if (time_to_end <= 0) {
+                exampleInterval.stop();
+            }
+        }, 1000);
+
+        return exampleInterval
+    }
+
+
+    $(function() {
+        exampleInterval = initTraining(schedule.sequence)
+
+        $('.start-run').click(function() {
+            console.log('WOW');
+            if (exampleInterval.is_paused()) {
+                exampleInterval.resume();
+                console.log('RESUME')
+            } else {
+                exampleInterval.start();
+                console.log('START')
+            }
+
+            $('.start-run').addClass('hidden');
+            $('.stop-run').removeClass('hidden');
+        })
+
+        $('.stop-run').click(function() {
+            exampleInterval.pause();
+            $('.stop-run').addClass('hidden');
+            $('.start-run').removeClass('hidden');
+        })
+
+    });
+  </script>
+</body>
+</html>
